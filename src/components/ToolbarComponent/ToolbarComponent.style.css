@@ -1,0 +1,68 @@
+.header-container {
+    color: var(--color-text-white);
+    background-color: var(--color-primary-main);
+    height: 80px;
+    padding: 0 30px;
+}
+
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    width: 100%;
+}
+
+.header-col-1 {
+    display: flex;
+    justify-content: start;
+}
+
+.header-col-2 {
+    display: flex;
+    justify-content: end;
+}
+
+.header-brand-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-brand-logo {
+    height: 50px;
+    width: auto;
+    margin-right: 20px;
+}
+
+.header-icon-message, .header-icon-notification {
+    color: var(--color-text-white);
+    background-color: transparent;
+}
+
+.header-icon-user {
+    color: var(--color-text-white);
+    background-color: var(--color-primary-light);
+}
+
+.ant-badge .ant-badge-count {
+    box-shadow: none;
+    margin-right: 4px;
+}
+
+.header-user-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 10px;
+}
+
+#header-user-name {
+    font-size: 1.12rem;
+    font-weight: 600;
+}
+
+#header-user-occupation {
+    line-height: 1.5rem;
+    font-size: 0.9rem;
+}
