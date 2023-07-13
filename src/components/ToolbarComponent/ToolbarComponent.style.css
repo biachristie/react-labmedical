@@ -29,10 +29,15 @@
     align-items: center;
 }
 
+.header-brand-title {
+    font-size: 2.3rem;
+    margin: 0;
+}
+
 .header-brand-logo {
     height: 50px;
     width: auto;
-    margin-right: 20px;
+    margin-right: 10px;
 }
 
 .header-icon-message, .header-icon-notification {
@@ -48,6 +53,7 @@
 .ant-badge .ant-badge-count {
     box-shadow: none;
     margin-right: 4px;
+    background: var(--color-highlight-main);
 }
 
 .header-user-container {
