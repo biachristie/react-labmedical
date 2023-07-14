@@ -40,9 +40,10 @@
     margin-right: 10px;
 }
 
-.header-icon-message, .header-icon-notification {
+.header-icon {
+    font-size: 1.12rem;
     color: var(--color-text-white);
-    background-color: transparent;
+    background-color: var(--color-background-transparent);
 }
 
 .header-icon-user {
@@ -52,7 +53,8 @@
 
 .ant-badge .ant-badge-count {
     box-shadow: none;
-    margin-right: 4px;
+    top: -3px;
+    left: 2px;
     background: var(--color-highlight-main);
 }
 
@@ -71,4 +73,73 @@
 #header-user-occupation {
     line-height: 1.5rem;
     font-size: 0.9rem;
+}
+
+.ant-drawer .ant-drawer-header {
+    background: var(--color-primary-main);
+    border: 0;
+    padding: 28px 24px;
+}
+
+.ant-drawer .ant-drawer-close {
+    color: var(--color-highlight-main);
+}
+
+.ant-drawer .ant-drawer-close:hover {
+    color: var(--color-highlight-main);
+}
+
+.ant-drawer .ant-drawer-title {
+    color: var(--color-text-white);
+    text-align: center;
+}
+
+@media screen and (max-width: 480px) {
+    .header-container {
+        padding: 0 15px;
+    }
+    
+    .header-brand-title {
+        font-size: 1.75rem;
+    }
+
+    .header-brand-logo {
+        height: 40px;
+    }
+
+    .ant-badge .ant-badge-count {
+        min-width: 16px;
+        height: 16px;
+        line-height: 16px;
+    }
+    
+    .header-icon {
+        font-size: 0.9rem;
+    }
+
+    .ant-space {
+        gap: 18px !important;
+    }
+
+    .ant-avatar-lg {
+        width: 35px;
+        height: 35px;
+        line-height: 32px;
+    }
+
+    .ant-avatar-lg.ant-avatar-icon {
+        font-size: 21px;
+    }
+
+    #header-user-name {
+        font-size: 1rem;
+    }
+    
+    #header-user-occupation {
+        font-size: 0.75rem;
+    }
+    
+    .ant-drawer-content-wrapper {
+        width: 85% !important;
+    }
 }
