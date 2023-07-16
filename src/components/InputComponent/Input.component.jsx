@@ -24,7 +24,11 @@ function InputComponent({
                     rules={[
                         {
                             required: required,
-                            type: type
+                            message: '${label} is required'
+                        },
+                        {
+                            type: type,
+                            message: '${label} is not a valid e-mail'
                         }
                     ]} 
                     hasFeedback
@@ -49,7 +53,7 @@ function InputComponent({
                     rules={[
                         {
                             required: required,
-                            whitespace: true
+                            message: '${label} is required'
                         },
                         {
                             min: 8,
@@ -77,7 +81,8 @@ function InputComponent({
                     name={ id }
                     rules={[
                         {
-                            required: required
+                            required: required,
+                            message: '${label} is required'
                         }
                     ]}
                     hasFeedback
@@ -106,7 +111,8 @@ function InputComponent({
                     name={ id }
                     rules={[
                         {
-                            required: required
+                            required: required,
+                            message: '${label} is required'
                         }
                     ]}
                     hasFeedback
@@ -123,7 +129,6 @@ function InputComponent({
                 </Form.Item>
             }
         </>
-
     );
 }
 
