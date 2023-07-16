@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { Form, Input } from "antd";
 
 function InputComponent({ 
@@ -28,6 +29,16 @@ function InputComponent({
                 </Form.Item>
         </>
     );
+}
+
+InputComponent.propTypes = {
+    label: PropTypes.string.isRequired,
+    rules: PropTypes.arrayOf(PropTypes.object),
+    hasFeedback: PropTypes.bool,
+    id: PropTypes.string.isRequired,
+    placeholder: PropTypes.string,
+    type: PropTypes.string.isRequired,
+    onInput: PropTypes.func
 }
 
 export default InputComponent;
