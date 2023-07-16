@@ -1,0 +1,25 @@
+.login-form {
+    margin-top: 50px;
+    width: 50vw;
+}
+
+.login-form-input {
+    line-height: 2rem;
+}
+
+.login-form-remember {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.login-form-forgot {
+    padding-top: 5px;
+}
+
+.login-form-forgot:hover {
+    color: var(--color-highlight-main);
+}
+
+.login-form-forgot {
+    font-weight: 600;
+}
