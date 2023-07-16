@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
-import { Checkbox, Form } from 'antd'
+import { Checkbox, Form, message } from 'antd'
 
 import './LoginForm.component.css'
 import InputComponent from '../InputComponent/Input.component'
 
 function LoginForm() {
+    const [messageApi, contextHolder] = message.useMessage();
+
     const [users, setUsers] = useState([])
 
     const fetchUserData = () => {
@@ -20,17 +22,22 @@ function LoginForm() {
         const user = users.users.find(user => user.email === email)
 
         if (!user) {
-            alert('User was not found')
+            messageApi.open({ type: 'error', content: 'User was not found' })
             form.resetFields()
             return
         }
 
-        password === user.password ? console.log('Success: ', data) : alert('Wrong credentials. Invalid user and/or password')
+        password === user.password 
+            ? console.log('Success: ', data) 
+            : messageApi.open({ type: 'error', content: 'Wrong credentials. Invalid user and/or password' })
     }
 
     const [form] = Form.useForm()
 
     return (
+        <>
+            { contextHolder }
+
             <Form 
                 form={ form } 
                 name='login-form'
@@ -73,7 +80,8 @@ function LoginForm() {
                 </div>
 
             </Form>
-    );
+        </>
+    )
 }
 
 export default LoginForm;
