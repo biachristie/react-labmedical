@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState } from 'react'
 import { Checkbox, Form, Input } from 'antd'
 
 import './LoginForm.component.css'
@@ -7,19 +7,32 @@ function LoginForm() {
     const [form] = Form.useForm()
 
     const onFinish = (values) => {
-        console.log('Success: ', values);
+        console.log('Success: ', values)
     }
 
-    const onFinishFailed = (errorInfo) => {
-        console.log('Failed: ', errorInfo);
-    }
+    // const onFinishFailed = (errorInfo) => {
+    //     console.log('Failed: ', errorInfo)
+    // }
 
     const validateMessages = {
-        required: ` is required!`,
+        required: '${label} is required',
+        whitespace: '${label} cannot be empty',
         types: {
-            email: 'This is not a valid e-mail!',
-            password: 'Should be a combination of letters, numbers and symbols'
+            email: '${label} is not a valid e-mail',
+            // password: '${label} should be a combination of letters, numbers and symbols'
         }
+    }
+
+    const [data, setData] = useState({
+        email: '',
+        password: ''
+    })
+
+    const handleInput = (e) => {
+        e.preventDefault()
+        const { value, id } = e.target
+        setData({ ...data, [id]: value })
+        console.log(data);
     }
 
     return (
@@ -30,14 +43,14 @@ function LoginForm() {
                 layout='vertical'
                 initialValues={{ remember: true }}
                 onFinish={ onFinish }
-                onFinishFailed={ onFinishFailed }
+                // onFinishFailed={ onFinishFailed }
                 validateMessages={ validateMessages }
                 autoComplete='off'
             >
 
                 <Form.Item
                     className='login-form-field'
-                    label='E-mail Address'
+                    label='E-mail'
                     name='email'
                     rules={[
                         {
@@ -49,8 +62,10 @@ function LoginForm() {
                 >
                     <Input
                         className='login-form-input'
+                        id='email'
                         placeholder='name@example.com'
                         type='email' 
+                        onInput={ handleInput }
                     />  
                 </Form.Item>
 
@@ -61,16 +76,21 @@ function LoginForm() {
                     rules={[
                         {
                             required: true,
-                            type: 'password',
+                            whitespace: true
+                        },
+                        {
+                            min: 8,
+                            max: 12,
+                            message: '${label} must be between ${min} and ${max} characters'
                         }
                     ]}
                     hasFeedback
                 >
                     <Input.Password 
                         className='login-form-input'
+                        id='password'
                         placeholder='Enter your password'
-                        minLength={ 8 }
-                        maxLength={ 12 }
+                        onInput={ handleInput }
                     />
                 </Form.Item>
 
@@ -78,7 +98,7 @@ function LoginForm() {
                     <Form.Item
                         name='remember'
                         valuePropName='checked'
-                        >
+                    >
                         <Checkbox className='login-form-checkbox'>Keep me signed in</Checkbox>
                     </Form.Item>
 
