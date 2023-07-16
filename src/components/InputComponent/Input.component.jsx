@@ -9,12 +9,14 @@ function InputComponent({
         id, 
         placeholder, 
         type, 
+        maxLength,
+        maxRows,
         onInput 
     }) {
 
     return (
         <>
-            { (type !== 'password' && type !== 'number') &&
+            { (type !== 'password' && type !== 'number' && type !== 'textarea') &&
                 <Form.Item
                     className='form-field'
                     label={ label }
@@ -68,6 +70,35 @@ function InputComponent({
                 </Form.Item>
             }
 
+            { type === 'textarea' &&
+                <Form.Item
+                    className='form-field-textarea'
+                    label={ label }
+                    name={ id }
+                    rules={[
+                        {
+                            required: required
+                        }
+                    ]}
+                    hasFeedback
+                >
+
+                    <Input.TextArea
+                        className='form-input-textarea'
+                        id={ id }
+                        placeholder={ placeholder }
+                        showCount
+                        maxLength={ maxLength }
+                        autoSize ={{
+                            minRows: 2,
+                            maxRows: maxRows
+                        }}
+                        onInput={ onInput }
+                    />
+
+                </Form.Item>
+            }
+
             { type === 'number' &&
                 <Form.Item
                     className='form-field'
@@ -102,7 +133,9 @@ InputComponent.propTypes = {
     id: PropTypes.string.isRequired,
     placeholder: PropTypes.string,
     type: PropTypes.string.isRequired,
+    maxLength: PropTypes.number,
+    maxRows: PropTypes.number,
     onInput: PropTypes.func
 }
 
-export default InputComponent;
+export default InputComponent
