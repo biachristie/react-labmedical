@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types'
-import { Form, Input } from "antd";
+import { Form, Input, InputNumber } from "antd";
+
+import './Input.style.css'
 
 function InputComponent({ 
         label, 
@@ -12,7 +14,7 @@ function InputComponent({
 
     return (
         <>
-            { type !== 'password' &&
+            { (type !== 'password' && type !== 'number') &&
                 <Form.Item
                     className='form-field'
                     label={ label }
@@ -60,6 +62,30 @@ function InputComponent({
                         className='form-input'
                         id={ id }
                         placeholder={ placeholder }
+                        onInput={ onInput }
+                    />
+
+                </Form.Item>
+            }
+
+            { type === 'number' &&
+                <Form.Item
+                    className='form-field'
+                    label={ label }
+                    name={ id }
+                    rules={[
+                        {
+                            required: required
+                        }
+                    ]}
+                    hasFeedback
+                >
+
+                    <InputNumber
+                        className='form-input-number'
+                        id={ id }
+                        placeholder={ placeholder }
+                        min={ 0 }
                         onInput={ onInput }
                     />
 
