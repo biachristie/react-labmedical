@@ -4,16 +4,34 @@ import { Checkbox, Form, Input } from 'antd'
 import './LoginForm.component.css'
 
 function LoginForm() {
+    const [form] = Form.useForm()
+
+    const onFinish = (values) => {
+        console.log('Success: ', values);
+    }
+
+    const onFinishFailed = (errorInfo) => {
+        console.log('Failed: ', errorInfo);
+    }
+
+    const validateMessages = {
+        required: ` is required!`,
+        types: {
+            email: 'This is not a valid e-mail!',
+            password: 'Should be a combination of letters, numbers and symbols'
+        }
+    }
+
     return (
             <Form 
-                // form={ } 
+                form={ form } 
                 name='login-form'
                 className='login-form'
                 layout='vertical'
                 initialValues={{ remember: true }}
-                // onFinish={  }
-                // onFinishFailed={ }
-                // validateMessages={ }
+                onFinish={ onFinish }
+                onFinishFailed={ onFinishFailed }
+                validateMessages={ validateMessages }
                 autoComplete='off'
             >
 
