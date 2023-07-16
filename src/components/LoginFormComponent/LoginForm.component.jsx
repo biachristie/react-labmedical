@@ -1,38 +1,13 @@
-import { useState } from 'react'
-import { Checkbox, Form, Input } from 'antd'
+import { Checkbox, Form } from 'antd'
 
 import './LoginForm.component.css'
+import InputComponent from '../InputComponent/Input.component'
 
 function LoginForm() {
     const [form] = Form.useForm()
 
-    const onFinish = (values) => {
-        console.log('Success: ', values)
-    }
-
-    // const onFinishFailed = (errorInfo) => {
-    //     console.log('Failed: ', errorInfo)
-    // }
-
-    const validateMessages = {
-        required: '${label} is required',
-        whitespace: '${label} cannot be empty',
-        types: {
-            email: '${label} is not a valid e-mail',
-            // password: '${label} should be a combination of letters, numbers and symbols'
-        }
-    }
-
-    const [data, setData] = useState({
-        email: '',
-        password: ''
-    })
-
-    const handleInput = (e) => {
-        e.preventDefault()
-        const { value, id } = e.target
-        setData({ ...data, [id]: value })
-        console.log(data);
+    const onFinishFailed = (errorInfo) => {
+        console.log('Failed: ', errorInfo)
     }
 
     return (
@@ -41,58 +16,31 @@ function LoginForm() {
                 name='login-form'
                 className='login-form'
                 layout='vertical'
-                initialValues={{ remember: true }}
-                onFinish={ onFinish }
-                // onFinishFailed={ onFinishFailed }
-                validateMessages={ validateMessages }
+                initialValues={{
+                    email: '',
+                    password: '',
+                    remember: true 
+                }}
+                // onFinish={ onSubmitForm }
+                onFinishFailed={ onFinishFailed }
                 autoComplete='off'
             >
 
-                <Form.Item
-                    className='login-form-field'
+                <InputComponent
                     label='E-mail'
-                    name='email'
-                    rules={[
-                        {
-                            required: true,
-                            type: 'email'
-                        }
-                    ]}
-                    hasFeedback
-                >
-                    <Input
-                        className='login-form-input'
-                        id='email'
-                        placeholder='name@example.com'
-                        type='email' 
-                        onInput={ handleInput }
-                    />  
-                </Form.Item>
+                    required={ true }
+                    id='email'
+                    placeholder='Enter your e-mail'
+                    type='email'
+                />
 
-                <Form.Item
-                    className='login-form-field'
+                <InputComponent
                     label='Password'
-                    name='password'
-                    rules={[
-                        {
-                            required: true,
-                            whitespace: true
-                        },
-                        {
-                            min: 8,
-                            max: 12,
-                            message: '${label} must be between ${min} and ${max} characters'
-                        }
-                    ]}
-                    hasFeedback
-                >
-                    <Input.Password 
-                        className='login-form-input'
-                        id='password'
-                        placeholder='Enter your password'
-                        onInput={ handleInput }
-                    />
-                </Form.Item>
+                    required={ true }
+                    id='password'
+                    placeholder='Enter your password'
+                    type='password'
+                />
 
                 <div className='login-form-remember'>
                     <Form.Item
