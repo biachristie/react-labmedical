@@ -1,9 +1,20 @@
+import { useEffect, useState } from 'react'
 import { Checkbox, Form } from 'antd'
 
 import './LoginForm.component.css'
 import InputComponent from '../InputComponent/Input.component'
 
 function LoginForm() {
+    const [users, setUsers] = useState([])
+
+    const fetchUserData = () => {
+        fetch('https://dummyjson.com/users')
+            .then(response => response.json())
+            .then(data => setUsers(data))
+    }
+
+    useEffect(() => { fetchUserData() }, [])
+
     const [form] = Form.useForm()
 
     const onFinishFailed = (errorInfo) => {
