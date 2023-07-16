@@ -15,11 +15,20 @@ function LoginForm() {
 
     useEffect(() => { fetchUserData() }, [])
 
-    const [form] = Form.useForm()
+    const onSubmitForm = (data) => {
+        const { email, password } = data
+        const user = users.users.find(user => user.email === email)
 
-    const onFinishFailed = (errorInfo) => {
-        console.log('Failed: ', errorInfo)
+        if (!user) {
+            alert('User was not found')
+            form.resetFields()
+            return
+        }
+
+        password === user.password ? console.log('Success: ', data) : alert('Wrong credentials. Invalid user and/or password')
     }
+
+    const [form] = Form.useForm()
 
     return (
             <Form 
@@ -32,8 +41,7 @@ function LoginForm() {
                     password: '',
                     remember: true 
                 }}
-                // onFinish={ onSubmitForm }
-                onFinishFailed={ onFinishFailed }
+                onFinish={ onSubmitForm }
                 autoComplete='off'
             >
 
