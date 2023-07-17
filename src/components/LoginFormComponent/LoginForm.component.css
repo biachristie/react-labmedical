@@ -35,3 +35,15 @@
 .login-form-forgot:hover {
     color: var(--color-highlight-main);
 }
+
+.form-field-button {
+    display: block;
+    justify-content: center;
+    width: 30%;
+    margin: 50px auto;
+}
+
+.login-form-button {
+    height: 2.7rem;
+    border-radius: 13px;
+}

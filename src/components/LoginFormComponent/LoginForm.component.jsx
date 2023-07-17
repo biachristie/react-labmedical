@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Checkbox, Form, Tooltip, message } from 'antd'
+import { Button, Checkbox, Form, Tooltip, message } from 'antd'
 
 import './LoginForm.component.css'
 import InputComponent from '../InputComponent/Input.component'
@@ -8,6 +8,8 @@ import InputComponent from '../InputComponent/Input.component'
 function LoginForm() {
     const navigate = useNavigate()
     const redirectToHome = () => navigate('/home')
+
+    const [form] = Form.useForm()
 
     const [messageApi, contextHolder] = message.useMessage();
 
@@ -20,6 +22,15 @@ function LoginForm() {
     }
 
     useEffect(() => { fetchUserData() }, [])
+
+    const [submit, setSubmit] = useState(false)
+    const data = Form.useWatch([], form)
+
+    useEffect(() => {
+        form
+            .validateFields({ validateOnly: true })
+            .then(() => { setSubmit(true) }, () => { setSubmit(false) })
+    }, [data])
 
     const onSubmitForm = (data) => {
         const { email, password } = data
@@ -35,8 +46,6 @@ function LoginForm() {
             ? redirectToHome()
             : messageApi.open({ type: 'error', content: 'Wrong credentials. Invalid user and/or password' })
     }
-
-    const [form] = Form.useForm()
 
     return (
         <section className='login-form-section'>
@@ -93,6 +102,18 @@ function LoginForm() {
                             <a className='login-form-forgot' href="#">Forgot your password?</a>
                         </Tooltip>
                     </div>
+
+                    <Form.Item className='form-field-button'>
+                        <Button 
+                            className='login-form-button' 
+                            type='primary' 
+                            htmlType='submit' 
+                            block 
+                            disabled={ !submit }
+                        >
+                            Login
+                        </Button>
+                    </Form.Item>
 
                 </Form>
             </div>
