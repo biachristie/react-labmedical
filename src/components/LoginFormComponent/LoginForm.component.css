@@ -13,12 +13,11 @@
     font-size: 0.9rem;
     text-align: center;
     color: var(--color-text-gray);
-    width: 52vw;
 }
 
 .login-form {
     margin-top: 50px;
-    width: 50vw;
+    width: 35vw;
 }
 
 .login-form-remember {
