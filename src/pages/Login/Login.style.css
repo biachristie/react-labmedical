@@ -1,0 +1,21 @@
+.login-page-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.login-page-brand, .login-page-form{
+    border: 2px solid red;
+    width: 50%;
+}
+
+.login-page-signUp {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+}

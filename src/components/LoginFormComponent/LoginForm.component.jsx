@@ -58,7 +58,7 @@ function LoginForm() {
     }
 
     return (
-        <section className='login-form-section'>
+        <div className='login-form-section'>
             { contextHolder }
 
             <div className='login-form-container'>
@@ -127,7 +127,7 @@ function LoginForm() {
 
                 </Form>
             </div>
-        </section>
+        </div>
     )
 }
 
