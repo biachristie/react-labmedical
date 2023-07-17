@@ -42,6 +42,16 @@ function LoginForm() {
             return
         }
 
+        if (password === user.password) {
+            localStorage.setItem('firstname', user.firstName)
+            localStorage.setItem('lastname', user.lastName)
+            localStorage.setItem('title', user.company.title)
+            localStorage.setItem('avatar', user.image)
+            redirectToHome()
+        } else {
+            messageApi.open({ type: 'error', content: 'Wrong credentials. Invalid user and/or password' })
+        }
+
         password === user.password 
             ? redirectToHome()
             : messageApi.open({ type: 'error', content: 'Wrong credentials. Invalid user and/or password' })
