@@ -35,12 +35,12 @@ function LoginForm() {
     const [form] = Form.useForm()
 
     return (
-        <>
+        <section className='login-form-section'>
             { contextHolder }
 
             <div className='login-form-container'>
-                <h1 id='login-form-title'>Login Account</h1>
-                <p id='login-form-description'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, cupiditate optio? Minima temporibus voluptates repellendus quidem beatae? Sequi officiis cum repellat, neque culpa quo laudantium esse maiores excepturi, debitis distinctio.</p>
+                <h1 id='login-form-title'>Welcome Back</h1>
+                <p id='login-form-description'>Enter your e-mail and password to access your account.</p>
             
                 <Form 
                     form={ form } 
@@ -92,7 +92,7 @@ function LoginForm() {
 
                 </Form>
             </div>
-        </>
+        </section>
     )
 }
 

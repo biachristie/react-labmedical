@@ -6,6 +6,7 @@
 
 #login-form-title {
     color: var(--color-primary-main);
+    margin-bottom: 10px;
 }
 
 #login-form-description {
