@@ -1,8 +1,14 @@
+import { Button } from 'antd'
+import { useNavigate } from 'react-router-dom'
+
 import './Login.style.css'
 
 import LoginForm from "../../components/LoginFormComponent/LoginForm.component";
 
 function LoginPage() {
+    const navigate = useNavigate()
+    const redirectToRegister = () => navigate('/register')
+
     return (
         <div className='login-page-container'>
             <section className='login-page-brand'>
@@ -13,7 +19,14 @@ function LoginPage() {
                 <LoginForm />
                 <div className='login-page-signUp'>
                     <p>Don't have an account?</p>
-                    <a className='login-page-register' href="#">Sign up here</a>
+                    <Button 
+                        className='login-page-button'
+                        type='primary' 
+                        htmlType='button'
+                        onClick={ redirectToRegister }
+                    >
+                        Sign up!
+                    </Button>
                 </div>
             </section>
         </div>
