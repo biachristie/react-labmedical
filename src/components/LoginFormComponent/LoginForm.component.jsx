@@ -1,10 +1,14 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Checkbox, Form, Tooltip, message } from 'antd'
 
 import './LoginForm.component.css'
 import InputComponent from '../InputComponent/Input.component'
 
 function LoginForm() {
+    const navigate = useNavigate()
+    const redirectToHome = () => navigate('/home')
+
     const [messageApi, contextHolder] = message.useMessage();
 
     const [users, setUsers] = useState([])
@@ -28,7 +32,7 @@ function LoginForm() {
         }
 
         password === user.password 
-            ? console.log('Success: ', data) 
+            ? redirectToHome()
             : messageApi.open({ type: 'error', content: 'Wrong credentials. Invalid user and/or password' })
     }
 
