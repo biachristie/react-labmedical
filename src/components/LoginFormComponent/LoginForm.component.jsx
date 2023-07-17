@@ -51,10 +51,6 @@ function LoginForm() {
         } else {
             messageApi.open({ type: 'error', content: 'Wrong credentials. Invalid user and/or password' })
         }
-
-        password === user.password 
-            ? redirectToHome()
-            : messageApi.open({ type: 'error', content: 'Wrong credentials. Invalid user and/or password' })
     }
 
     return (
