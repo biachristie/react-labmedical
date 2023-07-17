@@ -1,8 +1,12 @@
 import { Button } from 'antd'
+import { useNavigate } from 'react-router-dom'
 
 import './Register.style.css'
 
 function RegisterPage() {
+    const navigate = useNavigate()
+    const redirectToLogin = () => navigate('/')
+
     return (
         <div className='register-container'>
             <section className='register-brand'>
@@ -17,6 +21,7 @@ function RegisterPage() {
                         className='register-button'
                         type='primary' 
                         htmlType='button'
+                        onClick={ redirectToLogin }
                     >
                         Sign up!
                     </Button>
