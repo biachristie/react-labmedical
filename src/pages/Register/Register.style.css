@@ -26,7 +26,7 @@
     width: 135px;
 }
 
-.register-form{
+.register-form-main {
     width: 50%;
 }
 
@@ -59,7 +59,7 @@
         width: 70px;
     }
 
-    .register-form{
+    .register-form-main {
         height: 75vh;
         width: 100%;
         padding-top: 50px;
@@ -86,7 +86,7 @@
         width:100px;
     }
 
-    .register-form{
+    .register-form-main {
         height: 75vh;
         width: 100%;
         padding-top: 50px;

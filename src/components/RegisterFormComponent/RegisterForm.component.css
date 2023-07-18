@@ -49,6 +49,10 @@
 }
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
+    #register-form-description {
+        padding: 0 50px;
+    }
+
     .register-form {
         width: 40vw;
     }
