@@ -1,10 +1,11 @@
-import { useEffect, useState, useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button, Checkbox, Form, Tooltip, message } from 'antd'
 
 import './LoginForm.component.css'
 import InputComponent from '../InputComponent/Input.component'
 import { AuthContext } from '../../context/auth/auth.context'
+import { UsersContext } from '../../context/users/users.context'
 
 function LoginForm() {
     const navigate = useNavigate()
@@ -14,15 +15,7 @@ function LoginForm() {
 
     const [messageApi, contextHolder] = message.useMessage();
 
-    const [users, setUsers] = useState([])
-
-    const fetchUserData = () => {
-        fetch('https://dummyjson.com/users')
-            .then(response => response.json())
-            .then(data => setUsers(data))
-    }
-
-    useEffect(() => { fetchUserData() }, [])
+    const { usersList } = useContext(UsersContext)
 
     const [submit, setSubmit] = useState(false)
     const data = Form.useWatch([], form)
@@ -35,7 +28,7 @@ function LoginForm() {
 
     const onSubmitForm = (data) => {
         const { email, password } = data
-        const user = users.users.find(user => user.email === email)
+        const user = usersList.find(user => user.email === email)
 
         if (!user) {
             messageApi.open({ type: 'error', content: 'User was not found' })
@@ -44,10 +37,8 @@ function LoginForm() {
         }
 
         if (password === user.password) {
-            localStorage.setItem('firstname', user.firstName)
-            localStorage.setItem('lastname', user.lastName)
-            localStorage.setItem('title', user.company.title)
-            localStorage.setItem('avatar', user.image)
+            localStorage.setItem('id', user.id)
+            localStorage.setItem('name', user.name)
             redirectToHome(user)
         } else {
             messageApi.open({ type: 'error', content: 'Wrong credentials. Invalid user and/or password' })
