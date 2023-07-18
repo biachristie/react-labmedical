@@ -1,21 +1,16 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Button, Form, message } from 'antd'
 
 import './RegisterForm.component.css'
 import InputComponent from '../InputComponent/Input.component'
+import { UsersContext } from '../../context/users/users.context'
 
 function RegisterForm() {
     const [form] = Form.useForm()
 
     const [messageApi, contextHolder] = message.useMessage();
     
-    const [users, setUsers] = useState([])
-    
-    useEffect (() => {
-        fetch('http://localhost:3000/users')
-            .then(response => response.json())
-            .then(data => setUsers(data))
-    }, [])
+    const { usersList } = useContext(UsersContext)
 
     const [submit, setSubmit] = useState(false)
     const data = Form.useWatch([], form)
@@ -27,7 +22,7 @@ function RegisterForm() {
     }, [data])
 
     const onSubmitForm = () => {
-        let filterEmail = users.filter(user => user.email.includes(data.email))
+        let filterEmail = usersList.filter(user => user.email.includes(data.email))
 
         if (filterEmail.length > 0) {
             messageApi.open({ type: 'error', content: 'This e-mail is already in use.' })
