@@ -28,7 +28,7 @@ function InputComponent({
                         },
                         {
                             type: type,
-                            message: '${label} is not a valid e-mail'
+                            message: '${label} is not a valid ${type}'
                         }
                     ]} 
                     hasFeedback
