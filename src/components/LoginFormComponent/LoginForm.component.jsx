@@ -1,13 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button, Checkbox, Form, Tooltip, message } from 'antd'
 
 import './LoginForm.component.css'
 import InputComponent from '../InputComponent/Input.component'
+import { AuthContext } from '../../context/auth/auth.context'
 
 function LoginForm() {
     const navigate = useNavigate()
-    const redirectToHome = () => navigate('/home')
+    const { setAuth } = useContext(AuthContext)
 
     const [form] = Form.useForm()
 
@@ -47,10 +48,15 @@ function LoginForm() {
             localStorage.setItem('lastname', user.lastName)
             localStorage.setItem('title', user.company.title)
             localStorage.setItem('avatar', user.image)
-            redirectToHome()
+            redirectToHome(user)
         } else {
             messageApi.open({ type: 'error', content: 'Wrong credentials. Invalid user and/or password' })
         }
+    }
+
+    const redirectToHome = (user) => {
+        setAuth({ user, isLogged: true })
+        navigate('/')
     }
 
     return (
