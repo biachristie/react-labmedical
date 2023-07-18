@@ -43,17 +43,15 @@
 .header-icon {
     font-size: 1.12rem;
     color: var(--color-text-white);
-    background-color: var(--color-background-transparent);
 }
 
 .header-icon-user {
-    color: var(--color-text-white);
     background-color: var(--color-primary-light);
 }
 
 .ant-badge .ant-badge-count {
     box-shadow: none;
-    top: -3px;
+    top: -2px;
     left: 2px;
     background: var(--color-highlight-main);
 }
@@ -86,7 +84,7 @@
 }
 
 .ant-drawer .ant-drawer-close:hover {
-    color: var(--color-highlight-main);
+    color: var(--color-highlight-lighter);
 }
 
 .ant-drawer .ant-drawer-title {
