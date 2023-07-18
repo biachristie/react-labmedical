@@ -1,8 +1,8 @@
-import { BellFilled, MailFilled, UserOutlined } from '@ant-design/icons'
+import { useEffect, useState } from 'react'
 import { Avatar, Badge, Col, Drawer, Row, Space } from 'antd'
+import { BellFilled, MailFilled, UserOutlined } from '@ant-design/icons'
 
 import './ToolbarComponent.style.css'
-import { useState } from 'react';
 
 function ToolBarComponent() {
     const [openDM, setOpenDM] = useState(false)
@@ -12,6 +12,12 @@ function ToolBarComponent() {
     const handleCloseDM = () => setOpenDM(false)
     const handleOpenNotification = () => setOpenNotification(true)
     const handleCloseNotification = () => setOpenNotification(false)
+
+    const [username, setUsername] = useState()
+
+    useEffect(() => {
+        setUsername(localStorage.getItem('firstname'))
+    }, [])
 
     return (
         <header className='header-container'>
@@ -33,8 +39,8 @@ function ToolBarComponent() {
                         <Avatar className='header-icon-user' size='large' icon={ <UserOutlined /> } />
                     </Space>
                     <div className='header-user-container'>
-                        <span id='header-user-name'>Beatriz</span>
-                        <span id='header-user-occupation'>Médica</span>
+                        <span id='header-user-name'>{ username }</span>
+                        {/* <span id='header-user-occupation'>Médica</span> */}
                     </div>
                     <Drawer
                         className='header-drawer'

@@ -59,6 +59,7 @@
 .header-user-container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     margin-left: 10px;
 }
