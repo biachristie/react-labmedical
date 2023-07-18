@@ -1,10 +1,16 @@
 import { useEffect, useState } from 'react'
-import { Avatar, Badge, Col, Drawer, Row, Space } from 'antd'
+import { Badge, Button, Col, Drawer, Modal, Row, Space } from 'antd'
 import { BellFilled, MailFilled, UserOutlined } from '@ant-design/icons'
 
 import './ToolbarComponent.style.css'
 
 function ToolBarComponent() {
+    const [username, setUsername] = useState()
+
+    useEffect(() => {
+        setUsername(localStorage.getItem('firstname'))
+    }, [])
+
     const [openDM, setOpenDM] = useState(false)
     const [openNotification, setOpenNotification] = useState(false)
 
@@ -13,11 +19,7 @@ function ToolBarComponent() {
     const handleOpenNotification = () => setOpenNotification(true)
     const handleCloseNotification = () => setOpenNotification(false)
 
-    const [username, setUsername] = useState()
-
-    useEffect(() => {
-        setUsername(localStorage.getItem('firstname'))
-    }, [])
+    const [openUserAvatar, setOpenUserAvatar] = useState(false)
 
     return (
         <header className='header-container'>
@@ -36,11 +38,26 @@ function ToolBarComponent() {
                         <Badge count={ 5 } overflowCount={ 10 }>
                             <BellFilled className='header-icon' onClick={ handleOpenNotification } />
                         </Badge>
-                        <Avatar className='header-icon-user' size='large' icon={ <UserOutlined /> } />
+                        <Button 
+                            className='header-icon-user' 
+                            type='default' 
+                            shape='circle' 
+                            size='large'
+                            icon={ <UserOutlined /> } 
+                            onClick={ () => setOpenUserAvatar(true) }
+                        />
+                        <Modal
+                            className='header-user-modal'
+                            title = 'title'
+                            open={ openUserAvatar }
+                            onOk={ () => setOpenUserAvatar(false) }
+                            onCancel={ () => setOpenUserAvatar(false) }
+                        >
+                            Modal
+                        </Modal>
                     </Space>
                     <div className='header-user-container'>
                         <span id='header-user-name'>{ username }</span>
-                        {/* <span id='header-user-occupation'>Médica</span> */}
                     </div>
                     <Drawer
                         className='header-drawer'
@@ -50,7 +67,7 @@ function ToolBarComponent() {
                         onClose={ handleCloseDM }
                         maskClosable
                     >
-                        Conteúdo das mensagens diretas
+                        Under construction
                     </Drawer>
                     <Drawer
                         className='header-drawer'
@@ -60,7 +77,7 @@ function ToolBarComponent() {
                         onClose={ handleCloseNotification }
                         maskClosable
                     >
-                        Conteúdo das Notificações
+                        Under construction
                     </Drawer>
                 </Col>
             </Row>

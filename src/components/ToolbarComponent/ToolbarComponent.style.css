@@ -46,7 +46,9 @@
 }
 
 .header-icon-user {
+    color: var(--color-text-white);
     background-color: var(--color-primary-light);
+    border: none;
 }
 
 .ant-badge .ant-badge-count {
@@ -64,14 +66,13 @@
     margin-left: 10px;
 }
 
+.header-user-modal {
+    text-align: center;
+}
+
 #header-user-name {
     font-size: 1.12rem;
     font-weight: 600;
-}
-
-#header-user-occupation {
-    line-height: 1.5rem;
-    font-size: 0.9rem;
 }
 
 .ant-drawer .ant-drawer-header {
