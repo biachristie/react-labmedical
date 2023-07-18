@@ -1,9 +1,21 @@
+import { useEffect, useState } from 'react'
 import { Button, Form } from 'antd'
 
 import './RegisterForm.component.css'
 import InputComponent from '../InputComponent/Input.component'
 
 function RegisterForm() {
+    const [form] = Form.useForm()
+
+    const [submit, setSubmit] = useState(false)
+    const data = Form.useWatch([], form)
+
+    useEffect(() => {
+        form
+            .validateFields({ validateOnly: true })
+            .then(() => { setSubmit(true) }, () => { setSubmit(false) })
+    }, [data])
+
     return (
         <div className='register-form-section'>
             <div className='register-form-container'>
@@ -11,7 +23,7 @@ function RegisterForm() {
                 <p id='register-form-description'>Enter your name, e-mail and password to create your account.</p>
             
                 <Form 
-                    // form={ '' } 
+                    form={ form } 
                     name='register-form'
                     className='register-form'
                     layout='vertical'
@@ -54,7 +66,7 @@ function RegisterForm() {
                             type='primary' 
                             htmlType='submit' 
                             block 
-                            // disabled={ '' }
+                            disabled={ !submit }
                         >
                             Create account
                         </Button>
