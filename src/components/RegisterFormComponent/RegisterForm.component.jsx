@@ -8,6 +8,14 @@ function RegisterForm() {
     const [form] = Form.useForm()
 
     const [messageApi, contextHolder] = message.useMessage();
+    
+    const [users, setUsers] = useState([])
+    
+    useEffect (() => {
+        fetch('http://localhost:3000/users')
+            .then(response => response.json())
+            .then(data => setUsers(data))
+    }, [])
 
     const [submit, setSubmit] = useState(false)
     const data = Form.useWatch([], form)
@@ -19,6 +27,14 @@ function RegisterForm() {
     }, [data])
 
     const onSubmitForm = () => {
+        const filterEmail = users.filter(user => user.email.includes(data.email))
+
+        if (filterEmail.length > 0) {
+            messageApi.open({ type: 'error', content: 'This e-mail is already in use.' })
+            filterEmail = []
+            return
+        }
+
         fetch('http://localhost:3000/users', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
