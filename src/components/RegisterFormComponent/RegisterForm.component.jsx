@@ -27,7 +27,7 @@ function RegisterForm() {
     }, [data])
 
     const onSubmitForm = () => {
-        const filterEmail = users.filter(user => user.email.includes(data.email))
+        let filterEmail = users.filter(user => user.email.includes(data.email))
 
         if (filterEmail.length > 0) {
             messageApi.open({ type: 'error', content: 'This e-mail is already in use.' })
