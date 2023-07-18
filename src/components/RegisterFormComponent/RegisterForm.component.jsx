@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
-import { Button, Form } from 'antd'
+import { Button, Form, message } from 'antd'
 
 import './RegisterForm.component.css'
 import InputComponent from '../InputComponent/Input.component'
 
 function RegisterForm() {
     const [form] = Form.useForm()
+
+    const [messageApi, contextHolder] = message.useMessage();
 
     const [submit, setSubmit] = useState(false)
     const data = Form.useWatch([], form)
@@ -16,8 +18,30 @@ function RegisterForm() {
             .then(() => { setSubmit(true) }, () => { setSubmit(false) })
     }, [data])
 
+    const onSubmitForm = () => {
+        fetch('http://localhost:3000/users', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                name: data.name,
+                email: data.email,
+                password: data.password
+            })
+        })
+        .then(() => {
+            messageApi.open({ type: 'success', content: 'Success! You have been registered.' })
+            form.resetFields()
+        })
+        .catch(() => {
+            messageApi.open({ type: 'error', content: 'Registration failed. Please try again.' })
+            form.resetFields()
+        })
+    }
+
     return (
         <div className='register-form-section'>
+            { contextHolder }
+
             <div className='register-form-container'>
                 <h1 id='register-form-title'>Create an account</h1>
                 <p id='register-form-description'>Enter your name, e-mail and password to create your account.</p>
@@ -28,11 +52,11 @@ function RegisterForm() {
                     className='register-form'
                     layout='vertical'
                     initialValues={{
+                        name: '',
                         email: '',
                         password: '',
-                        remember: true 
                     }}
-                    // onFinish={ '' }
+                    onFinish={ onSubmitForm }
                     autoComplete='off'
                 >
 
