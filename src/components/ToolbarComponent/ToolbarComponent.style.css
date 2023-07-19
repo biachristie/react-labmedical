@@ -46,9 +46,17 @@
 }
 
 .header-icon-user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: var(--color-text-white);
     background-color: var(--color-primary-light);
     border: none;
+}
+
+.avatar {
+    height: 2.35rem;
+    border-radius: 50%;
 }
 
 .ant-badge .ant-badge-count {
@@ -74,6 +82,7 @@
     font-size: 1.12rem;
     font-weight: 600;
 }
+
 
 .ant-drawer .ant-drawer-header {
     background: var(--color-primary-main);

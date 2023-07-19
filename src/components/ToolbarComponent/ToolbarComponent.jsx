@@ -1,16 +1,11 @@
-import { useEffect, useState } from 'react'
-import { Badge, Button, Col, Drawer, Modal, Row, Space } from 'antd'
+import { useState } from 'react'
+import { Badge, Button, Col, Drawer, Form, Modal, Row, Space, Spin } from 'antd'
 import { BellFilled, MailFilled, UserOutlined } from '@ant-design/icons'
 
 import './ToolbarComponent.style.css'
+import InputComponent from '../InputComponent/Input.component'
 
 function ToolBarComponent() {
-    const [username, setUsername] = useState()
-
-    useEffect(() => {
-        setUsername(localStorage.getItem('firstname'))
-    }, [])
-
     const [openDM, setOpenDM] = useState(false)
     const [openNotification, setOpenNotification] = useState(false)
 
@@ -20,6 +15,10 @@ function ToolBarComponent() {
     const handleCloseNotification = () => setOpenNotification(false)
 
     const [openUserAvatar, setOpenUserAvatar] = useState(false)
+
+    const onOkModal = () => {
+        setOpenUserAvatar(false)
+    }
 
     return (
         <header className='header-container'>
@@ -48,16 +47,24 @@ function ToolBarComponent() {
                         />
                         <Modal
                             className='header-user-modal'
-                            title = 'title'
+                            title = 'Change Profile Avatar'
                             open={ openUserAvatar }
-                            onOk={ () => setOpenUserAvatar(false) }
+                            onOk={ onOkModal }
                             onCancel={ () => setOpenUserAvatar(false) }
                         >
-                            Modal
+                            <Form className='header-user-modal-form'>
+                                <InputComponent
+                                    label='Avatar'
+                                    id='avatar'
+                                    placeholder='Enter your avatar'
+                                    type='text'
+                                    // onInput = {  }
+                                />
+                            </Form>
                         </Modal>
                     </Space>
                     <div className='header-user-container'>
-                        <span id='header-user-name'>{ username }</span>
+                        <span id='header-user-name'>{ <Spin size='small' /> }</span>
                     </div>
                     <Drawer
                         className='header-drawer'
