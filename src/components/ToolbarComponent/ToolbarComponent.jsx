@@ -4,7 +4,7 @@ import { BellFilled, MailFilled, UserOutlined } from '@ant-design/icons'
 
 import './ToolbarComponent.style.css'
 import { UsersContext } from '../../context/users/users.context'
-import InputComponent from '../InputComponent/Input.component'
+import InputComponent from '../Input/Input'
 
 function ToolBarComponent() {
     const { usersList } = useContext(UsersContext)
@@ -17,7 +17,7 @@ function ToolBarComponent() {
             const id = localStorage.getItem('id')
             const data = usersList.find(user => user.id.toString().includes(id))
             setUser(data)
-            setAvatar(<img className='avatar' src={ data.avatar } alt='Avatar' />)
+            setAvatar(<img className='header-icon-avatar' src={ data.avatar } alt='Avatar' />)
         }
     }, [usersList])
     
@@ -32,8 +32,9 @@ function ToolBarComponent() {
     const [openUserAvatar, setOpenUserAvatar] = useState(false)
     const [urlAvatar, setUrlAvatar] = useState('')
 
+
     const onOkModal = () => {
-        setAvatar(<img className='avatar' src={ urlAvatar } alt='Avatar' />)
+        setAvatar(<img className='hear-icon-avatar' src={ urlAvatar } alt='Avatar' />)
         fetch(`http://localhost:3000/users/${user.id}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
