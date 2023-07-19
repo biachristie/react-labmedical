@@ -4,7 +4,7 @@ import { BellFilled, MailFilled, UserOutlined } from '@ant-design/icons'
 
 import './ToolbarComponent.style.css'
 import { UsersContext } from '../../context/users/users.context'
-import InputComponent from '../Input/Input'
+import InputComponent from '../InputComponent/Input.component'
 
 function ToolBarComponent() {
     const { usersList } = useContext(UsersContext)
@@ -24,14 +24,8 @@ function ToolBarComponent() {
     const [openDM, setOpenDM] = useState(false)
     const [openNotification, setOpenNotification] = useState(false)
 
-    const handleOpenDM = () => setOpenDM(true)
-    const handleCloseDM = () => setOpenDM(false)
-    const handleOpenNotification = () => setOpenNotification(true)
-    const handleCloseNotification = () => setOpenNotification(false)
-
     const [openUserAvatar, setOpenUserAvatar] = useState(false)
     const [urlAvatar, setUrlAvatar] = useState('')
-
 
     const onOkModal = () => {
         setAvatar(<img className='hear-icon-avatar' src={ urlAvatar } alt='Avatar' />)
@@ -57,10 +51,10 @@ function ToolBarComponent() {
                 <Col className='header-col-2' >
                     <Space className='header-icons-container' size={ 23 } >
                         <Badge count={ 1 } overflowCount={ 99 }>
-                            <MailFilled className='header-icon' onClick={ handleOpenDM } />
+                            <MailFilled className='header-icon' onClick={ () => setOpenDM(true) } />
                         </Badge>
                         <Badge count={ 5 } overflowCount={ 10 }>
-                            <BellFilled className='header-icon' onClick={ handleOpenNotification } />
+                            <BellFilled className='header-icon' onClick={ () => setOpenNotification(true) } />
                         </Badge>
                         <Button 
                             className='header-icon-user' 
@@ -96,7 +90,7 @@ function ToolBarComponent() {
                         placement='right'
                         title='Direct Messages'
                         open={ openDM }
-                        onClose={ handleCloseDM }
+                        onClose={ () => setOpenDM(false) }
                         maskClosable
                     >
                         Under construction
@@ -106,7 +100,7 @@ function ToolBarComponent() {
                         placement='right'
                         title='Notifications'
                         open={ openNotification }
-                        onClose={ handleCloseNotification }
+                        onClose={ () => setOpenNotification(false) }
                         maskClosable
                     >
                         Under construction
