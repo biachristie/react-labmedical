@@ -1,11 +1,26 @@
-import { useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { Badge, Button, Col, Drawer, Form, Modal, Row, Space, Spin } from 'antd'
 import { BellFilled, MailFilled, UserOutlined } from '@ant-design/icons'
 
 import './ToolbarComponent.style.css'
+import { UsersContext } from '../../context/users/users.context'
 import InputComponent from '../InputComponent/Input.component'
 
 function ToolBarComponent() {
+    const { usersList } = useContext(UsersContext)
+
+    const [user, setUser] = useState()
+    const [avatar, setAvatar] = useState('')
+
+    useEffect(() => {
+        if (usersList.length > 0) {
+            const id = localStorage.getItem('id')
+            const data = usersList.find(user => user.id.toString().includes(id))
+            setUser(data)
+            setAvatar(<img className='avatar' src={ data.avatar } alt='Avatar' />)
+        }
+    }, [usersList])
+    
     const [openDM, setOpenDM] = useState(false)
     const [openNotification, setOpenNotification] = useState(false)
 
@@ -15,8 +30,17 @@ function ToolBarComponent() {
     const handleCloseNotification = () => setOpenNotification(false)
 
     const [openUserAvatar, setOpenUserAvatar] = useState(false)
+    const [urlAvatar, setUrlAvatar] = useState('')
 
     const onOkModal = () => {
+        setAvatar(<img className='avatar' src={ urlAvatar } alt='Avatar' />)
+        fetch(`http://localhost:3000/users/${user.id}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                avatar: `${urlAvatar}`
+            })
+        })
         setOpenUserAvatar(false)
     }
 
@@ -42,7 +66,7 @@ function ToolBarComponent() {
                             type='default' 
                             shape='circle' 
                             size='large'
-                            icon={ <UserOutlined /> } 
+                            icon={ avatar ? avatar : <UserOutlined /> } 
                             onClick={ () => setOpenUserAvatar(true) }
                         />
                         <Modal
@@ -58,13 +82,13 @@ function ToolBarComponent() {
                                     id='avatar'
                                     placeholder='Enter your avatar'
                                     type='text'
-                                    // onInput = {  }
+                                    onInput = { (e) => setUrlAvatar(e.target.value) }
                                 />
                             </Form>
                         </Modal>
                     </Space>
                     <div className='header-user-container'>
-                        <span id='header-user-name'>{ <Spin size='small' /> }</span>
+                        <span id='header-user-name'>{ user ? user.name : <Spin size='small' /> }</span>
                     </div>
                     <Drawer
                         className='header-drawer'
