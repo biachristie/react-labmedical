@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Button, Menu } from 'antd'
 import {
     CalendarOutlined,
@@ -19,14 +20,14 @@ import './Menubar.component.css'
 
 function MenuBarComponent() {
     const items = [
-        { label: 'Home', key: 'home', icon: <HomeFilled /> },
-        { label: 'Pacients', key: 'patients', icon: <UserOutlined />},
-        { label: 'Appointments', key: 'appointments', icon: <CalendarOutlined />},
-        { label: 'Exams', key: 'exams', icon: <ExperimentOutlined />},
-        { label: 'Registration', key: 'registration', icon: <FormOutlined />, children: [
-            { label: 'Pacient', key: 'pacientRegister', icon: <IdcardOutlined /> },
-            { label: 'Appointment', key: 'appointmentRegister', icon: <ClockCircleOutlined /> },
-            { label: 'Exam', key: 'examRegister', icon: <PlusOutlined /> }
+        { label: 'Home', key: '/', icon: <HomeFilled /> },
+        { label: 'Pacients', key: '/patients', icon: <UserOutlined />},
+        { label: 'Appointments', key: '/appointments', icon: <CalendarOutlined />},
+        { label: 'Exams', key: '/exams', icon: <ExperimentOutlined />},
+        { label: 'Registration', icon: <FormOutlined />, children: [
+            { label: 'Pacient', key: '/pacientRegister', icon: <IdcardOutlined /> },
+            { label: 'Appointment', key: '/appointmentRegister', icon: <ClockCircleOutlined /> },
+            { label: 'Exam', key: '/examRegister', icon: <PlusOutlined /> }
         ]},
         { label: 'Settings', key: 'settings', icon: <SettingOutlined /> },
         { label: 'Signout', key: 'signout', icon: <LogoutOutlined /> },
@@ -34,6 +35,13 @@ function MenuBarComponent() {
 
     const [collapsed, setCollapsed] = useState(false)
     const toggleCollapsed = () => setCollapsed(!collapsed)
+    
+    const navigate = useNavigate()
+
+    const handleSignOut = () => {
+        window.location.href='/'
+        localStorage.clear()
+    }
 
     return (
         <>
@@ -44,7 +52,8 @@ function MenuBarComponent() {
                     defaultSelectedKeys={['home']}
                     inlineCollapsed={ collapsed }
                     items={ items }
-                    // onClick={ handleSignOut }
+                    onClick={ ({key}) => { key === 'signout' ? handleSignOut() : navigate(key) }
+                    }
                 />
                 <div className='menuBar-button'>
                     <Button

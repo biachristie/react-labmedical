@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: row;
     height: 100vh;
-    width: 256px;
+    width: 216px;
 }
 
 .menuBar {
@@ -19,7 +19,6 @@
 
 .menuBar-toggle {
     color: var(--color-text-white);
-    text-align: end;
     background-color: var(--color-primary-main);
     border: none;
     box-shadow: none;
