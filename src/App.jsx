@@ -6,9 +6,13 @@ function App() {
   const { setUsersList } = useContext(UsersContext)
 
     useEffect (() => {
-        fetch('http://localhost:3000/users')
-            .then(response => response.json())
-            .then(data => setUsersList(data))
+      const fetchData = async() => {
+        const response = await fetch('http://localhost:3000/users')
+        const data = await response.json()
+        setUsersList(data)
+      }
+
+      fetchData()
     }, [])
 
     return (
