@@ -1,0 +1,27 @@
+.menuBar-container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 256px;
+}
+
+.menuBar {
+    height: 100%;
+}
+
+.ant-menu-light.ant-menu-root.ant-menu-inline {
+    border-inline-end: none;
+}
+
+.menuBar-button {
+    background-color: var(--color-primary-main);
+}
+
+.menuBar-toggle {
+    color: var(--color-text-white);
+    text-align: end;
+    background-color: var(--color-primary-main);
+    border: none;
+    box-shadow: none;
+    margin: 7px 0;
+}
