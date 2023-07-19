@@ -1,0 +1,154 @@
+.header-container {
+    color: var(--color-text-white);
+    background-color: var(--color-primary-main);
+    height: 80px;
+    padding: 0 30px;
+}
+
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    width: 100%;
+}
+
+.header-col-1 {
+    display: flex;
+    justify-content: start;
+}
+
+.header-col-2 {
+    display: flex;
+    justify-content: end;
+}
+
+.header-brand-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-brand-title {
+    font-size: 2.3rem;
+    margin: 0;
+}
+
+.header-brand-logo {
+    height: 50px;
+    width: auto;
+    margin-right: 10px;
+}
+
+.header-icon {
+    font-size: 1.12rem;
+    color: var(--color-text-white);
+}
+
+.header-icon-user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-text-white);
+    background-color: var(--color-primary-light);
+    border: none;
+}
+
+.header-icon-avatar {
+    height: 2.35rem;
+    border-radius: 50%;
+}
+
+.ant-badge .ant-badge-count {
+    box-shadow: none;
+    top: -2px;
+    left: 2px;
+    background: var(--color-highlight-main);
+}
+
+.header-user-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.header-user-modal {
+    text-align: center;
+}
+
+#header-user-name {
+    font-size: 1.12rem;
+    font-weight: 600;
+}
+
+
+.ant-drawer .ant-drawer-header {
+    background: var(--color-primary-main);
+    border: 0;
+    padding: 28px 24px;
+}
+
+.ant-drawer .ant-drawer-close {
+    color: var(--color-highlight-main);
+}
+
+.ant-drawer .ant-drawer-close:hover {
+    color: var(--color-highlight-lighter);
+}
+
+.ant-drawer .ant-drawer-title {
+    color: var(--color-text-white);
+    text-align: center;
+}
+
+@media screen and (max-width: 480px) {
+    .header-container {
+        padding: 0 15px;
+    }
+    
+    .header-brand-title {
+        font-size: 1.75rem;
+    }
+
+    .header-brand-logo {
+        height: 40px;
+    }
+
+    .ant-badge .ant-badge-count {
+        min-width: 16px;
+        height: 16px;
+        line-height: 16px;
+    }
+    
+    .header-icon {
+        font-size: 0.9rem;
+    }
+
+    .ant-space {
+        gap: 18px !important;
+    }
+
+    .ant-avatar-lg {
+        width: 35px;
+        height: 35px;
+        line-height: 32px;
+    }
+
+    .ant-avatar-lg.ant-avatar-icon {
+        font-size: 21px;
+    }
+
+    #header-user-name {
+        font-size: 1rem;
+    }
+    
+    #header-user-occupation {
+        font-size: 0.75rem;
+    }
+    
+    .ant-drawer-content-wrapper {
+        width: 85% !important;
+    }
+}
