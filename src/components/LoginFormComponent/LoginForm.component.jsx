@@ -47,6 +47,7 @@ function LoginForm() {
 
     const redirectToHome = (user) => {
         setAuth({ user, isLogged: true })
+        localStorage.setItem('isLogged', JSON.stringify(true))
         navigate('/')
     }
 
