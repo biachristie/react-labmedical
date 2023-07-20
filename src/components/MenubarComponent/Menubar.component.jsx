@@ -29,11 +29,11 @@ function MenuBarComponent() {
             { label: 'Appointment', key: '/appointmentRegister', icon: <ClockCircleOutlined /> },
             { label: 'Exam', key: '/examRegister', icon: <PlusOutlined /> }
         ]},
-        { label: 'Settings', key: 'settings', icon: <SettingOutlined /> },
+        { label: 'Settings', icon: <SettingOutlined /> },
         { label: 'Signout', key: 'signout', icon: <LogoutOutlined /> },
     ]
 
-    const [collapsed, setCollapsed] = useState(false)
+    const [collapsed, setCollapsed] = useState(true)
     const toggleCollapsed = () => setCollapsed(!collapsed)
     
     const navigate = useNavigate()
@@ -48,8 +48,8 @@ function MenuBarComponent() {
             <nav className='menuBar-container'>
                 <Menu
                     className='menuBar'
-                    mode="inline" 
-                    defaultSelectedKeys={['home']}
+                    mode='inline'
+                    defaultSelectedKeys={['/']}
                     inlineCollapsed={ collapsed }
                     items={ items }
                     onClick={ ({key}) => { key === 'signout' ? handleSignOut() : navigate(key) }
