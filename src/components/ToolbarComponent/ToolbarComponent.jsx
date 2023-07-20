@@ -17,7 +17,7 @@ function ToolBarComponent() {
             const id = localStorage.getItem('id')
             const data = usersList.find(user => user.id.toString().includes(id))
             setUser(data)
-            setAvatar(<img className='header-icon-avatar' src={ data.avatar } alt='Avatar' />)
+            data.avatar ? setAvatar(<img className='header-icon-avatar' src={ data.avatar } alt='Avatar' />) : null
         }
     }, [usersList])
     
@@ -28,7 +28,7 @@ function ToolBarComponent() {
     const [urlAvatar, setUrlAvatar] = useState('')
 
     const onOkModal = () => {
-        setAvatar(<img className='hear-icon-avatar' src={ urlAvatar } alt='Avatar' />)
+        setAvatar(<img className='header-icon-avatar' src={ urlAvatar } alt='Avatar' />)
         fetch(`http://localhost:3000/users/${user.id}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
@@ -61,7 +61,7 @@ function ToolBarComponent() {
                             type='default' 
                             shape='circle' 
                             size='large'
-                            icon={ avatar ? avatar : <UserOutlined /> } 
+                            icon={ avatar || <UserOutlined /> } 
                             onClick={ () => setOpenUserAvatar(true) }
                         />
                         <Modal
