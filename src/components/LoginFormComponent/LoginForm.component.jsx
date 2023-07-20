@@ -15,7 +15,17 @@ function LoginForm() {
 
     const [messageApi, contextHolder] = message.useMessage();
 
-    const { usersList } = useContext(UsersContext)
+    const { usersList,setUsersList } = useContext(UsersContext)
+
+    useEffect (() => {
+        const fetchData = async() => {
+            const response = await fetch('http://localhost:3000/users')
+            const data = await response.json()
+            setUsersList(data)
+        }
+
+        fetchData()
+    }, [])
 
     const [submit, setSubmit] = useState(false)
     const data = Form.useWatch([], form)
