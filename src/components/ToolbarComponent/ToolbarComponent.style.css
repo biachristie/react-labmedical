@@ -20,6 +20,13 @@
 
 .header-col-2 {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+}
+
+.header-col-3 {
+    display: flex;
     justify-content: end;
 }
 
@@ -29,15 +36,19 @@
     align-items: center;
 }
 
+.header-brand-logo {
+    height: 50px;
+    width: auto;
+    margin-right: 10px;
+}
+
 .header-brand-title {
     font-size: 2.3rem;
     margin: 0;
 }
 
-.header-brand-logo {
-    height: 50px;
-    width: auto;
-    margin-right: 10px;
+.header-title-container {
+    width: fit-content;
 }
 
 .header-icon {

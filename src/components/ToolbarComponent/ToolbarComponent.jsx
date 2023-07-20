@@ -3,10 +3,12 @@ import { Badge, Button, Col, Drawer, Form, Modal, Row, Space, Spin } from 'antd'
 import { BellFilled, MailFilled, UserOutlined } from '@ant-design/icons'
 
 import './ToolbarComponent.style.css'
+import { TitlesContext } from '../../context/titles/titles.context'
 import { UsersContext } from '../../context/users/users.context'
 import InputComponent from '../InputComponent/Input.component'
 
 function ToolBarComponent() {
+    const { title } = useContext(TitlesContext)
     const { usersList } = useContext(UsersContext)
 
     const [user, setUser] = useState()
@@ -48,7 +50,12 @@ function ToolBarComponent() {
                         <h1 className='header-brand-title'>Santé</h1>
                     </div>
                 </Col>
-                <Col className='header-col-2' >
+                <Col className='header-col-2'>
+                    <div className='header-title-container'>
+                        <h2 id='header-title'>{ title }</h2>
+                    </div>
+                </Col>
+                <Col className='header-col-3' >
                     <Space className='header-icons-container' size={ 23 } >
                         <Badge count={ 1 } overflowCount={ 99 }>
                             <MailFilled className='header-icon' onClick={ () => setOpenDM(true) } />
