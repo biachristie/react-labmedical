@@ -4,6 +4,9 @@ import { Layout } from 'antd'
 import { Content, Footer, Header } from 'antd/es/layout/layout'
 import Sider from 'antd/es/layout/Sider'
 
+import MenuBarComponent from '../../components/MenubarComponent/Menubar.component'
+import ToolBarComponent from '../../components/ToolbarComponent/ToolbarComponent'
+
 function HomePage() {
     const isLogged = JSON.parse(localStorage.getItem('isLogged'))
 
@@ -29,8 +32,13 @@ function HomePage() {
                         }}
                     >
                     </Sider>
+                        <div className='layout-brand-container'>
+                            <img className='layout-brand-logo' src="./logo.png" alt="Sante logo" />
+                        </div>
+                        <MenuBarComponent />
                     <Layout>
                         <Header className='layout-header'>
+                            <ToolBarComponent />
                         </Header>
                         <Content className='layout-content'
                             style={{
@@ -38,8 +46,10 @@ function HomePage() {
                                 overflow: 'initial',
                             }}
                         >
+                            <p>Content</p>
                         </Content>
                         <Footer className='layout-footer'>
+                            <p>Santé ©2023 Criado por Beatriz Christie</p>
                         </Footer>
                     </Layout>
                 </Layout>
