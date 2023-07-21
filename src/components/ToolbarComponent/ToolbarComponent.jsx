@@ -45,22 +45,16 @@ function ToolBarComponent() {
         <header className='header-container'>
             <Row className='header-row'>
                 <Col className='header-col-1' >
-                    <div className='header-brand-container'>
-                        <img className='header-brand-logo' src="./logo.png" alt="Sante logo" />
-                        <h1 className='header-brand-title'>Santé</h1>
-                    </div>
-                </Col>
-                <Col className='header-col-2'>
                     <div className='header-title-container'>
                         <h2 id='header-title'>{ title }</h2>
                     </div>
                 </Col>
-                <Col className='header-col-3' >
+                <Col className='header-col-2' >
                     <Space className='header-icons-container' size={ 23 } >
-                        <Badge count={ 1 } overflowCount={ 99 }>
+                        <Badge>
                             <MailFilled className='header-icon' onClick={ () => setOpenDM(true) } />
                         </Badge>
-                        <Badge count={ 5 } overflowCount={ 10 }>
+                        <Badge>
                             <BellFilled className='header-icon' onClick={ () => setOpenNotification(true) } />
                         </Badge>
                         <Button 
@@ -95,22 +89,22 @@ function ToolBarComponent() {
                     <Drawer
                         className='header-drawer'
                         placement='right'
-                        title='Direct Messages'
+                        title='Mensagens Diretas'
                         open={ openDM }
                         onClose={ () => setOpenDM(false) }
                         maskClosable
                     >
-                        Under construction
+                        Em construção
                     </Drawer>
                     <Drawer
                         className='header-drawer'
                         placement='right'
-                        title='Notifications'
+                        title='Notificações'
                         open={ openNotification }
                         onClose={ () => setOpenNotification(false) }
                         maskClosable
                     >
-                        Under construction
+                        Em construção
                     </Drawer>
                 </Col>
             </Row>
