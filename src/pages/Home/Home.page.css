@@ -19,3 +19,21 @@
 .layout-footer {
     text-align: center;
 }
+
+@media screen and (max-width: 480px) {
+    .layout-header {
+        height: 100px;
+        background-color: var(--color-primary-main);
+    }
+
+    .layout-brand-logo {
+        height: 80px;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 570px) {
+    .layout-header {
+        height: 100px;
+        background-color: var(--color-primary-main);
+    }
+}
