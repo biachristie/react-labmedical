@@ -1,10 +1,7 @@
-import { useContext } from 'react'
 import { Navigate } from 'react-router'
 
-import { AuthContext } from '../../context/auth/auth.context'
-
 function HomePage() {
-    const { auth } = useContext(AuthContext)
+    const isLogged = JSON.parse(localStorage.getItem('isLogged'))
 
     const renderPage = () => {
         return (
@@ -14,7 +11,7 @@ function HomePage() {
         )
     }
 
-    return auth.isLogged ? renderPage() : <Navigate to={ '/login' } />
+    return isLogged ? renderPage() : <Navigate to='/login' />
 
 }
 
