@@ -1,19 +1,25 @@
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Navigate } from 'react-router-dom'
 import { Layout } from 'antd'
 import { Content, Footer, Header } from 'antd/es/layout/layout'
 import Sider from 'antd/es/layout/Sider'
 
+import { TitlesContext } from '../../context/titles/titles.context'
 import MenuBarComponent from '../../components/MenubarComponent/Menubar.component'
 import ToolBarComponent from '../../components/ToolbarComponent/ToolbarComponent'
 
 function HomePage() {
     const isLogged = JSON.parse(localStorage.getItem('isLogged'))
+    
+    const { setTitle } = useContext(TitlesContext)
+
+    useEffect(() => {
+        setTitle('Estatísticas e Informações')
+    }, [])
+
+    const [collapsed, setCollapsed] = useState(false)
 
     const renderPage = () => {
-
-        const [collapsed, setCollapsed] = useState(false);
-
         return (
             <>
                 <Layout hasSider>
