@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Navigate } from 'react-router-dom'
 import { Layout } from 'antd'
 import { Content, Footer, Header } from 'antd/es/layout/layout'
@@ -7,12 +8,17 @@ function HomePage() {
     const isLogged = JSON.parse(localStorage.getItem('isLogged'))
 
     const renderPage = () => {
+
+        const [collapsed, setCollapsed] = useState(false);
+
         return (
             <>
                 <Layout hasSider>
                     <Sider 
                         className='layout-sider'
                         collapsible 
+                        collapsed={ collapsed } 
+                        onCollapse={(value) => setCollapsed(value)}
                         defaultCollapsed={ true }
                         width={ 240 }
                         collapsedWidth={ 80 }
