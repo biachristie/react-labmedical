@@ -1,17 +1,14 @@
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Button, Menu } from 'antd'
+import { Menu } from 'antd'
 import {
+    BarChartOutlined,
     CalendarOutlined,
-    ClockCircleOutlined,
+    CarryOutOutlined,
+    EditOutlined,
     ExperimentOutlined,
-    FormOutlined,
-    HomeFilled,
     IdcardOutlined,
     LogoutOutlined,
-    MenuFoldOutlined,
-    MenuUnfoldOutlined,
-    PlusOutlined,
+    MedicineBoxOutlined,
     SettingOutlined,
     UserOutlined,
 } from '@ant-design/icons'
@@ -19,23 +16,24 @@ import {
 import './Menubar.component.css'
 
 function MenuBarComponent() {
-    const items = [
-        { label: 'Home', key: '/', icon: <HomeFilled /> },
-        { label: 'Pacients', key: '/patients', icon: <UserOutlined />},
-        { label: 'Appointments', key: '/appointments', icon: <CalendarOutlined />},
-        { label: 'Exams', key: '/exams', icon: <ExperimentOutlined />},
-        { label: 'Registration', icon: <FormOutlined />, children: [
-            { label: 'Pacient', key: '/pacientRegister', icon: <IdcardOutlined /> },
-            { label: 'Appointment', key: '/appointmentRegister', icon: <ClockCircleOutlined /> },
-            { label: 'Exam', key: '/examRegister', icon: <PlusOutlined /> }
+    const items = [ 
+        { label: 'Início', key: '/', icon: <BarChartOutlined /> },
+        { label: 'Pacientes', icon: <UserOutlined />, children: [
+            { label: 'Listar Prontuários', key: '/pacients', icon: <IdcardOutlined /> },
+            { label: 'Cadastrar Paciente', key: '/pacientRegister', icon: <EditOutlined /> },
         ]},
-        { label: 'Settings', icon: <SettingOutlined /> },
-        { label: 'Signout', key: 'signout', icon: <LogoutOutlined /> },
+        { label: 'Consultas', icon: <CalendarOutlined />, children: [
+            { label: 'Listar Consultas', key: '/appointments', icon: <CarryOutOutlined /> },
+            { label: 'Cadastrar Consulta', key: '/appointmentRegister', icon: <EditOutlined /> },
+        ]},
+        { label: 'Exames', icon: <ExperimentOutlined />, children: [
+            { label: 'Listar Exames', key: '/exams', icon: <MedicineBoxOutlined />},
+            { label: 'Cadastrar Exames', key: '/examRegister', icon: <EditOutlined /> },
+        ]},
+        { label: 'Em Construção', key: '/underConstruction' , icon: <SettingOutlined /> },
+        { label: 'Sair', key: 'signout', icon: <LogoutOutlined /> },
     ]
 
-    const [collapsed, setCollapsed] = useState(true)
-    const toggleCollapsed = () => setCollapsed(!collapsed)
-    
     const navigate = useNavigate()
 
     const handleSignOut = () => {
@@ -50,20 +48,13 @@ function MenuBarComponent() {
                     className='menuBar'
                     mode='inline'
                     defaultSelectedKeys={['/']}
-                    inlineCollapsed={ collapsed }
                     items={ items }
-                    onClick={ ({key}) => { key === 'signout' ? handleSignOut() : navigate(key) }
-                    }
+                    style={{
+                        minWidth: 0,
+                        flex: 'auto'
+                    }}
+                    onClick={ ({key}) => { key === 'signout' ? handleSignOut() : navigate(key) }}
                 />
-                <div className='menuBar-button'>
-                    <Button
-                        className='menuBar-toggle'
-                        type='default'
-                        onClick={ toggleCollapsed }
-                        >
-                        {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-                    </Button>
-                </div>
             </nav>
         </>
     )
