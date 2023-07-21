@@ -1,0 +1,21 @@
+.layout-header {
+    padding-inline: 0;
+    line-height: 0;
+}
+
+.layout-brand-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--color-primary-main);
+}
+
+.layout-brand-logo {
+    height: 90px;
+    width: auto;
+    margin: 80px 0 50px 0;
+}
+
+.layout-footer {
+    text-align: center;
+}

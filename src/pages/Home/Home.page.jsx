@@ -4,6 +4,7 @@ import { Layout } from 'antd'
 import { Content, Footer, Header } from 'antd/es/layout/layout'
 import Sider from 'antd/es/layout/Sider'
 
+import './Home.page.css'
 import { TitlesContext } from '../../context/titles/titles.context'
 import MenuBarComponent from '../../components/MenubarComponent/Menubar.component'
 import ToolBarComponent from '../../components/ToolbarComponent/ToolbarComponent'
@@ -37,11 +38,11 @@ function HomePage() {
                             background: '#082F4B'
                         }}
                     >
-                    </Sider>
                         <div className='layout-brand-container'>
                             <img className='layout-brand-logo' src="./logo.png" alt="Sante logo" />
                         </div>
                         <MenuBarComponent />
+                    </Sider>
                     <Layout>
                         <Header className='layout-header'>
                             <ToolBarComponent />
