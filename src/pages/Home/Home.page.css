@@ -40,3 +40,63 @@
     font-size: 2.5rem;
     color: var(--color-highlight-main);
 }
+
+.layout-content-search-container {
+    display: flex;
+    justify-content: center;
+}
+
+.layout-content-search {
+    width: 80%;
+    line-height: 2rem;
+    margin: 20px auto 40px;
+}
+
+.ant-card .ant-card-meta-avatar {
+    padding-inline-end: 0;
+}
+
+.layout-content-patients-cards-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.layout-content-patients-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.patients-cards {
+    width: 230px;
+}
+
+.patients-cards-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.patients-cards-avatar {
+    height: 130px;
+    width: 130px;
+}
+
+.patients-cards-title {
+    font-size: 1.3rem;
+    color: var(--color-highlight-main);
+    width: 180px;
+    padding: 10px 0 2px;
+}
+
+.patients-cards-description {
+    display: flex;
+    flex-direction: column;
+}
