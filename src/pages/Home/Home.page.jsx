@@ -33,6 +33,8 @@ function HomePage() {
         fetchData()
     }, [])
 
+    const [searchedTerm, setSearchedTerm] = useState('')
+
     const renderPage = () => {
         return (
             <>
@@ -108,6 +110,7 @@ function HomePage() {
                             className='layout-content-search'
                             placeholder='Insira o nome, telefone ou e-mail do paciente'
                             allowClear
+                            onSearch={ value => setSearchedTerm(value) }
                         />
                     </div>
                     <div className='layout-content-patients-cards-container'>
