@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Card, Skeleton, Spin } from 'antd'
+import { Card, Input, Skeleton, Spin } from 'antd'
 import { CalendarOutlined, ExperimentOutlined, UserOutlined } from '@ant-design/icons'
 import Meta from 'antd/es/card/Meta'
 
@@ -104,7 +104,11 @@ function HomePage() {
                 <section className='layout-content-section-2'>
                     <h2 className='layout-content-title'>Informações rápidas de pacientes</h2>
                     <div className='layout-content-search-container'>
-
+                        <Input.Search
+                            className='layout-content-search'
+                            placeholder='Insira o nome, telefone ou e-mail do paciente'
+                            allowClear
+                        />
                     </div>
                     <div className='layout-content-patients-cards-container'>
                         <Skeleton>
