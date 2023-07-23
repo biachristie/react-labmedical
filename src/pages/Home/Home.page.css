@@ -1,0 +1,42 @@
+.layout-content-title {
+    font-size: 1.5rem;
+    color: var(--color-primary-main);
+    padding: 0 6px;
+    margin-top: 0;
+}
+
+.layout-content-cards {
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+.stats-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 200px;
+    aspect-ratio: 1/0.85;
+    text-align: center;
+}
+
+.stats-cards-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    color: var(--color-text-white);
+    background-color: var(--color-primary-main);
+    border-radius: 10px;
+    height: 4rem;
+    aspect-ratio: 0.98/1;
+}
+
+.stats-cards-title {
+    font-size: 2.5rem;
+    color: var(--color-highlight-main);
+}
