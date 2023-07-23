@@ -35,6 +35,20 @@ function HomePage() {
 
     const [searchedTerm, setSearchedTerm] = useState('')
 
+    const searchTerm = (value) => {
+        if (!searchedTerm) {
+            return value
+        } else if (value.fullname.toLowerCase().includes(searchedTerm.toString().toLowerCase())) {
+            return value
+        } else if (value.telephone.includes(searchedTerm)) {
+            return value
+        } else if (value.cellphone.includes(searchedTerm)) {
+            return value
+        } else if (value.email.includes(searchedTerm)) {
+            return value
+        }
+    }
+
     const renderPage = () => {
         return (
             <>
@@ -116,7 +130,10 @@ function HomePage() {
                     <div className='layout-content-patients-cards-container'>
                         <Skeleton>
                             <div className='layout-content-patients-cards'>
-                                
+                                { 
+                                    patientCardInfo
+                                        .filter(searchTerm)
+                                }
                             </div>
                         </Skeleton>
                     </div>
