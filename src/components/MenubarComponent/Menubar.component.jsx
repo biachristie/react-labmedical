@@ -30,7 +30,7 @@ function MenuBarComponent() {
             { label: 'Listar Exames', key: '/exams', icon: <MedicineBoxOutlined />},
             { label: 'Cadastrar Exames', key: '/examRegister', icon: <EditOutlined /> },
         ]},
-        { label: 'Em Construção', key: '/underConstruction' , icon: <SettingOutlined /> },
+        { label: 'Em Construção', icon: <SettingOutlined /> },
         { label: 'Sair', key: 'signout', icon: <LogoutOutlined /> },
     ]
 

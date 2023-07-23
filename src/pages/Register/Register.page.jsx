@@ -18,14 +18,14 @@ function RegisterPage() {
             <section className='register-form-main'>
                 <RegisterForm />
                 <div className='register-signUp'>
-                    <p>Already have an account?</p>
+                    <p>Já possui uma conta?</p>
                     <Button 
                         className='register-button'
                         type='primary' 
                         htmlType='button'
                         onClick={ redirectToLogin }
                     >
-                        Log in!
+                        Entre!
                     </Button>
                 </div>
             </section>

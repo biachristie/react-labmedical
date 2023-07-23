@@ -24,11 +24,11 @@ function InputComponent({
                     rules={[
                         {
                             required: required,
-                            message: '${label} is required'
+                            message: '${label} é obrigatório'
                         },
                         {
                             type: type,
-                            message: '${label} is not a valid ${type}'
+                            message: '${label} não é um ${type} válido(a)'
                         }
                     ]} 
                     hasFeedback
@@ -53,12 +53,12 @@ function InputComponent({
                     rules={[
                         {
                             required: required,
-                            message: '${label} is required'
+                            message: '${label} é obrigatório'
                         },
                         {
                             min: 8,
                             max: 12,
-                            message: '${label} must be between ${min} and ${max} characters'
+                            message: '${label} deve conter entre ${min} e ${max} caracteres'
                         }
                     ]}
                     hasFeedback
@@ -82,7 +82,7 @@ function InputComponent({
                     rules={[
                         {
                             required: required,
-                            message: '${label} is required'
+                            message: '${label} é obrigatório'
                         }
                     ]}
                     hasFeedback
@@ -112,7 +112,7 @@ function InputComponent({
                     rules={[
                         {
                             required: required,
-                            message: '${label} is required'
+                            message: '${label} é obrigatório'
                         }
                     ]}
                     hasFeedback

@@ -54,8 +54,8 @@ function RegisterForm() {
             { contextHolder }
 
             <div className='register-form-container'>
-                <h1 id='register-form-title'>Create an account</h1>
-                <p id='register-form-description'>Enter your name, e-mail and password to create your account.</p>
+                <h1 id='register-form-title'>Cria uma conta</h1>
+                <p id='register-form-description'>Insira seu nome, e-mail e senha para criar usa conta.</p>
             
                 <Form 
                     form={ form } 
@@ -72,10 +72,10 @@ function RegisterForm() {
                 >
 
                     <InputComponent
-                        label='Name'
+                        label='Nome'
                         required={ true }
                         id='name'
-                        placeholder='Enter your name'
+                        placeholder='Insira seu nome'
                         type='text'
                     />
 
@@ -83,15 +83,15 @@ function RegisterForm() {
                         label='E-mail'
                         required={ true }
                         id='email'
-                        placeholder='Enter your e-mail'
+                        placeholder='Insira seu e-mail'
                         type='email'
                     />
 
                     <InputComponent
-                        label='Password'
+                        label='Senha'
                         required={ true }
                         id='password'
-                        placeholder='Enter your password'
+                        placeholder='Insira sua senha'
                         type='password'
                     />
 
@@ -103,7 +103,7 @@ function RegisterForm() {
                             block 
                             disabled={ !submit }
                         >
-                            Create account
+                            Criar conta
                         </Button>
                     </Form.Item>
 

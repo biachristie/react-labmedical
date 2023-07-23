@@ -21,14 +21,14 @@ function LoginPage() {
                 <section className='login-page-form'>
                     <LoginForm />
                     <div className='login-page-signUp'>
-                        <p>Don't have an account?</p>
+                        <p>Não possui uma conta?</p>
                         <Button 
                             className='login-page-button'
                             type='primary' 
                             htmlType='button'
                             onClick={ redirectToRegister }
                         >
-                            Sign up!
+                            Cadastre-se!
                         </Button>
                     </div>
                 </section>

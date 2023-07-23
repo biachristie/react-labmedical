@@ -41,7 +41,7 @@ function LoginForm() {
         const user = usersList.find(user => user.email === email)
 
         if (!user) {
-            messageApi.open({ type: 'error', content: 'User was not found' })
+            messageApi.open({ type: 'error', content: 'Usuário não encontrado' })
             form.resetFields()
             return
         }
@@ -51,7 +51,7 @@ function LoginForm() {
             localStorage.setItem('name', user.name)
             redirectToHome(user)
         } else {
-            messageApi.open({ type: 'error', content: 'Wrong credentials. Invalid user and/or password' })
+            messageApi.open({ type: 'error', content: 'Credenciais erradas. E-mail e/ou senha inválidos' })
         }
     }
 
@@ -66,8 +66,8 @@ function LoginForm() {
             { contextHolder }
 
             <div className='login-form-container'>
-                <h1 id='login-form-title'>Welcome Back</h1>
-                <p id='login-form-description'>Enter your e-mail and password to access your account.</p>
+                <h1 id='login-form-title'>Seja bem-vindo(a)</h1>
+                <p id='login-form-description'>Insira seu e-mail e senha para acessar sua conta.</p>
             
                 <Form 
                     form={ form } 
@@ -87,15 +87,15 @@ function LoginForm() {
                         label='E-mail'
                         required={ true }
                         id='email'
-                        placeholder='Enter your e-mail'
+                        placeholder='Insira seu e-mail'
                         type='email'
                     />
 
                     <InputComponent
-                        label='Password'
+                        label='Senha'
                         required={ true }
                         id='password'
-                        placeholder='Enter your password'
+                        placeholder='Insira sua senha'
                         type='password'
                     />
 
@@ -104,16 +104,16 @@ function LoginForm() {
                             name='remember'
                             valuePropName='checked'
                         >
-                            <Checkbox className='login-form-checkbox'>Keep me signed in</Checkbox>
+                            <Checkbox className='login-form-checkbox'>Mantenha-me conectado</Checkbox>
                         </Form.Item>
 
                         <Tooltip
                             overlayClassName='login-form-tooltip'
                             placement='bottom' 
-                            title='Under construction'
+                            title='Em construção'
                             color='#DE541E'
                         >
-                            <a className='login-form-forgot' href="#">Forgot your password?</a>
+                            <a className='login-form-forgot' href="#">Esqueceu sua senha?</a>
                         </Tooltip>
                     </div>
 
@@ -125,7 +125,7 @@ function LoginForm() {
                             block 
                             disabled={ !submit }
                         >
-                            Login
+                            Entrar
                         </Button>
                     </Form.Item>
 
