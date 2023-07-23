@@ -30,7 +30,7 @@ function ToolBarComponent() {
     const [urlAvatar, setUrlAvatar] = useState('')
 
     const onOkModal = () => {
-        setAvatar(<img className='header-icon-avatar' src={ urlAvatar } alt='Avatar' />)
+        urlAvatar ? setAvatar(<img className='header-icon-avatar' src={ urlAvatar } alt='Avatar' />) : null
         fetch(`http://localhost:3000/users/${user.id}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
@@ -67,16 +67,16 @@ function ToolBarComponent() {
                         />
                         <Modal
                             className='header-user-modal'
-                            title = 'Change Profile Avatar'
+                            title = 'Mude sua foto de perfil'
                             open={ openUserAvatar }
                             onOk={ onOkModal }
                             onCancel={ () => setOpenUserAvatar(false) }
                         >
                             <Form className='header-user-modal-form'>
                                 <InputComponent
-                                    label='Avatar'
+                                    label='Link para foto de perfil'
                                     id='avatar'
-                                    placeholder='Enter your avatar'
+                                    placeholder='Insira sua foto'
                                     type='text'
                                     onInput = { (e) => setUrlAvatar(e.target.value) }
                                 />

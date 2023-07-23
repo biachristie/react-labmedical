@@ -25,7 +25,7 @@ function RegisterForm() {
         let filterEmail = usersList.filter(user => user.email.includes(data.email))
 
         if (filterEmail.length > 0) {
-            messageApi.open({ type: 'error', content: 'This e-mail is already in use.' })
+            messageApi.open({ type: 'error', content: 'Esse e-mail já está em uso.' })
             filterEmail = []
             return
         }
@@ -40,11 +40,11 @@ function RegisterForm() {
             })
         })
         .then(() => {
-            messageApi.open({ type: 'success', content: 'Success! You have been registered.' })
+            messageApi.open({ type: 'success', content: 'Sucesso! Você foi cadastrado.' })
             form.resetFields()
         })
         .catch(() => {
-            messageApi.open({ type: 'error', content: 'Registration failed. Please try again.' })
+            messageApi.open({ type: 'error', content: 'Erro no cadastro. Por favor, tente novamente.' })
             form.resetFields()
         })
     }
