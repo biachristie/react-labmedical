@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from 'react'
 import { Badge, Button, Col, Drawer, Form, Modal, Row, Space, Spin } from 'antd'
 import { BellFilled, MailFilled, UserOutlined } from '@ant-design/icons'
 
-import './ToolbarComponent.style.css'
+import './Toolbar.component.css'
 import { TitlesContext } from '../../context/titles/titles.context'
 import { UsersContext } from '../../context/users/users.context'
 import InputComponent from '../InputComponent/Input.component'
@@ -46,7 +46,7 @@ function ToolBarComponent() {
             <Row className='header-row'>
                 <Col className='header-col-1' >
                     <div className='header-title-container'>
-                        <h2 id='header-title'>{ title }</h2>
+                        <h1 id='header-title'>{ title }</h1>
                     </div>
                 </Col>
                 <Col className='header-col-2' >

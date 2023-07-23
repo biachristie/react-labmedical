@@ -1,7 +1,7 @@
 .header-container {
     color: var(--color-text-white);
     background-color: var(--color-primary-main);
-    height: 64px;
+    height: 75px;
     padding: 0 30px;
 }
 
@@ -9,7 +9,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 64px;
+    height: 75px;
     width: 100%;
 }
 

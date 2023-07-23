@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
-import { Layout } from 'antd';
-import { Content, Footer, Header } from 'antd/es/layout/layout';
-import Sider from 'antd/es/layout/Sider';
+import { Layout } from 'antd'
+import { Content, Footer, Header } from 'antd/es/layout/layout'
+import Sider from 'antd/es/layout/Sider'
 
 import './Layout.css'
-import MenuBarComponent from '../components/MenubarComponent/Menubar.component';
-import ToolBarComponent from '../components/ToolbarComponent/ToolbarComponent';
+import MenuBarComponent from '../components/MenubarComponent/Menubar.component'
+import ToolBarComponent from '../components/ToolbarComponent/Toolbar.component'
 
 function LayoutComponent() {
     const [collapsed, setCollapsed] = useState(false)
@@ -46,4 +46,4 @@ function LayoutComponent() {
     )
 }
 
-export default LayoutComponent;
+export default LayoutComponent
