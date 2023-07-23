@@ -26,3 +26,18 @@
     font-weight: 600;
     color: var(--color-text-white);
 }
+
+.layout-header {
+    padding-inline: 0;
+    line-height: 0;
+    height: 75px;
+}
+
+.layout-content {
+    margin: 24px 24px 0;
+    overflow: initial;
+}
+
+.layout-footer {
+    text-align: center;
+}

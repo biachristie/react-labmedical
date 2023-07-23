@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom'
 import { Layout } from 'antd';
+import { Content, Footer, Header } from 'antd/es/layout/layout';
 import Sider from 'antd/es/layout/Sider';
 
 import './Layout.css'
 import MenuBarComponent from '../components/MenubarComponent/Menubar.component';
+import ToolBarComponent from '../components/ToolbarComponent/ToolbarComponent';
 
 function LayoutComponent() {
     const [collapsed, setCollapsed] = useState(false)
@@ -28,6 +30,17 @@ function LayoutComponent() {
                     </div>
                     <MenuBarComponent />
                 </Sider>
+                <Layout>
+                    <Header className='layout-header'>
+                        <ToolBarComponent />
+                    </Header>
+                    <Content className='layout-content'>
+                        <Outlet />
+                    </Content>
+                    <Footer className='layout-footer'>
+                        <p>Santé ©2023 Criado por Beatriz Christie</p>
+                    </Footer>
+                </Layout>
             </Layout>
         </>
     )
