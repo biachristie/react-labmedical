@@ -7,7 +7,7 @@ import RegisterForm from '../../components/RegisterFormComponent/RegisterForm.co
 
 function RegisterPage() {
     const navigate = useNavigate()
-    const redirectToLogin = () => navigate('/')
+    const redirectToLogin = () => navigate('/login')
 
     return (
         <div className='register-container'>
