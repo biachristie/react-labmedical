@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Card, Spin } from 'antd'
+import { Card, Skeleton, Spin } from 'antd'
 import { CalendarOutlined, ExperimentOutlined, UserOutlined } from '@ant-design/icons'
 import Meta from 'antd/es/card/Meta'
 
@@ -99,6 +99,19 @@ function HomePage() {
                                     />
                             </Card>                                
                         </Link>
+                    </div>
+                </section>
+                <section className='layout-content-section-2'>
+                    <h2 className='layout-content-title'>Informações rápidas de pacientes</h2>
+                    <div className='layout-content-search-container'>
+
+                    </div>
+                    <div className='layout-content-patients-cards-container'>
+                        <Skeleton>
+                            <div className='layout-content-patients-cards'>
+                                
+                            </div>
+                        </Skeleton>
                     </div>
                 </section>
             </>
