@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Card, Spin } from 'antd'
 import { CalendarOutlined, ExperimentOutlined, UserOutlined } from '@ant-design/icons'
@@ -12,8 +12,25 @@ function HomePage() {
     
     const { setTitle } = useContext(TitlesContext)
 
+    const [patientCardInfo, setPatientCardInfo] = useState([])
+    const [appointmentCardInfo, setAppointmentCardInfo] = useState([])
+    const [examCardInfo, setExamCardInfo] = useState([])
+
     useEffect(() => {
         setTitle('Estatísticas e Informações')
+        const fetchData = async() => {
+            const responsePatients = await fetch('http://localhost:3000/patients')
+            const responseAppointments = await fetch('http://localhost:3000/appointments')
+            const responseExams = await fetch('http://localhost:3000/exams')
+            const dataPatients = await responsePatients.json()
+            const dataAppointments = await responseAppointments.json()
+            const dataExams = await responseExams.json()
+            setPatientCardInfo(dataPatients)
+            setAppointmentCardInfo(dataAppointments)
+            setExamCardInfo(dataExams)
+        }
+    
+        fetchData()
     }, [])
 
     const renderPage = () => {
@@ -36,7 +53,7 @@ function HomePage() {
                                 <Meta 
                                     title={
                                         <span className='stats-cards-title' >
-                                            { <Spin size='small' /> }
+                                            { patientCardInfo.length || <Spin size='small' /> }
                                         </span>} 
                                     description="Pacientes" 
                                 />
@@ -56,7 +73,7 @@ function HomePage() {
                                 <Meta 
                                     title={
                                         <span className='stats-cards-title' >
-                                            { <Spin size='small' /> }
+                                            { appointmentCardInfo.length || <Spin size='small' /> }
                                         </span>} 
                                     description="Consultas" 
                                     />
@@ -76,7 +93,7 @@ function HomePage() {
                                 <Meta 
                                     title={
                                         <span className='stats-cards-title' >
-                                            { <Spin size='small' /> }
+                                            { examCardInfo.length || <Spin size='small' /> }
                                         </span>} 
                                     description="Exames" 
                                     />
