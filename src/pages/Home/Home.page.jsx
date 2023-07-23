@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from 'react'
+import { Fragment, useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Card, Input, Skeleton, Spin } from 'antd'
-import { CalendarOutlined, ExperimentOutlined, UserOutlined } from '@ant-design/icons'
+import { Avatar, Card, Input, Skeleton, Spin, Typography } from 'antd'
+import { CalendarOutlined, EllipsisOutlined, ExperimentOutlined, UserOutlined } from '@ant-design/icons'
 import Meta from 'antd/es/card/Meta'
 
 import './Home.page.css'
@@ -12,6 +12,7 @@ function HomePage() {
     
     const { setTitle } = useContext(TitlesContext)
 
+    const [loading, setLoading] = useState(true)
     const [patientCardInfo, setPatientCardInfo] = useState([])
     const [appointmentCardInfo, setAppointmentCardInfo] = useState([])
     const [examCardInfo, setExamCardInfo] = useState([])
@@ -33,6 +34,10 @@ function HomePage() {
         fetchData()
     }, [])
 
+    useEffect(() => {
+        if (patientCardInfo.length > 0) { setLoading(false) }
+    }, [patientCardInfo])
+
     const [searchedTerm, setSearchedTerm] = useState('')
 
     const searchTerm = (value) => {
@@ -47,6 +52,47 @@ function HomePage() {
         } else if (value.email.includes(searchedTerm)) {
             return value
         }
+    }
+
+    const renderPatientCard = (patientCardInfo) => {
+        return (
+            <Fragment key={ patientCardInfo.id } >
+                <Card
+                    className='patients-cards'
+                    actions={[
+                        <EllipsisOutlined 
+                            key="ellipsis" 
+                            onClick={ () => navigate(`/patientRegister?id=${patientCardInfo.id}`) } 
+                        />
+                    ]}
+                >
+                    <Meta
+                        className='patients-cards-info'
+                        avatar={
+                            <Avatar 
+                                className='patients-cards-avatar'
+                                src={ patientCardInfo.avatar }
+                            />
+                        }
+                        title={
+                            <Typography.Text 
+                                className='patients-cards-title'
+                                ellipsis={ true } 
+                            >
+                                { patientCardInfo.fullname }
+                            </Typography.Text>
+                        }
+                        description={
+                            <div className='patients-cards-description'>
+                                <span>{ `Idade: x anos` }</span>
+                                <span>{ `Celular: ${ patientCardInfo.cellphone }` }</span>
+                                <span>{ `Convênio: ${ patientCardInfo.healthPlan.name }` }</span>
+                            </div>
+                        }
+                    />
+                </Card>
+            </Fragment>
+        )
     }
 
     const renderPage = () => {
@@ -128,11 +174,12 @@ function HomePage() {
                         />
                     </div>
                     <div className='layout-content-patients-cards-container'>
-                        <Skeleton>
+                        <Skeleton loading= { loading }>
                             <div className='layout-content-patients-cards'>
                                 { 
                                     patientCardInfo
                                         .filter(searchTerm)
+                                        .map(renderPatientCard) 
                                 }
                             </div>
                         </Skeleton>
