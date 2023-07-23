@@ -1,0 +1,94 @@
+.register-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.register-brand {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 50%;
+    background: var(--color-primary-main);
+}
+
+.register-title {
+    font-size: 5rem;
+    color: var(--color-text-white);
+    margin: 0;
+}
+
+.register-logo {
+    width: 135px;
+}
+
+.register-form-main {
+    width: 50%;
+}
+
+.register-signUp {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+}
+
+@media screen and (max-width: 480px) {
+    .register-container {
+        flex-direction: column;
+    }
+
+    .register-brand {
+        flex-direction: row;
+        height: 15vh;
+        width: 100%;
+        gap: 5px;
+    }
+
+    .register-title {
+        font-size: 3rem;
+    }
+
+    .register-logo {
+        width: 70px;
+    }
+
+    .register-form-main {
+        height: 75vh;
+        width: 100%;
+        padding-top: 50px;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .register-container {
+        flex-direction: column;
+    }
+    
+    .register-brand {
+        flex-direction: row;
+        height: 20vh;
+        width: 100%;
+        gap: 5px;
+    }
+
+    .register-title {
+        font-size: 4rem;
+    }
+
+    .register-logo {
+        width:100px;
+    }
+
+    .register-form-main {
+        height: 75vh;
+        width: 100%;
+        padding-top: 50px;
+    }
+}

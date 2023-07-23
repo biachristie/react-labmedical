@@ -1,0 +1,8 @@
+.form-input, .form-input-textarea {
+    line-height: 2rem;
+}
+
+.form-input-number {
+    line-height: 2rem;
+    min-width: 150px;
+}

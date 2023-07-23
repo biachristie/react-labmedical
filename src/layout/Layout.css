@@ -1,0 +1,43 @@
+.layout-sider {
+    overflow: hidden;
+}
+
+.ant-layout .ant-layout-sider {
+    background: var(--color-primary-main);
+}
+
+.layout-brand-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--color-primary-main);
+    margin-bottom: 30px;
+}
+
+.layout-brand-logo {
+    height: 50px;
+    width: auto;
+    margin: 10px 0 0;
+}
+
+.layout-brand-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-text-white);
+}
+
+.layout-header {
+    padding-inline: 0;
+    line-height: 0;
+    height: 75px;
+}
+
+.layout-content {
+    margin: 24px 24px 0;
+    overflow: initial;
+}
+
+.layout-footer {
+    text-align: center;
+}

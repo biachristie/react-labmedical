@@ -1,0 +1,102 @@
+.layout-content-title {
+    font-size: 1.5rem;
+    color: var(--color-primary-main);
+    padding: 0 6px;
+    margin-top: 0;
+}
+
+.layout-content-cards {
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+.stats-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 200px;
+    aspect-ratio: 1/0.85;
+    text-align: center;
+}
+
+.stats-cards-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    color: var(--color-text-white);
+    background-color: var(--color-primary-main);
+    border-radius: 10px;
+    height: 4rem;
+    aspect-ratio: 0.98/1;
+}
+
+.stats-cards-title {
+    font-size: 2.5rem;
+    color: var(--color-highlight-main);
+}
+
+.layout-content-search-container {
+    display: flex;
+    justify-content: center;
+}
+
+.layout-content-search {
+    width: 80%;
+    line-height: 2rem;
+    margin: 20px auto 40px;
+}
+
+.ant-card .ant-card-meta-avatar {
+    padding-inline-end: 0;
+}
+
+.layout-content-patients-cards-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.layout-content-patients-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.patients-cards {
+    width: 230px;
+}
+
+.patients-cards-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.patients-cards-avatar {
+    height: 130px;
+    width: 130px;
+}
+
+.patients-cards-title {
+    font-size: 1.3rem;
+    color: var(--color-highlight-main);
+    width: 180px;
+    padding: 10px 0 2px;
+}
+
+.patients-cards-description {
+    display: flex;
+    flex-direction: column;
+}
