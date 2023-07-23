@@ -1,6 +1,6 @@
 import { Fragment, useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Avatar, Card, Input, Skeleton, Spin, Typography } from 'antd'
+import { Avatar, Card, Input, Pagination, Skeleton, Spin, Typography } from 'antd'
 import { CalendarOutlined, EllipsisOutlined, ExperimentOutlined, UserOutlined } from '@ant-design/icons'
 import Meta from 'antd/es/card/Meta'
 
@@ -95,6 +95,15 @@ function HomePage() {
         )
     }
 
+    const numEachPage = 10
+    const [minValue, setMinValue] = useState(0)
+    const [maxValue, setMaxValue] = useState(numEachPage)
+
+    const handleChange = (value) => {
+        setMinValue( (value - 1) * numEachPage )
+        setMaxValue( value * numEachPage )
+    }
+
     const renderPage = () => {
         return (
             <>
@@ -179,9 +188,16 @@ function HomePage() {
                                 { 
                                     patientCardInfo
                                         .filter(searchTerm)
+                                        .slice(minValue, maxValue)
                                         .map(renderPatientCard) 
                                 }
                             </div>
+                            <Pagination 
+                                defaultCurrent={ 1 }
+                                defaultPageSize={ numEachPage }
+                                onChange={ handleChange }
+                                total={ patientCardInfo.length }  
+                            />
                         </Skeleton>
                     </div>
                 </section>
