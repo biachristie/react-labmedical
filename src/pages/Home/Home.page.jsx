@@ -1,7 +1,7 @@
 import { Fragment, useContext, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { Avatar, Card, Input, Pagination, Skeleton, Spin, Typography } from 'antd'
-import { CalendarOutlined, EllipsisOutlined, ExperimentOutlined, UserOutlined } from '@ant-design/icons'
+import { CalendarOutlined, EllipsisOutlined, ExperimentOutlined, UserOutlined } from '@ant-design/icons';
 import Meta from 'antd/es/card/Meta'
 
 import './Home.page.css'
@@ -9,9 +9,10 @@ import { TitlesContext } from '../../context/titles/titles.context'
 
 function HomePage() {
     const isLogged = JSON.parse(localStorage.getItem('isLogged'))
+    const navigate = useNavigate()
     
     const { setTitle } = useContext(TitlesContext)
-
+    
     const [loading, setLoading] = useState(true)
     const [patientCardInfo, setPatientCardInfo] = useState([])
     const [appointmentCardInfo, setAppointmentCardInfo] = useState([])
@@ -37,6 +38,14 @@ function HomePage() {
     useEffect(() => {
         if (patientCardInfo.length > 0) { setLoading(false) }
     }, [patientCardInfo])
+
+    const calcPatientAge = (pacientBirthDate) => {
+        const year = new Date().getFullYear()
+        const birthDate = pacientBirthDate
+        const birthYear = birthDate.split('/')[2]
+        const age = year - birthYear
+        return age
+    }
 
     const [searchedTerm, setSearchedTerm] = useState('')
 
@@ -84,7 +93,7 @@ function HomePage() {
                         }
                         description={
                             <div className='patients-cards-description'>
-                                <span>{ `Idade: x anos` }</span>
+                                <span>{ `Idade: ${ calcPatientAge (patientCardInfo.birthDate) } anos` }</span>
                                 <span>{ `Celular: ${ patientCardInfo.cellphone }` }</span>
                                 <span>{ `Convênio: ${ patientCardInfo.healthPlan.name }` }</span>
                             </div>
@@ -187,9 +196,9 @@ function HomePage() {
                             <div className='layout-content-patients-cards'>
                                 { 
                                     patientCardInfo
-                                        .filter(searchTerm)
-                                        .slice(minValue, maxValue)
-                                        .map(renderPatientCard) 
+                                    .filter(searchTerm)
+                                    .slice(minValue, maxValue)
+                                    .map(renderPatientCard) 
                                 }
                             </div>
                             <Pagination 
