@@ -19,8 +19,8 @@ function MenuBarComponent() {
     const items = [ 
         { label: 'Início', key: '/', icon: <BarChartOutlined /> },
         { label: 'Pacientes', icon: <UserOutlined />, children: [
-            { label: 'Listar Prontuários', key: '/pacients', icon: <IdcardOutlined /> },
-            { label: 'Cadastrar Paciente', key: '/pacientRegister', icon: <EditOutlined /> },
+            { label: 'Listar Prontuários', key: '/patients', icon: <IdcardOutlined /> },
+            { label: 'Cadastrar Paciente', key: '/patientRegister', icon: <EditOutlined /> },
         ]},
         { label: 'Consultas', icon: <CalendarOutlined />, children: [
             { label: 'Listar Consultas', key: '/appointments', icon: <CarryOutOutlined /> },
