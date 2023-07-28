@@ -1,11 +1,17 @@
 import './Patients.page.css'
 
 function PatientsPage() {
-    return(
-        <>
-        
-        </>
-    )
+    const isLogged = JSON.parse(localStorage.getItem('isLogged'))
+    
+    const renderPage = () => {
+        return(
+            <>
+            
+            </>
+        )
+    }
+    
+    return isLogged ? renderPage() : <Navigate to='/login' />
 
 }
 
