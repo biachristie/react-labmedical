@@ -1,11 +1,18 @@
+import { useContext, useEffect } from 'react'
 import { Navigate } from 'react-router-dom'
 import { Space, Table } from 'antd'
 import { EyeOutlined } from '@ant-design/icons'
 
 import './Patients.page.css'
+import { TitlesContext } from '../../context/titles/titles.context'
 
 function PatientsPage() {
     const isLogged = JSON.parse(localStorage.getItem('isLogged'))
+    const { setTitle } = useContext(TitlesContext)
+
+    useEffect(() => {
+        setTitle('Prontuários')
+    }, [])
     
     const renderPage = () => {
         const columns = [
