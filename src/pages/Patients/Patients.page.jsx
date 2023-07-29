@@ -31,12 +31,21 @@ function PatientsPage() {
         if (patients.length > 0) { setLoading(false) }
     }, [patients])
 
+    const [searchedTerm, setSearchedTerm] = useState('')
+
+    const searchTerm = (value, record) => { 
+        return String(record.id).toLowerCase().includes(value.toLowerCase()) ||
+            String(record.fullname).toLowerCase().includes(value.toLowerCase())
+    }
+
     const renderPage = () => {
         const columns = [
             {
                 key: 'id',
                 title: 'ID',
                 dataIndex: 'id',
+                filteredValue: [ searchedTerm ],
+                onFilter: searchTerm,
                 align: 'center'
             },
             {
@@ -116,6 +125,7 @@ function PatientsPage() {
                                 className='table-search'
                                 placeholder='Insira o ID ou nome do paciente'
                                 allowClear
+                                onSearch={ value => setSearchedTerm(value) }
                             />
                         </div>
                     }
