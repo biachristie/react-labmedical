@@ -32,8 +32,19 @@ const Update = (id, data) => {
     return fetchExam()
 }
 
+const Delete = (id) => {
+    const fetchExam = async() => {
+        await fetch(`http://localhost:3000/exams/${ id }`, {
+            method: 'DELETE',
+        })
+    }
+
+    return fetchExam()
+}
+
 export const ExamService = {
     Get,
     Create,
-    Update
+    Update,
+    Delete
 }
