@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { Navigate } from 'react-router-dom'
-import { Space, Table } from 'antd'
+import { Input, Space, Table } from 'antd'
 import { EyeOutlined } from '@ant-design/icons'
 
 import './Patients.page.css'
@@ -13,6 +13,8 @@ function PatientsPage() {
     const isLogged = JSON.parse(localStorage.getItem('isLogged'))
     const { setTitle } = useContext(TitlesContext)
 
+    const [loading, setLoading] = useState(true)
+
     const [patients, setPatients] = useState([])
     const [appointments, setAppointments] = useState([])
     const [exams, setExams] = useState([])
@@ -24,6 +26,10 @@ function PatientsPage() {
         AppointmentService.Get().then(result => setAppointments(result))
         ExamService.Get().then(result => setExams(result))
     }, [])
+
+    useEffect(() => {
+        if (patients.length > 0) { setLoading(false) }
+    }, [patients])
 
     const renderPage = () => {
         const columns = [
@@ -100,6 +106,7 @@ function PatientsPage() {
             <>
                 <Table
                     className='layout-content-table-patients'
+                    loading={ loading }
                     columns={ columns }
                     dataSource={ patients }
                     rowKey= { (record) => record.id }
