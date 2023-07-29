@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react"
-import { Form } from "antd"
+import { Button, Form } from "antd"
+import { 
+    CloseCircleOutlined,
+    DeleteOutlined,
+    EditOutlined, 
+    SaveOutlined,
+} from '@ant-design/icons'
 
 import InputComponent from "../InputComponent/Input.component"
 
@@ -519,6 +525,49 @@ function RegisterPatientForm() {
                         type='date'
                     />
 
+                    <Form.Item>
+                        <Button 
+                            className='register-patient-btn-edit'
+                            type='primary'
+                            htmlType='submit'
+                            // disabled={ }
+                        >
+                            <EditOutlined /> Editar
+                        </Button>
+                    </Form.Item>
+
+                    <Form.Item>
+                        <Button 
+                            className='register-patient-btn-delete'
+                            type='primary'
+                            // disabled={ }
+                            // onClick={ }
+                        >
+                            <DeleteOutlined /> Excluir
+                        </Button>
+                    </Form.Item>
+
+                    <Form.Item>
+                        <Button 
+                            className='register-patient-btn-save'
+                            type='primary'
+                            htmlType='submit' 
+                            // disabled={ }
+                        >
+                            <SaveOutlined /> Salvar
+                        </Button>
+                    </Form.Item>
+
+                    <Form.Item>
+                        <Button
+                            className='register-patient-btn-cancel'
+                            type='primary'
+                            htmlType='button'
+                            // onClick={ }
+                        >
+                            <CloseCircleOutlined /> Cancelar
+                        </Button>
+                    </Form.Item>
                 </Form>
         </>
     )
