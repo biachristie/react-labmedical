@@ -110,6 +110,15 @@ function PatientsPage() {
                     columns={ columns }
                     dataSource={ patients }
                     rowKey= { (record) => record.id }
+                    caption={
+                        <div className='table-search-container'>
+                            <Input.Search
+                                className='table-search'
+                                placeholder='Insira o ID ou nome do paciente'
+                                allowClear
+                            />
+                        </div>
+                    }
                     style={{ tableLayout: 'fixed' }}
                     scroll={{ x: '100%' }}
                     pagination={{ 
