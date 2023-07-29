@@ -32,8 +32,19 @@ const Update = (id, data) => {
     return fetchAppointment()
 }
 
+const Delete = (id) => {
+    const fetchAppointment = async() => {
+        await fetch(`http://localhost:3000/appointments/${ id }`, {
+            method: 'DELETE',
+        })
+    }
+
+    return fetchAppointment()
+}
+
 export const AppointmentService = {
     Get,
     Create,
-    Update
+    Update,
+    Delete
 }
