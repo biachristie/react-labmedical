@@ -24,6 +24,9 @@ function RegisterPatientForm() {
         setPatientAge(calcPatientAge(birthDate))
     }, [birthDate])
 
+    const [expireMonth, setExpireMonth] = useState('')
+    const onChangeExpireMonth = (_, dateString) => { setExpireMonth(dateString) }
+
     return (
         <>
             <Form 
@@ -496,7 +499,7 @@ function RegisterPatientForm() {
                         format={ monthFormat }
                         picker='month'
                         placeholder='Selecione a validade'
-                        // onChange={ }
+                        onChange={ onChangeExpireMonth }
                         type='date'
                     />
 
