@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Form } from "antd"
 
 import InputComponent from "../InputComponent/Input.component"
@@ -10,6 +10,19 @@ function RegisterPatientForm() {
 
     const [birthDate, setBirthDate] = useState('')
     const onChangeBirthDate = (_, dateString) => { setBirthDate(dateString) }
+    
+    const [patientAge, setPatientAge] = useState('')
+    useEffect(() => {
+        const calcPatientAge = (value) => {
+            const year = new Date().getFullYear()
+            const birthDate = value
+            const birthYear = birthDate.split('/')[2]
+            const age = year - birthYear
+            return age
+        }
+
+        setPatientAge(calcPatientAge(birthDate))
+    }, [birthDate])
 
     return (
         <>
