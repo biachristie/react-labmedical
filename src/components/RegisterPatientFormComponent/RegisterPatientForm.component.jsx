@@ -27,6 +27,23 @@ function RegisterPatientForm() {
     const [expireMonth, setExpireMonth] = useState('')
     const onChangeExpireMonth = (_, dateString) => { setExpireMonth(dateString) }
 
+    const onChangeCEP = (e) => {
+        const cep = e.target.value
+
+        const fetchData = async() => {
+            const response = await fetch(`https://viacep.com.br/ws/${cep}/json`)
+            const dataCep = await response.json()
+            form.setFieldsValue({ 
+                address : dataCep.logradouro,
+                district : dataCep.bairro,
+                city : dataCep.localidade,
+                state : dataCep.uf
+            })
+        }
+        
+        cep.length === 8 ? fetchData() : null
+    }
+
     return (
         <>
             <Form 
@@ -270,8 +287,8 @@ function RegisterPatientForm() {
                         ]}
                         style={{ width: '30%' }}
                         placeholder='XXXXXXXX'
-                        // onChange={ }
-                        type='number'
+                        onChange={ onChangeCEP }
+                        type='text'
                     />
 
                     <InputComponent
@@ -285,7 +302,6 @@ function RegisterPatientForm() {
                         ]}
                         style={{ width: '70%' }}
                         placeholder='Avenida, Travessa, Rua, ...'
-                        // onChange={ }
                         disabled={ true }
                         type='text'
                     />
