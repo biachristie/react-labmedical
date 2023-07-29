@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { Form } from "antd"
 
 import InputComponent from "../InputComponent/Input.component"
@@ -6,6 +7,9 @@ function RegisterPatientForm() {
     const [form] = Form.useForm()
     const dateFormat = 'DD/MM/YYYY'
     const monthFormat = 'MM/YYYY'
+
+    const [birthDate, setBirthDate] = useState('')
+    const onChangeBirthDate = (_, dateString) => { setBirthDate(dateString) }
 
     return (
         <>
@@ -134,7 +138,7 @@ function RegisterPatientForm() {
                         style={{ width: '20%' }}
                         format={ dateFormat }
                         placeholder='Selecione a data'
-                        // onChange={ }
+                        onChange={ onChangeBirthDate }
                         type='date'
                     />
 
