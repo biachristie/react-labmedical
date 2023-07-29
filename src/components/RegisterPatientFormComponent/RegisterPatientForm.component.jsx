@@ -10,6 +10,16 @@ import {
 import InputComponent from "../InputComponent/Input.component"
 
 function RegisterPatientForm() {
+    let params = new URL(document.location).searchParams
+    let patientId = params.get('id')
+
+    const [isPatientId, setIsPatientId] = useState(false)
+    useEffect(() => { 
+        if (patientId !== null) {
+            setIsPatientId(true)
+        }
+    }, [patientId])
+
     const [form] = Form.useForm()
     const dateFormat = 'DD/MM/YYYY'
     const monthFormat = 'MM/YYYY'
@@ -530,7 +540,7 @@ function RegisterPatientForm() {
                             className='register-patient-btn-edit'
                             type='primary'
                             htmlType='submit'
-                            // disabled={ }
+                            disabled={ !isPatientId }
                         >
                             <EditOutlined /> Editar
                         </Button>
@@ -540,7 +550,7 @@ function RegisterPatientForm() {
                         <Button 
                             className='register-patient-btn-delete'
                             type='primary'
-                            // disabled={ }
+                            disabled={ !isPatientId }
                             // onClick={ }
                         >
                             <DeleteOutlined /> Excluir
