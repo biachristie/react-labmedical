@@ -6,17 +6,20 @@ import { EyeOutlined } from '@ant-design/icons'
 import './Patients.page.css'
 import { TitlesContext } from '../../context/titles/titles.context'
 import { PatientService } from '../../services/Patient/Patient.service'
+import { AppointmentService } from '../../services/Appointment/Appointment.service'
 
 function PatientsPage() {
     const isLogged = JSON.parse(localStorage.getItem('isLogged'))
     const { setTitle } = useContext(TitlesContext)
+
     const [patients, setPatients] = useState([])
+    const [appointments, setAppointments] = useState([])
 
     useEffect(() => {
         setTitle('Prontuários')
 
-        PatientService.Get()
-            .then(result => setPatients(result))
+        PatientService.Get().then(result => setPatients(result))
+        AppointmentService.Get().then(result => setAppointments(result))
     }, [])
 
     const renderPage = () => {
@@ -62,7 +65,8 @@ function PatientsPage() {
                 key: 'appointments',
                 title: 'Total de Consultas',
                 render: (_, record) => {
-                    
+                    const appointmentsData = appointments.filter((value) => value.idPatient.toString().includes(record.id))
+                    return appointmentsData.length
                 },
                 align: 'center'
             },
