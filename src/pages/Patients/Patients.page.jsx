@@ -7,6 +7,7 @@ import './Patients.page.css'
 import { TitlesContext } from '../../context/titles/titles.context'
 import { PatientService } from '../../services/Patient/Patient.service'
 import { AppointmentService } from '../../services/Appointment/Appointment.service'
+import { ExamService } from '../../services/Exam/Exam.service'
 
 function PatientsPage() {
     const isLogged = JSON.parse(localStorage.getItem('isLogged'))
@@ -14,12 +15,14 @@ function PatientsPage() {
 
     const [patients, setPatients] = useState([])
     const [appointments, setAppointments] = useState([])
+    const [exams, setExams] = useState([])
 
     useEffect(() => {
         setTitle('Prontuários')
 
         PatientService.Get().then(result => setPatients(result))
         AppointmentService.Get().then(result => setAppointments(result))
+        ExamService.Get().then(result => setExams(result))
     }, [])
 
     const renderPage = () => {
@@ -74,7 +77,8 @@ function PatientsPage() {
                 key: 'exams',
                 title: 'Total de Exames',
                 render: (_, record) => {
-                    
+                    const examsData = exams.filter((value) => value.idPatient.toString().includes(record.id))
+                    return examsData.length
                 },
                 align: 'center'
             },
