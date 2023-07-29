@@ -8,6 +8,19 @@ const Get = () => {
     return fetchAppointment()
 }
 
+const Create = (data) => {
+    const fetchAppointment = async() => {
+        await fetch('http://localhost:3000/appointments', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify( data )
+        })
+    }
+
+    return fetchAppointment()
+}
+
 export const AppointmentService = {
-    Get
+    Get,
+    Create
 }
