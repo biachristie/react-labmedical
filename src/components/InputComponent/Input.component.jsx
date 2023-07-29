@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { Form, Input, InputNumber } from "antd";
+import { DatePicker, Form, Input, InputNumber, Select } from "antd";
 
 import './Input.style.css'
 
@@ -12,7 +12,10 @@ function InputComponent({
         type, 
         maxLength,
         maxRows,
+        dateFormat,
         onChange,
+        options,
+        picker,
         disabled,
         addonBefore
     }) {
@@ -109,8 +112,46 @@ function InputComponent({
 
                 </Form.Item>
             }
+
+            { type === 'date' &&
+                <Form.Item 
+                    className='form-field'
+                    label={ label }
+                    name={ id }
+                    rules={ rules }
+                    style={ style }
+                    hasFeedback
+                >
+                    <DatePicker 
+                        className='form-input'
+                        format={ dateFormat }
+                        id={ id }
+                        picker={ picker }
+                        placeholder={ placeholder }
+                        onChange={ onChange }
+                    />
+                </Form.Item>
+            }
+
+            { type === 'select' &&
+                <Form.Item
+                    className='form-field'
+                    label={ label }
+                    name={ id }
+                    rules={ rules }
+                    style={ style }
+                    hasFeedback
+                >
+                    <Select
+                        placeholder="Selecione uma das opções"
+                        options={ options }
+                        allowClear
+                    >
+                    </Select>
+                </Form.Item>
+            }
         </>
-    );
+    )
 }
 
 InputComponent.propTypes = {
@@ -122,7 +163,10 @@ InputComponent.propTypes = {
     type: PropTypes.string.isRequired,
     maxLength: PropTypes.number,
     maxRows: PropTypes.number,
+    dateFormat: PropTypes.string,
     onChange: PropTypes.func,
+    options: PropTypes.arrayOf(PropTypes.object),
+    picker: PropTypes.string,
     disabled: PropTypes.bool,
     addonBefore: PropTypes.string
 }
