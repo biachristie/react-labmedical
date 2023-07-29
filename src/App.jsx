@@ -7,6 +7,7 @@ import { UsersContext } from './context/users/users.context'
 import LoginPage from './pages/Login/Login.page' 
 import HomePage from './pages/Home/Home.page'
 import RegisterPage from './pages/Register/Register.page'
+import PatientsPage from './pages/Patients/Patients.page'
 
 function App() {
   const { setUsersList } = useContext(UsersContext)
@@ -26,6 +27,7 @@ function App() {
         <Routes>
           <Route element={ <LayoutComponent /> }>
             <Route path='/' element={ <HomePage /> } />
+            <Route path='/patients' element={ <PatientsPage /> } />
             <Route path='*' element={ <><p>Página não existe</p></> } />
           </Route>
 
