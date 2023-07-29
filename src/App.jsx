@@ -9,6 +9,7 @@ import HomePage from './pages/Home/Home.page'
 import RegisterPage from './pages/Register/Register.page'
 import PatientsPage from './pages/Patients/Patients.page'
 import PatientRecordPage from './pages/PatientRecord/PatientRecord.page'
+import RegisterPatientPage from './pages/RegisterPatient/RegisterPatient.page'
 
 function App() {
   const { setUsersList } = useContext(UsersContext)
@@ -30,6 +31,7 @@ function App() {
             <Route path='/' element={ <HomePage /> } />
             <Route path='/patients' element={ <PatientsPage /> } />
             <Route path='/patientRecord' element={ <PatientRecordPage /> } />
+            <Route path='/patientRegister' element={ <RegisterPatientPage /> } />
             <Route path='*' element={ <><p>Página não existe</p></> } />
           </Route>
 
