@@ -1,19 +1,24 @@
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Navigate } from 'react-router-dom'
 import { Space, Table } from 'antd'
 import { EyeOutlined } from '@ant-design/icons'
 
 import './Patients.page.css'
 import { TitlesContext } from '../../context/titles/titles.context'
+import { PatientService } from '../../services/Patient/Patient.service'
 
 function PatientsPage() {
     const isLogged = JSON.parse(localStorage.getItem('isLogged'))
     const { setTitle } = useContext(TitlesContext)
+    const [patients, setPatients] = useState([])
 
     useEffect(() => {
         setTitle('Prontuários')
+
+        PatientService.Get()
+            .then(result => setPatients(result))
     }, [])
-    
+
     const renderPage = () => {
         const columns = [
             {
@@ -88,6 +93,7 @@ function PatientsPage() {
                 <Table
                     className='layout-content-table-patients'
                     columns={ columns }
+                    dataSource={ patients }
                     rowKey= { (record) => record.id }
                     style={{ tableLayout: 'fixed' }}
                     scroll={{ x: '100%' }}
