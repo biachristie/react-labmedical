@@ -20,7 +20,20 @@ const Create = (data) => {
     return fetchAppointment()
 }
 
+const Update = (id, data) => {
+    const fetchAppointment = async() => {
+        await fetch(`http://localhost:3000/appointments/${ id }`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify( data )
+        })
+    }
+
+    return fetchAppointment()
+}
+
 export const AppointmentService = {
     Get,
-    Create
+    Create,
+    Update
 }
