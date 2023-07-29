@@ -5,32 +5,28 @@ import './Input.style.css'
 
 function InputComponent({ 
         label, 
-        required,
         id, 
+        rules,
+        style,
         placeholder, 
         type, 
         maxLength,
         maxRows,
-        onInput 
+        onChange,
+        disabled,
+        addonBefore
     }) {
 
     return (
+
         <>
-            { (type !== 'password' && type !== 'number' && type !== 'textarea') &&
+            { (type === 'text' || type === 'email') && 
                 <Form.Item
                     className='form-field'
                     label={ label }
                     name={ id }
-                    rules={[
-                        {
-                            required: required,
-                            message: '${label} é obrigatório'
-                        },
-                        {
-                            type: type,
-                            message: '${label} não é um ${type} válido(a)'
-                        }
-                    ]} 
+                    rules={ rules }
+                    style={ style }
                     hasFeedback
                 >
 
@@ -39,7 +35,9 @@ function InputComponent({
                         id={ id }
                         placeholder={ placeholder }
                         type={ type }
-                        onInput={ onInput }
+                        onChange={ onChange }
+                        disabled={ disabled }
+                        addonBefore={ addonBefore }
                     />
 
                 </Form.Item>
@@ -50,17 +48,8 @@ function InputComponent({
                     className='form-field'
                     label={ label }
                     name={ id }
-                    rules={[
-                        {
-                            required: required,
-                            message: '${label} é obrigatório'
-                        },
-                        {
-                            min: 8,
-                            max: 12,
-                            message: '${label} deve conter entre ${min} e ${max} caracteres'
-                        }
-                    ]}
+                    rules={ rules }
+                    style={ style }
                     hasFeedback
                 >
 
@@ -68,7 +57,7 @@ function InputComponent({
                         className='form-input'
                         id={ id }
                         placeholder={ placeholder }
-                        onInput={ onInput }
+                        onChange={ onChange }
                     />
 
                 </Form.Item>
@@ -79,12 +68,8 @@ function InputComponent({
                     className='form-field-textarea'
                     label={ label }
                     name={ id }
-                    rules={[
-                        {
-                            required: required,
-                            message: '${label} é obrigatório'
-                        }
-                    ]}
+                    rules={ rules }
+                    style={ style }
                     hasFeedback
                 >
 
@@ -98,7 +83,7 @@ function InputComponent({
                             minRows: 2,
                             maxRows: maxRows
                         }}
-                        onInput={ onInput }
+                        onChange={ onChange }
                     />
 
                 </Form.Item>
@@ -109,12 +94,8 @@ function InputComponent({
                     className='form-field'
                     label={ label }
                     name={ id }
-                    rules={[
-                        {
-                            required: required,
-                            message: '${label} é obrigatório'
-                        }
-                    ]}
+                    rules={ rules }
+                    style={ style }
                     hasFeedback
                 >
 
@@ -123,7 +104,7 @@ function InputComponent({
                         id={ id }
                         placeholder={ placeholder }
                         min={ 0 }
-                        onInput={ onInput }
+                        onChange={ onChange }
                     />
 
                 </Form.Item>
@@ -134,13 +115,16 @@ function InputComponent({
 
 InputComponent.propTypes = {
     label: PropTypes.string.isRequired,
-    required: PropTypes.bool,
     id: PropTypes.string.isRequired,
+    rules: PropTypes.arrayOf(PropTypes.object),
+    style: PropTypes.object,
     placeholder: PropTypes.string,
     type: PropTypes.string.isRequired,
     maxLength: PropTypes.number,
     maxRows: PropTypes.number,
-    onInput: PropTypes.func
+    onChange: PropTypes.func,
+    disabled: PropTypes.bool,
+    addonBefore: PropTypes.string
 }
 
 export default InputComponent
