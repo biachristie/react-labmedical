@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
-import { Navigate } from 'react-router-dom'
-import { Input, Space, Table } from 'antd'
-import { EyeOutlined } from '@ant-design/icons'
+import { Navigate, useNavigate } from 'react-router-dom'
+import { Button, Input, Space, Table } from 'antd'
+import { EyeOutlined, UserAddOutlined } from '@ant-design/icons'
 
 import './Patients.page.css'
 import { TitlesContext } from '../../context/titles/titles.context'
@@ -30,6 +30,10 @@ function PatientsPage() {
     useEffect(() => {
         if (patients.length > 0) { setLoading(false) }
     }, [patients])
+
+    const navigate = useNavigate()
+    
+    const redirectToPatientRegister = () => { navigate('/patientRegister') }
 
     const [searchedTerm, setSearchedTerm] = useState('')
 
@@ -113,29 +117,41 @@ function PatientsPage() {
 
         return(
             <>
-                <Table
-                    className='layout-content-table-patients'
-                    loading={ loading }
-                    columns={ columns }
-                    dataSource={ patients }
-                    rowKey= { (record) => record.id }
-                    caption={
-                        <div className='table-search-container'>
-                            <Input.Search
-                                className='table-search'
-                                placeholder='Insira o ID ou nome do paciente'
-                                allowClear
-                                onSearch={ value => setSearchedTerm(value) }
-                            />
-                        </div>
-                    }
-                    style={{ tableLayout: 'fixed' }}
-                    scroll={{ x: '100%' }}
-                    pagination={{ 
-                        position: ['bottomLeft'], 
-                        size: 'small',
-                    }}
-                />
+                <section className='layout-content-section-p1'>
+                    <Button
+                        className='layout-content-button'
+                        type='primary'
+                        onClick={ redirectToPatientRegister }
+                    >
+                        <UserAddOutlined /> Novo Paciente
+                    </Button>
+                </section>
+                <section className='layout-content-section-p2'>
+                    <Table
+                        className='layout-content-table-patients'
+                        loading={ loading }
+                        columns={ columns }
+                        dataSource={ patients }
+                        rowKey= { (record) => record.id }
+                        caption={
+                            <div className='table-patients-search-container'>
+                                <Input.Search
+                                    className='table-search'
+                                    placeholder='Insira o ID ou nome do paciente'
+                                    allowClear
+                                    onSearch={ value => setSearchedTerm(value) }
+                                />
+                            </div>
+                        }
+                        style={{ tableLayout: 'fixed' }}
+                        scroll={{ x: '100%' }}
+                        pagination={{ 
+                            position: ['bottomRight'], 
+                            size: 'small',
+                        }}
+                        
+                    />
+                </section>
             </>
         )
     }
