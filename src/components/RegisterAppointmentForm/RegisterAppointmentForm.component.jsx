@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { Button, Divider, Form, message } from "antd"
 import { 
@@ -17,6 +17,12 @@ function RegisterAppointmentForm() {
 
     const [form] = Form.useForm()
     const dataForm = Form.useWatch([], form)
+
+    useEffect(() => {
+        form
+            .validateFields({ validateOnly: true })
+    }, [dataForm])
+
 
     const dateFormat = 'DD/MM/YYYY'
     const [appointmentDate, setAppointmentDate] = useState('')
@@ -41,6 +47,38 @@ function RegisterAppointmentForm() {
     }
 
     const [messageApi, contextHolder] = message.useMessage()
+
+    const onSubmitForm = async() => {
+        const submitData = {
+            idPatient: dataForm.idPatient,
+            fullname: dataForm.fullname,
+            date: appointmentDate,
+            hour: appointmentHour,
+            medicalSpecialty: dataForm.medicalSpecialty,
+            idUser: dataForm.idDoctor,
+            doctor: dataForm.doctor,
+            reasoning: dataForm.reasoning,
+            issueDescription: dataForm.issueDescription,
+            medication: dataForm.medication,
+            dosagePrecautions: dataForm.dosagePrecautions,
+            status: dataForm.status,
+            created_at: Date.now()
+        }
+
+        appointmentId ? onUpdate(submitData) : onSave(submitData)
+    }
+
+    const onSave = async(submitData) => {
+        await AppointmentService.Create(submitData)
+            .then(() => {
+                messageApi.open({ type: 'success', content: 'Sucesso! Consulta cadastrada.' })
+                form.resetFields()
+            })
+            .catch(() => {
+                messageApi.open({ type: 'error', content: 'Erro no cadastro. Por favor, tente novamente.' })
+                form.resetFields()
+            })
+    }
 
     const onDelete = async() => {
         const response = await AppointmentService.Delete(appointmentId)
@@ -77,7 +115,7 @@ function RegisterAppointmentForm() {
                 name='register-form'
                 className='register-appointment-form'
                 layout='vertical'
-                // onFinish={ }
+                onFinish={ onSubmitForm }
                 autoComplete='off'
             >
 
@@ -353,7 +391,6 @@ function RegisterAppointmentForm() {
                         <Button 
                             className='register-patient-btn-edit'
                             type='primary'
-
                             htmlType='submit'
                             // disabled={ }
                         >
