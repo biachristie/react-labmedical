@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 import { Navigate } from "react-router-dom"
-import { Avatar, Button, Card, Input, Space, Table, Tabs, Tag, Typography } from "antd"
+import { Avatar, Button, Card, Input, Skeleton, Space, Table, Tabs, Tag, Typography } from "antd"
 import { 
     EditOutlined,
     MailOutlined, 
@@ -21,6 +21,8 @@ import { ExamService } from "../../services/Exam/Exam.service"
 function PatientRecordPage() {
     const isLogged = JSON.parse(localStorage.getItem('isLogged'))
 
+    const [loadingCard, setLoadingCard] = useState(true)
+
     let params = new URL(document.location).searchParams
     let patientId = params.get('id')
 
@@ -38,6 +40,10 @@ function PatientRecordPage() {
             ExamService.Get().then(result => setExams(result))
         }
     }, [])
+
+    useEffect(() => {
+        if (Object.keys(patient).length > 0) { setLoadingCard(false) }
+    }, [patient])
 
     const [filteredAppointments, setFilteredAppointments] = useState([])   
     const [filteredExams, setFilteredExams] = useState([])   
@@ -284,83 +290,91 @@ function PatientRecordPage() {
         return (
                 <>
                     <section className='layout-content-section-pr1'>
-                        <Card
-                            className='patient-record-card'
-                            title={
-                                <Avatar
-                                    className='patient-record-avatar'
-                                    size={{
-                                        xs: 80,
-                                        sm: 100,
-                                        md: 150,
-                                        lg: 150,
-                                        xl: 150,
-                                        xxl: 150,
-                                    }}
-                                    shape='square'
-                                    icon={ <UserOutlined />}
-                                    src={ patient.avatar }
-                                />
-                            }
-                            bordered={ false }
-                            headStyle={{     
-                                display: 'flex',
-                                justifyContent: 'start',
-                                paddingTop: '30px',
-                                paddingLeft: '30px'
-                            }}
-                            bodyStyle={{
-                                paddingLeft: '5px',
-                                paddingRight: '30px',
-                                width: '100%'
+                        <Skeleton
+                            loading= { loadingCard }
+                            avatar
+                            paragraph={{
+                                rows: 4,
                             }}
                         >
-                            <div className='patient-record-info-container'>
-                                <div className='patient-record-data'>
-                                    <div className='patient-record-info'>
-                                        <h2>{ patient.fullname }</h2>
-                                        <ul className='patient-info'>
-                                            <li>Idade: { patient.age } anos</li>
-                                            <li>Convênio: { patient.healthPlanName || null }</li>
-                                            <li>Contato de emergência: { patient.emergencyPhone }</li>
-                                        </ul>
-                                        <ul className='patient-address'>
-                                            <li>{ patient.address || null }, { patient.addressNumber || null }{ '- ' + patient.complement || null }</li>
-                                            <li>{ patient.district || null }, { patient.city || null } - { patient.state || null }</li>
-                                            <li>{ patient.postalCode ? patient.postalCode.substring(0, 5).concat('-', patient.postalCode.substring(5, 8)) : null }</li>
-                                            <li>{ patient.references || null }</li>
-                                        </ul>
+                            <Card
+                                className='patient-record-card'
+                                title={
+                                    <Avatar
+                                        className='patient-record-avatar'
+                                        size={{
+                                            xs: 80,
+                                            sm: 100,
+                                            md: 150,
+                                            lg: 150,
+                                            xl: 150,
+                                            xxl: 150,
+                                        }}
+                                        shape='square'
+                                        icon={ <UserOutlined />}
+                                        src={ patient.avatar }
+                                    />
+                                }
+                                bordered={ false }
+                                headStyle={{     
+                                    display: 'flex',
+                                    justifyContent: 'start',
+                                    paddingTop: '30px',
+                                    paddingLeft: '30px'
+                                }}
+                                bodyStyle={{
+                                    paddingLeft: '5px',
+                                    paddingRight: '30px',
+                                    width: '100%'
+                                }}
+                            >
+                                <div className='patient-record-info-container'>
+                                    <div className='patient-record-data'>
+                                        <div className='patient-record-info'>
+                                            <h2>{ patient.fullname }</h2>
+                                            <ul className='patient-info'>
+                                                <li>Idade: { patient.age } anos</li>
+                                                <li>Convênio: { patient.healthPlanName || null }</li>
+                                                <li>Contato de emergência: { patient.emergencyPhone }</li>
+                                            </ul>
+                                            <ul className='patient-address'>
+                                                <li>{ patient.address || null }, { patient.addressNumber || null }{ '- ' + patient.complement || null }</li>
+                                                <li>{ patient.district || null }, { patient.city || null } - { patient.state || null }</li>
+                                                <li>{ patient.postalCode ? patient.postalCode.substring(0, 5).concat('-', patient.postalCode.substring(5, 8)) : null }</li>
+                                                <li>{ patient.references || null }</li>
+                                            </ul>
+                                        </div>
+                                        <div className='patient-record-contact'>
+                                            <ul>
+                                                <li>
+                                                    <PhoneOutlined style={{ marginRight: 10 }} />
+                                                    { patient.telephone || 'Não informado' }
+                                                </li>
+                                                <li>
+                                                    <MobileOutlined style={{ marginRight: 10 }} />
+                                                    { patient.cellphone || 'Não informado' }
+                                                </li>
+                                                <li>
+                                                    <MailOutlined style={{ marginRight: 10 }} />
+                                                    { patient.email || 'Não informado' }
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <div className='patient-record-contact'>
-                                        <ul>
-                                            <li>
-                                                <PhoneOutlined style={{ marginRight: 10 }} />
-                                                { patient.telephone || 'Não informado' }
-                                            </li>
-                                            <li>
-                                                <MobileOutlined style={{ marginRight: 10 }} />
-                                                { patient.cellphone || 'Não informado' }
-                                            </li>
-                                            <li>
-                                                <MailOutlined style={{ marginRight: 10 }} />
-                                                { patient.email || 'Não informado' }
-                                            </li>
-                                        </ul>
+                                    <div className='patient-record-buttons'>
+                                        <Button>
+                                            <ShareAltOutlined style={{ marginRight: 5 }} /> Compartilhar
+                                        </Button>
+                                        <Button>
+                                            <SendOutlined style={{ marginRight: 5 }} /> Enviar
+                                        </Button>
+                                        <Button>
+                                            <PrinterOutlined style={{ marginRight: 5 }} /> Imprimir
+                                        </Button>
                                     </div>
                                 </div>
-                                <div className='patient-record-buttons'>
-                                    <Button>
-                                        <ShareAltOutlined style={{ marginRight: 5 }} /> Compartilhar
-                                    </Button>
-                                    <Button>
-                                        <SendOutlined style={{ marginRight: 5 }} /> Enviar
-                                    </Button>
-                                    <Button>
-                                        <PrinterOutlined style={{ marginRight: 5 }} /> Imprimir
-                                    </Button>
-                                </div>
-                            </div>
-                        </Card>
+                            </Card>
+                        </Skeleton>
                     </section>
 
                     <section className='layout-content-section-pr2'>
