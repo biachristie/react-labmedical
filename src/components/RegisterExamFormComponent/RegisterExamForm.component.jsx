@@ -9,6 +9,7 @@ import {
 } from '@ant-design/icons'
 import dayjs from 'dayjs'
 
+import './RegisterExamForm.component.css'
 import InputComponent from '../InputComponent/Input.component'
 import { ExamService } from '../../services/Exam/Exam.service'
 import { PatientService } from '../../services/Patient/Patient.service'
@@ -252,7 +253,7 @@ function RegisterExamForm() {
                                         message: '${label} não é um ${type} válido(a)'
                                     }
                                 ]}
-                                style={{ width: '20%' }}
+                                style={{ width: '30%' }}
                                 disabled={ true }
                                 type='number'
                             />
@@ -275,7 +276,7 @@ function RegisterExamForm() {
                                         message: '${label} não é um ${type} válido(a)'
                                     }
                                 ]}
-                                style={{ width: '80%' }}
+                                style={{ width: '70%' }}
                                 disabled={ true }
                                 type='text'
                             />
@@ -295,7 +296,7 @@ function RegisterExamForm() {
                                         message: '${label} não é um ${type} válido(a)'
                                     }
                                 ]}
-                                style={{ width: '20%' }}
+                                style={{ width: '30%' }}
                                 onChange={ onChangeDoctor }
                                 placeholder='Insira o código do médico'
                                 type='number'
@@ -319,7 +320,7 @@ function RegisterExamForm() {
                                         message: '${label} não é um ${type} válido(a)'
                                     }
                                 ]}
-                                style={{ width: '80%' }}
+                                style={{ width: '70%' }}
                                 disabled={ true }
                                 type='text'
                             />
@@ -404,7 +405,7 @@ function RegisterExamForm() {
                                         message: '${label} não é um ${type} válido(a)'
                                     }
                                 ]}
-                                style={{ width: '20%' }}
+                                style={{ width: '30%' }}
                                 placeholder='Insira o tipo de exame'
                                 type='text'
                             />
@@ -427,7 +428,7 @@ function RegisterExamForm() {
                                         message: '${label} não é um ${type} válido(a)'
                                     }
                                 ]}
-                                style={{ width: '80%' }}
+                                style={{ width: '70%' }}
                                 placeholder='Insira o nome do exame'
                                 type='text'
                             />
@@ -529,7 +530,7 @@ function RegisterExamForm() {
                         />
                     </div>
 
-                    <div className='register-exam-buttons-container'>
+                    <div className='register-patient-buttons-container'>
                         <Form.Item>
                             <Button 
                                 className='register-patient-btn-edit'
