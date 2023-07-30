@@ -7,6 +7,7 @@ import {
     EditOutlined, 
     SaveOutlined,
 } from '@ant-design/icons'
+import dayjs from 'dayjs'
 
 import InputComponent from "../InputComponent/Input.component"
 import { PatientService } from "../../services/Patient/Patient.service"
@@ -24,10 +25,61 @@ function RegisterPatientForm() {
 
     const [isPatientId, setIsPatientId] = useState(false)
     useEffect(() => { 
-        if (patientId !== null) {
-            setIsPatientId(true)
-        }
+        if (patientId !== null) { setIsPatientId(true) }
     }, [patientId])
+
+    useEffect(() => { 
+        if (patientId !== null) { 
+            setIsPatientId(true)
+            filterPatient()
+        }
+    }, [patientsList])
+
+    const [patient, setPatient] = useState([])
+    const filterPatient = () => {
+        const filteredPatient = patientsList.filter(patient => String(patient.id).includes(patientId))
+        setPatient(filteredPatient)
+    }
+
+    useEffect(() => {
+        if(patient.length > 0) {
+            form.setFieldsValue({ 
+                avatar: patient[0].avatar,
+                fullname: patient[0].fullname,
+                cpf: patient[0].cpf,
+                rg: patient[0].rg,
+                issuingAuthority: patient[0].issuingAuthority,
+                birthDate: dayjs(patient[0].birthDate, "DD/MM/YYYY", 'pt-br'),
+                gender: patient[0].gender,
+                nationality: patient[0].nationality,
+                maritalStatus: patient[0].maritalStatus,
+                alergyList: patient[0].alergyList,
+                specialCareList: patient[0].specialCareList,
+                postalCode: patient[0].postalCode,
+                address: patient[0].address,
+                addressNumber: patient[0].addressNumber,
+                district: patient[0].district,
+                city: patient[0].city,
+                state: patient[0].state,
+                complement: patient[0].complement,
+                references: patient[0].references,
+                email: patient[0].email,
+                telephone: patient[0].telephone,
+                cellphone: patient[0].cellphone,
+                emergencyPhone: patient[0].emergencyPhone,
+                healthPlanName: patient[0].healthPlanName,
+                healthPlanNumber: patient[0].healthPlanNumber,
+                healthPlanExpire: patient[0].healthPlanExpire == '' ? patient[0].healthPlanExpire : dayjs(patient[0].healthPlanExpire, "MM/YYYY", 'pt-br'),
+            })
+
+            setBirthDate(form.getFieldValue('birthDate').format('DD/MM/YYYY'))
+
+            const isExpireDateValid = dayjs(form.getFieldValue('healthPlanExpire')).isValid()
+            if (isExpireDateValid) {
+                setExpireMonth(form.getFieldValue('healthPlanExpire').format('MM/YYYY'))
+            }
+        }
+    }, [patient])
 
     const [form] = Form.useForm()
     const dataForm = Form.useWatch([], form)
