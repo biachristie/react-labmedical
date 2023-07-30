@@ -42,6 +42,9 @@ function PatientRecordPage() {
         setFilteredAppointments(appointments.filter(value => value.idPatient.toString().includes(patientId)))
     }, [appointments])
 
+    const [searchedAppointment, setSearchedAppointment] = useState('')
+    const searchAppointment = (value, record) => { return String(record.date).includes(value) }
+
     const tabItems = [
         {
             key: '1',
@@ -80,6 +83,8 @@ function PatientRecordPage() {
             key: 'date',
             title: 'Data',
             dataIndex: 'date',
+            filteredValue: [ searchedAppointment ],
+            onFilter: searchAppointment,
             sorter: (a, b) => a.date > b.date,
             align: 'center'
         },
@@ -264,7 +269,7 @@ function PatientRecordPage() {
                                         className='table-search'
                                         placeholder='Insira a data da consulta'
                                         allowClear
-                                        // onSearch={ }
+                                        onSearch={ value => setSearchedAppointment(value) }
                                     />
                                 </div>
                             }
