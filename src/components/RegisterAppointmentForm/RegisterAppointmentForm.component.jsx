@@ -25,6 +25,13 @@ function RegisterAppointmentForm() {
         AppointmentService.Get().then(result => setAppointmentsList(result))
     }
 
+    const [isAppointmentId, setIsAppointmentId] = useState(false)
+    useEffect(() => { 
+        if (appointmentId !== null) {
+            setIsAppointmentId(true)
+        }
+    }, [appointmentId])
+
     const [form] = Form.useForm()
     const dataForm = Form.useWatch([], form)
 
@@ -434,7 +441,7 @@ function RegisterAppointmentForm() {
                             className='register-patient-btn-edit'
                             type='primary'
                             htmlType='submit'
-                            // disabled={ }
+                            disabled={ !isAppointmentId }
                         >
                             <EditOutlined /> Editar
                         </Button>
@@ -444,7 +451,7 @@ function RegisterAppointmentForm() {
                         <Button 
                             className='register-patient-btn-delete'
                             type='primary'
-                            // disabled={ }
+                            disabled={ !isAppointmentId }
                             onClick={ onDelete }
                         >
                             <DeleteOutlined /> Excluir
