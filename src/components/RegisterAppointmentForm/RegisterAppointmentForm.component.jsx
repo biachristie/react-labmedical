@@ -15,6 +15,16 @@ function RegisterAppointmentForm() {
     let params = new URL(document.location).searchParams
     const appointmentId = params.get('id')
 
+    useEffect(() => { 
+        form.resetFields()
+        fetchAppointmentsList()
+    }, [])
+
+    const [appointmentsList, setAppointmentsList] = useState([])
+    const fetchAppointmentsList = async() => {
+        AppointmentService.Get().then(result => setAppointmentsList(result))
+    }
+
     const [form] = Form.useForm()
     const dataForm = Form.useWatch([], form)
 
@@ -44,6 +54,22 @@ function RegisterAppointmentForm() {
         }
         
         doctorId > 0 ? fetchDoctor() : null
+    }
+
+    const isAppointmentRegistered = () => {
+        let filteredPatientAppointments = appointmentsList.filter(appointment => String(appointment.idPatient).includes(dataForm.idPatient))
+        let filteredDate = filteredPatientAppointments.filter(appointment => appointment.date.includes(appointmentDate))
+        let filteredHour = filteredDate.filter(appointment => appointment.hour.includes(appointmentHour))
+
+        if (filteredHour.length > 0) {
+            messageApi.open({ type: 'error', content: 'Esse paciente já possui consulta cadastrada nesse dia e horário.' })
+                filteredPatientAppointments = []
+                filteredDate = []
+                filteredHour = []
+                return true
+        }
+
+        return false
     }
 
     const [messageApi, contextHolder] = message.useMessage()
@@ -81,6 +107,8 @@ function RegisterAppointmentForm() {
     }
 
     const onSave = async(submitData) => {
+        if(isAppointmentRegistered()) { return }
+
         await AppointmentService.Create(submitData)
             .then(() => {
                 messageApi.open({ type: 'success', content: 'Sucesso! Consulta cadastrada.' })
