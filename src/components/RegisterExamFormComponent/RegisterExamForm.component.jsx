@@ -16,6 +16,7 @@ function RegisterExamForm() {
     const examId = params.get('id')
 
     const [form] = Form.useForm()
+    const dataForm = Form.useWatch([], form)
 
     const dateFormat = 'DD/MM/YYYY'
     const [examDate, setExamDate] = useState('')
@@ -40,6 +41,39 @@ function RegisterExamForm() {
     }
 
     const [messageApi, contextHolder] = message.useMessage()
+
+    const onSubmitForm = async() => {
+        const submitData = {
+            idPatient: dataForm.idPatient,
+            patientName: dataForm.patientName,
+            idUser: dataForm.idDoctor,
+            doctor: dataForm.doctor,
+            date: examDate,
+            hour: examHour,
+            status: dataForm.status,
+            type: dataForm.type,
+            examName: dataForm.examName,
+            lab: dataForm.lab,
+            reasoning: dataForm.reasoning,
+            urlDocument: dataForm.urlDocument,
+            results: dataForm.results,
+            created_at: Date.now()
+        }
+
+        examId ? onUpdate(submitData) : onSave(submitData)
+    }
+
+    const onSave = async(submitData) => {
+        await ExamService.Create(submitData)
+            .then(() => {
+                messageApi.open({ type: 'success', content: 'Sucesso! Exame cadastrado.' })
+                form.resetFields()
+            })
+            .catch(() => {
+                messageApi.open({ type: 'error', content: 'Erro no cadastro. Por favor, tente novamente.' })
+                form.resetFields()
+            })
+    }
 
     const onDelete = async() => {
         const response = await ExamService.Delete(examId)
@@ -77,7 +111,7 @@ function RegisterExamForm() {
                     name='register-form'
                     className='register-exam-form'
                     layout='vertical'
-                    // onFinish={  }
+                    onFinish={ onSubmitForm }
                     autoComplete='off'
                 >
 
