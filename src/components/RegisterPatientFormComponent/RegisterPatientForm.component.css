@@ -46,3 +46,15 @@
     color: var(--color-text-white);
     background-color: var(--color-text-gray);
 }
+
+@media screen and (max-width: 360px) {
+    .form-section-inner-container {
+        flex-direction: column;
+    }
+
+    .register-patient-buttons-container {
+        flex-direction: column;
+        align-items: end;
+        gap: 0;
+    }
+}
