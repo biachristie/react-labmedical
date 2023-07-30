@@ -76,10 +76,10 @@ function PatientRecordPage() {
                                         <li>Contato de emergência: { patient.emergencyPhone }</li>
                                     </ul>
                                     <ul className='patient-address'>
-                                        <li>{ patient.address || null}, { patient.addressNumber || null}{ '- ' + patient.complement || null}</li>
-                                        <li>{ patient.district || null}, { patient.city || null} - { patient.state || null}</li>
-                                        <li>{ patient.postalCode || null}</li>
-                                        <li>{ patient.references || null}</li>
+                                        <li>{ patient.address || null }, { patient.addressNumber || null }{ '- ' + patient.complement || null }</li>
+                                        <li>{ patient.district || null }, { patient.city || null } - { patient.state || null }</li>
+                                        <li>{ patient.postalCode ? patient.postalCode.substring(0, 5).concat('-', patient.postalCode.substring(5, 8)) : null }</li>
+                                        <li>{ patient.references || null }</li>
                                     </ul>
                                 </div>
                                 <div className='patient-record-contact'>
