@@ -1,8 +1,18 @@
 const Get = () => {
     const fetchPatient = async() => {
-        const responsePatients = await fetch('http://localhost:3000/patients')
-        const dataPatients = await responsePatients.json()
-        return dataPatients
+        const response = await fetch('http://localhost:3000/patients')
+        const data = await response.json()
+        return data
+    }
+
+    return fetchPatient()
+}
+
+const Show = (id) => {
+    const fetchPatient = async() => {
+        const response = await fetch(`http://localhost:3000/patients/${ id }`)
+        const data = await response.json()
+        return data
     }
 
     return fetchPatient()
@@ -49,6 +59,7 @@ const Delete = (id) => {
 
 export const PatientService = {
     Get,
+    Show,
     Create,
     Update,
     Delete
