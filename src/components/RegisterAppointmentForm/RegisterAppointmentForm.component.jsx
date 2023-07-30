@@ -15,6 +15,10 @@ function RegisterAppointmentForm() {
     const [appointmentDate, setAppointmentDate] = useState('')
     const onChangeDate = (_, dateString) => { setAppointmentDate(dateString) }
 
+    const hourFormat = 'HH:mm'
+    const [appointmentHour, setAppointmentHour] = useState('')
+    const onChangeHour = (_, hourString) => { setAppointmentHour(hourString) }
+
     return (
         <>
             <Divider
@@ -182,9 +186,9 @@ function RegisterAppointmentForm() {
                                 }
                             ]}
                             style={{ width: '20%' }}
-                            // format={  }
+                            format={ hourFormat }
                             placeholder='Selecione a hora'
-                            // onChange={  }
+                            onChange={ onChangeHour }
                             type='hour'
                         />
                         
