@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { DatePicker, Form, Input, InputNumber, Select } from "antd";
+import { DatePicker, Form, Input, InputNumber, Select, TimePicker } from "antd";
 
 import './Input.style.css'
 
@@ -107,6 +107,7 @@ function InputComponent({
                         id={ id }
                         placeholder={ placeholder }
                         min={ 0 }
+                        disabled={ disabled }
                         onChange={ onChange }
                     />
 
@@ -123,11 +124,31 @@ function InputComponent({
                     hasFeedback
                 >
                     <DatePicker 
-                        className='form-input'
+                        className='form-input-date'
                         format={ format }
                         id={ id }
                         picker={ picker }
                         placeholder={ placeholder }
+                        onChange={ onChange }
+                    />
+                </Form.Item>
+            }
+
+            { type === 'hour' &&
+                <Form.Item 
+                    className='form-field'
+                    label={ label }
+                    name={ id }
+                    rules={ rules } 
+                    style={ style }
+                    hasFeedback
+                >
+                    <TimePicker 
+                        className='form-input-hour'
+                        format={ format }
+                        id={ id }
+                        placeholder={ placeholder }
+                        picker='time'
                         onChange={ onChange }
                     />
                 </Form.Item>
