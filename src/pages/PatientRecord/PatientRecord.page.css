@@ -57,3 +57,32 @@
     font-size: 0.75rem;
     padding: 10px 30px;
 }
+
+.layout-content-section-pr3 {
+    margin-bottom: 30px;
+}
+
+.layout-content-table {
+    box-shadow: 0 1px 2px 0 rgba(39, 32, 32, 0.03),0 1px 6px -1px rgba(0, 0, 0, 0.02),0 2px 4px 0 rgba(0, 0, 0, 0.02);
+}
+
+.table-patient-record-search-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.table-patient-record-search-container > h2 {
+    margin: auto 10px;
+}
+
+.layout-content-table-edit {
+    background-color: #800080;
+    padding: 6px;
+    border-radius: 8px;
+    color: var(--color-text-white);
+}
+
+.layout-content-table-edit:hover {
+    color: var(--color-highlight-lighter);
+}

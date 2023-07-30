@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 import { Navigate } from "react-router-dom"
-import { Avatar, Button, Card, Space, Table, Tabs, Tag } from "antd"
+import { Avatar, Button, Card, Input, Space, Table, Tabs, Tag } from "antd"
 import { 
     EditOutlined,
     MailOutlined, 
@@ -257,6 +257,17 @@ function PatientRecordPage() {
                             columns={ columnsAppointments }
                             dataSource={ filteredAppointments }
                             rowKey= { (record) => record.id }
+                            caption={
+                                <div className='table-patient-record-search-container'>
+                                    <h2>Consultas</h2>
+                                    <Input.Search
+                                        className='table-search'
+                                        placeholder='Insira a data da consulta'
+                                        allowClear
+                                        // onSearch={ }
+                                    />
+                                </div>
+                            }
                             style={{ tableLayout: 'fixed' }}
                             scroll={{ x: '100%' }}
                             pagination={{ 
