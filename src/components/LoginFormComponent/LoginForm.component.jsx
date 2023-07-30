@@ -4,12 +4,10 @@ import { Button, Checkbox, Form, Tooltip, message } from 'antd'
 
 import './LoginForm.component.css'
 import InputComponent from '../InputComponent/Input.component'
-import { AuthContext } from '../../context/auth/auth.context'
 import { UsersContext } from '../../context/users/users.context'
 
 function LoginForm() {
     const navigate = useNavigate()
-    const { setAuth } = useContext(AuthContext)
 
     const [form] = Form.useForm()
 
