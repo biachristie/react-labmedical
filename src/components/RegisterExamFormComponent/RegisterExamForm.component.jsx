@@ -63,6 +63,18 @@ function RegisterExamForm() {
         examId ? onUpdate(submitData) : onSave(submitData)
     }
 
+    const onUpdate = async(submitData) => {
+        await ExamService.Update(examId, submitData)
+            .then(() => {
+                messageApi.open({ type: 'success', content: 'Sucesso! Exame editado.' })
+                form.resetFields()
+            })
+            .catch(() => {
+                messageApi.open({ type: 'error', content: 'Erro no cadastro. Por favor, tente novamente.' })
+                form.resetFields()
+            })
+    }
+
     const onSave = async(submitData) => {
         await ExamService.Create(submitData)
             .then(() => {
