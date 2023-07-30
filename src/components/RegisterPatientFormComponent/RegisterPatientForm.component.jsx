@@ -73,6 +73,49 @@ function RegisterPatientForm() {
 
     const [messageApi, contextHolder] = message.useMessage()
 
+    const onSubmitForm = async() => {
+        const submitData = {
+            avatar: dataForm.avatar,
+            fullname: dataForm.fullname,
+            cpf: dataForm.cpf,
+            rg: dataForm.rg,
+            issuingAuthority: dataForm.issuingAuthority,
+            birthDate: birthDate,
+            age: patientAge,
+            gender: dataForm.gender,
+            nationality: dataForm.nationality,
+            maritalStatus: dataForm.maritalStatus,
+            alergyList: dataForm.alergyList,
+            specialCareList: dataForm.specialCareList,
+            postalCode: dataForm.postalCode,
+            address: dataForm.address,
+            addressNumber: dataForm.addressNumber,
+            district: dataForm.district,
+            city: dataForm.city,
+            state: dataForm.state,
+            complement: dataForm.complement,
+            references: dataForm.references,
+            email: dataForm.email,
+            telephone: dataForm.telephone,
+            cellphone: dataForm.cellphone,
+            emergencyPhone: dataForm.emergencyPhone,
+            healthPlanName: dataForm.healthPlanName,
+            healthPlanNumber: dataForm.healthPlanNumber,
+            healthPlanExpire: expireMonth == 'Invalid Date' ? '' : expireMonth,
+            created_at: Date.now()
+        }
+
+        await PatientService.Create(submitData)
+        .then(() => {
+            messageApi.open({ type: 'success', content: 'Sucesso! Paciente cadastrado.' })
+            form.resetFields()
+        })
+        .catch(() => {
+            messageApi.open({ type: 'error', content: 'Erro no cadastro. Por favor, tente novamente.' })
+            form.resetFields()
+        })
+    }
+
     const onDelete = async () => {
         const response = await PatientService.Delete(patientId)
         
@@ -100,6 +143,7 @@ function RegisterPatientForm() {
                     name='register-form'
                     className='register-patient-form'
                     layout='vertical'
+                    onFinish={ onSubmitForm }
                     autoComplete='off'
                 >
 
@@ -551,10 +595,6 @@ function RegisterPatientForm() {
                         label='Validade'
                         id='healthPlanExpire'
                         rules={[
-                            {
-                                required: true,
-                                message: '${label} é obrigatório'
-                            },
                             {
                                 type: 'object',
                                 message: '${label} não é um ${type} válido(a)'

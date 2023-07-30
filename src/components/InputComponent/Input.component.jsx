@@ -12,7 +12,7 @@ function InputComponent({
         type, 
         maxLength,
         maxRows,
-        dateFormat,
+        format,
         onChange,
         options,
         picker,
@@ -124,7 +124,7 @@ function InputComponent({
                 >
                     <DatePicker 
                         className='form-input'
-                        format={ dateFormat }
+                        format={ format }
                         id={ id }
                         picker={ picker }
                         placeholder={ placeholder }
@@ -163,7 +163,7 @@ InputComponent.propTypes = {
     type: PropTypes.string.isRequired,
     maxLength: PropTypes.number,
     maxRows: PropTypes.number,
-    dateFormat: PropTypes.string,
+    format: PropTypes.string,
     onChange: PropTypes.func,
     options: PropTypes.arrayOf(PropTypes.object),
     picker: PropTypes.string,

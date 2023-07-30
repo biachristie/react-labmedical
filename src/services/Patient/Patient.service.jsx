@@ -10,11 +10,13 @@ const Get = () => {
 
 const Create = (data) => {
     const fetchPatient = async() => {
-        await fetch('http://localhost:3000/patients', {
+        const response = await fetch('http://localhost:3000/patients', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify( data )
         })
+
+        return response
     }
 
     return fetchPatient()
