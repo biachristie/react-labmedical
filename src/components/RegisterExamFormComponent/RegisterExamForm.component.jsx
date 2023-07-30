@@ -7,6 +7,7 @@ import {
     EditOutlined, 
     SaveOutlined,
 } from '@ant-design/icons'
+import dayjs from 'dayjs'
 
 import InputComponent from '../InputComponent/Input.component'
 import { ExamService } from '../../services/Exam/Exam.service'
@@ -31,6 +32,39 @@ function RegisterExamForm() {
             setIsExamId(true)
         }
     }, [examId])
+
+    useEffect(() => { 
+        if (examId !== null) { filterExam() }
+    }, [examsList])
+
+    const [exam, setExam] = useState([])
+    const filterExam = () => {
+        const filteredExam = examsList.filter(exam => String(exam.id).includes(examId))
+        setExam(filteredExam)
+    }
+
+    useEffect(() => {
+        if(exam.length > 0) {
+            form.setFieldsValue({ 
+                idPatient: exam[0].idPatient,
+                patientName: exam[0].patientName,
+                idDoctor: exam[0].idUser,
+                doctor: exam[0].doctor,
+                date: dayjs(exam[0].date, "DD/MM/YYYY", 'pt-br'),
+                hour: dayjs(exam[0].hour, "HH:mm", 'pt-br'),
+                status: exam[0].status,
+                type: exam[0].type,
+                examName: exam[0].examName,
+                lab: exam[0].lab,
+                reasoning: exam[0].reasoning,
+                urlDocument: exam[0].urlDocument,
+                results: exam[0].results,
+            })
+
+            setExamDate(form.getFieldValue('date').format('DD/MM/YYYY'))
+            setExamHour(form.getFieldValue('hour').format('HH:mm'))
+        }
+    }, [exam])
 
     const [form] = Form.useForm()
     const dataForm = Form.useWatch([], form)
@@ -191,7 +225,7 @@ function RegisterExamForm() {
                             
                             <InputComponent 
                                 label="Nome Completo"
-                                id="fullname"
+                                id="patientName"
                                 rules={[
                                     {
                                         required: true,
@@ -232,31 +266,6 @@ function RegisterExamForm() {
                                 placeholder='Insira o código do médico'
                                 type='number'
                             />
-                            
-                            <InputComponent
-                                label='Especialidade Médica'
-                                id='medicalSpecialty'
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: '${label} é obrigatório'
-                                    }
-                                ]}
-                                style={{ width: '30%' }}
-                                options={[
-                                    { label: 'Clínica Médica', value: 'Clínica Médica' },
-                                    { label: 'Cardiologia', value:'Cardiologia' },
-                                    { label: 'Neurologia', value: 'Neurologia' },
-                                    { label: 'Psiquiatria', value: 'Psiquiatria' },
-                                    { label: 'Endocrinologia', value: 'Endocrinologia' },
-                                    { label: 'Ortopedia', value: 'Ortopedia' },
-                                    { label: 'Dermatologia', value: 'Dermatologia' },
-                                    { label: 'Oftalmologia', value: 'Oftalmologia' },
-                                    { label: 'Ginecologia', value: 'Ginecologia' },
-                                    { label: 'Pediatria', value: 'Pediatria' }
-                                ]}
-                                type='select'
-                            />
 
                             <InputComponent 
                                 label="Médico(a)"
@@ -276,7 +285,7 @@ function RegisterExamForm() {
                                         message: '${label} não é um ${type} válido(a)'
                                     }
                                 ]}
-                                style={{ width: '50%' }}
+                                style={{ width: '80%' }}
                                 disabled={ true }
                                 type='text'
                             />
