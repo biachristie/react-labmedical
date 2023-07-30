@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button, Divider, Form, message } from 'antd'
 import { 
@@ -14,6 +14,16 @@ import { ExamService } from '../../services/Exam/Exam.service'
 function RegisterExamForm() {
     let params = new URL(document.location).searchParams
     const examId = params.get('id')
+
+    useEffect(() => { 
+        form.resetFields()
+        fetchExamsList()
+    }, [])
+
+    const [examsList, setExamsList] = useState([])
+    const fetchExamsList = async() => {
+        ExamService.Get().then(result => setExamsList(result))
+    }
 
     const [form] = Form.useForm()
     const dataForm = Form.useWatch([], form)
@@ -38,6 +48,22 @@ function RegisterExamForm() {
         }
         
         doctorId > 0 ? fetchDoctor() : null
+    }
+
+    const isExamRegistered = () => {
+        let filteredPatientExams = examsList.filter(exam => String(exam.idPatient).includes(dataForm.idPatient))
+        let filteredDate = filteredPatientExams.filter(exam => exam.date.includes(examDate))
+        let filteredHour = filteredDate.filter(exam => exam.hour.includes(examHour))
+
+        if (filteredHour.length > 0) {
+            messageApi.open({ type: 'error', content: 'Esse paciente já possui exame cadastrado nesse dia e horário.' })
+            filteredPatientExams = []
+            filteredDate = []
+            filteredHour = []
+            return true
+        }
+
+        return false
     }
 
     const [messageApi, contextHolder] = message.useMessage()
@@ -76,6 +102,8 @@ function RegisterExamForm() {
     }
 
     const onSave = async(submitData) => {
+        if(isExamRegistered()) { return }
+
         await ExamService.Create(submitData)
             .then(() => {
                 messageApi.open({ type: 'success', content: 'Sucesso! Exame cadastrado.' })
