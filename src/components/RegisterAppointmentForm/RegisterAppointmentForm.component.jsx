@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { Button, Divider, Form } from "antd"
 import { 
     CloseCircleOutlined,
@@ -9,6 +10,11 @@ import {
 import InputComponent from "../InputComponent/Input.component"
 
 function RegisterAppointmentForm() {
+
+    const dateFormat = 'DD/MM/YYYY'
+    const [appointmentDate, setAppointmentDate] = useState('')
+    const onChangeDate = (_, dateString) => { setAppointmentDate(dateString) }
+
     return (
         <>
             <Divider
@@ -156,9 +162,9 @@ function RegisterAppointmentForm() {
                                 }
                             ]}
                             style={{ width: '20%' }}
-                            // format={  }
+                            format={ dateFormat }
                             placeholder='Selecione a data'
-                            // onChange={  }
+                            onChange={ onChangeDate }
                             type='date'
                         />
 
