@@ -22,6 +22,7 @@ function PatientRecordPage() {
     const isLogged = JSON.parse(localStorage.getItem('isLogged'))
 
     const [loadingCard, setLoadingCard] = useState(true)
+    const [loadingTable, setLoadingTable] = useState(true)
 
     let params = new URL(document.location).searchParams
     let patientId = params.get('id')
@@ -49,6 +50,8 @@ function PatientRecordPage() {
     const [filteredExams, setFilteredExams] = useState([])   
 
     useEffect(() => {
+        if (appointments.length > 0) { setLoadingTable(false) }
+
         setFilteredAppointments(appointments.filter(value => value.idPatient.toString().includes(patientId)))
         setFilteredExams(exams.filter(value => value.idPatient.toString().includes(patientId)))
     }, [appointments])
@@ -379,18 +382,20 @@ function PatientRecordPage() {
 
                     <section className='layout-content-section-pr2'>
                         <div className='patient-record-medical-info'>
-                            <Tabs
-                                className='patient-record-tab'
-                                defaultActiveKey='1'
-                                items={ tabItems }
-                            />
+                            <Skeleton loading= { loadingTable } >
+                                <Tabs
+                                    className='patient-record-tab'
+                                    defaultActiveKey='1'
+                                    items={ tabItems }
+                                />
+                            </Skeleton>
                         </div>
                     </section>
 
                     <section className='layout-content-section-pr3'>
                         <Table
                             className='layout-content-table'
-                            // loading={ }
+                            loading={ loadingTable }
                             columns={ columnsAppointments }
                             dataSource={ filteredAppointments }
                             rowKey= { (record) => record.id }
@@ -417,6 +422,7 @@ function PatientRecordPage() {
                     <section className='layout-content-section-pr4'>
                         <Table
                             className='layout-content-table'
+                            loading={ loadingTable }
                             columns={ columnsExams }
                             dataSource={ filteredExams }
                             rowKey= { (record) => record.id }
