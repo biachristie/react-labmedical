@@ -25,6 +25,13 @@ function RegisterExamForm() {
         ExamService.Get().then(result => setExamsList(result))
     }
 
+    const [isExamId, setIsExamId] = useState(false)
+    useEffect(() => { 
+        if (examId !== null) {
+            setIsExamId(true)
+        }
+    }, [examId])
+
     const [form] = Form.useForm()
     const dataForm = Form.useWatch([], form)
 
@@ -485,7 +492,7 @@ function RegisterExamForm() {
                                 className='register-patient-btn-edit'
                                 type='primary'
                                 htmlType='submit'
-                                // disabled={  }
+                                disabled={ !isExamId }
                             >
                                 <EditOutlined /> Editar
                             </Button>
@@ -495,7 +502,7 @@ function RegisterExamForm() {
                             <Button 
                                 className='register-patient-btn-delete'
                                 type='primary'
-                                // disabled={  }
+                                disabled={ !isExamId }
                                 onClick={ onDelete }
                             >
                                 <DeleteOutlined /> Excluir
