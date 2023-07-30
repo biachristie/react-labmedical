@@ -11,7 +11,7 @@
 }
 
 .form-input-number {
-    min-width: 150px;
+    min-width: 100%;
 }
 
 .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
