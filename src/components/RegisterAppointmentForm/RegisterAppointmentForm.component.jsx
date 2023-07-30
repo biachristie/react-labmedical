@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { Button, Divider, Form, message } from "antd"
+import { Button, Divider, Form, Input, message } from "antd"
 import { 
     CloseCircleOutlined,
     DeleteOutlined,
@@ -11,6 +11,7 @@ import dayjs from "dayjs"
 
 import InputComponent from "../InputComponent/Input.component"
 import { AppointmentService } from "../../services/Appointment/Appointment.service"
+import { PatientService } from "../../services/Patient/Patient.service"
 
 function RegisterAppointmentForm() {
     let params = new URL(document.location).searchParams
@@ -75,6 +76,29 @@ function RegisterAppointmentForm() {
             .then(() => { setSubmit(true) }, () => { setSubmit(false) })
     }, [dataForm])
 
+    const searchTerm = (value) => { setPatientId(value) }
+
+    const [patientId, setPatientId] = useState('')
+    useEffect(() => { 
+        if (patientId !== null) {
+            fetchPatient()
+        }
+    }, [patientId])
+
+    const [patient, setPatient] = useState([])
+    const fetchPatient = async() => {
+        const response = await PatientService.Show(patientId)
+        setPatient(response)
+    }
+
+    useEffect(() => {
+        if((Object.keys(patient).length > 0)) {
+            form.setFieldsValue({ 
+                idPatient: patient.id,
+                fullname: patient.fullname
+            })
+        }
+    }, [patient])
 
     const dateFormat = 'DD/MM/YYYY'
     const [appointmentDate, setAppointmentDate] = useState('')
@@ -183,6 +207,15 @@ function RegisterAppointmentForm() {
     return (
         <>
             { contextHolder }
+
+            <div className='register-appointment-search-container'>
+                <Input.Search
+                    className='register-patient-search'
+                    placeholder='Insira o código do paciente'
+                    allowClear
+                    onSearch={ searchTerm }
+                />
+            </div>
 
             <Divider
                 orientation="center" 
