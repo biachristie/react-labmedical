@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { Button, Divider, Form } from "antd"
+import { Button, Divider, Form, message } from "antd"
 import { 
     CloseCircleOutlined,
     DeleteOutlined,
@@ -9,8 +9,12 @@ import {
 } from '@ant-design/icons'
 
 import InputComponent from "../InputComponent/Input.component"
+import { AppointmentService } from "../../services/Appointment/Appointment.service"
 
 function RegisterAppointmentForm() {
+    let params = new URL(document.location).searchParams
+    const appointmentId = params.get('id')
+
     const [form] = Form.useForm()
     const dataForm = Form.useWatch([], form)
 
@@ -36,11 +40,30 @@ function RegisterAppointmentForm() {
         doctorId > 0 ? fetchDoctor() : null
     }
 
+    const [messageApi, contextHolder] = message.useMessage()
+
+    const onDelete = async() => {
+        const response = await AppointmentService.Delete(appointmentId)
+        
+        if(response.status === 200) {
+            messageApi.open({ type: 'success', content: 'Sucesso! Consulta excluída.' })
+            form.resetFields()
+        } else if (response.status === 404) {
+            messageApi.open({ type: 'error', content: 'Erro na exclusão! Consulta não existe.' })
+            form.resetFields()
+        } else {
+            messageApi.open({ type: 'error', content: 'Erro na exclusão. Por favor, tente novamente.' })
+            form.resetFields()
+        }
+    }
+
     const navigate = useNavigate()
     const onCancel = () => { navigate('/') }
 
     return (
         <>
+            { contextHolder }
+
             <Divider
                 orientation="center" 
                 style={{ marginTop: '40px' }}
@@ -343,7 +366,7 @@ function RegisterAppointmentForm() {
                             className='register-patient-btn-delete'
                             type='primary'
                             // disabled={ }
-                            // onClick={ }
+                            onClick={ onDelete }
                         >
                             <DeleteOutlined /> Excluir
                         </Button>
