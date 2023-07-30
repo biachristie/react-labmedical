@@ -18,3 +18,8 @@
     height: 41px;
     padding: 4px 11px 0;
 }
+
+.ant-input-search .ant-input-search-button {
+    height: 42px;
+    width: 42px;
+}

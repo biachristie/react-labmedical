@@ -384,7 +384,7 @@ function RegisterPatientForm() {
                                         message: '${label} é obrigatório'
                                     }
                                 ]}
-                                style={{ width: '20%' }}
+                                style={{ width: '25%' }}
                                 options={[
                                     { label: 'Feminino', value: 'Feminino' },
                                     { label: 'Masculino', value:'Masculino' },
@@ -412,7 +412,7 @@ function RegisterPatientForm() {
                                         message: '${label} não é um ${type} válido(a)'
                                     }
                                 ]}
-                                style={{ width: '35%' }}
+                                style={{ width: '40%' }}
                                 placeholder='Insira sua nacionalidade'
                                 type='text'
                             />
