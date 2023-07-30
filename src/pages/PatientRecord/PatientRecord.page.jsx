@@ -396,6 +396,17 @@ function PatientRecordPage() {
                             columns={ columnsExams }
                             dataSource={ filteredExams }
                             rowKey= { (record) => record.id }
+                            caption={
+                                <div className='table-patient-record-search-container'>
+                                    <h2>Exames</h2>
+                                    <Input.Search
+                                        className='table-search'
+                                        placeholder='Insira a data ou o nome do exame'
+                                        allowClear
+                                        // onSearch={ }
+                                    />
+                                </div>
+                            }
                             style={{ tableLayout: 'fixed' }}
                             scroll={{ x: '100%' }}
                             pagination={{ 
