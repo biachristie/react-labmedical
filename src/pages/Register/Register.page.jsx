@@ -12,8 +12,7 @@ function RegisterPage() {
     return (
         <div className='register-container'>
             <section className='register-brand'>
-                <h1 className='register-title'>Santé</h1>
-                <img className='register-logo' src="./logo.png" alt="Santé logo" />
+                <img className='register-logo' src="./logo.png" alt="LABMedical logo" />
             </section>
             <section className='register-form-main'>
                 <RegisterForm />

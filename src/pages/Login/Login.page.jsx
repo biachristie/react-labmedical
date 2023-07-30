@@ -15,8 +15,7 @@ function LoginPage() {
         return (
             <div className='login-page-container'>
                 <section className='login-page-brand'>
-                    <h1 className='login-page-title'>Santé</h1>
-                    <img className='login-page-logo' src="./logo.png" alt="Santé logo" />
+                    <img className='login-page-logo' src="./logo.png" alt="LABMedical logo" />
                 </section>
                 <section className='login-page-form'>
                     <LoginForm />
