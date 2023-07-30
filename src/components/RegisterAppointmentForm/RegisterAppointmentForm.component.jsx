@@ -9,6 +9,7 @@ import {
 } from '@ant-design/icons'
 import dayjs from "dayjs"
 
+import './RegisterAppointmentForm.component.css'
 import InputComponent from "../InputComponent/Input.component"
 import { AppointmentService } from "../../services/Appointment/Appointment.service"
 import { PatientService } from "../../services/Patient/Patient.service"
