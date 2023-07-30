@@ -162,6 +162,109 @@ function PatientRecordPage() {
         }
     ]
 
+    const columnsExams = [
+        {
+            key: 'id',
+            title: 'ID',
+            dataIndex: 'id',
+            align: 'center',
+        },
+        {
+            key: 'examName',
+            title: 'Nome',
+            dataIndex:'examName',
+            sorter: (a, b) => a.name > b.name,
+        },
+        {
+            key: 'type',
+            title: 'Tipo',
+            dataIndex:'type',
+            sorter: (a, b) => a.type > b.type,
+        },
+        {
+            key: 'lab',
+            title: 'Laboratório',
+            dataIndex:'lab',
+            sorter: (a, b) => a.lab > b.lab,
+        },
+        {
+            key: 'date',
+            title: 'Data',
+            dataIndex: 'date',
+            sorter: (a, b) => a.date > b.date,
+            align: 'center'
+        },
+        {
+            key: 'hour',
+            title: 'Hora',
+            dataIndex: 'hour',
+            sorter: (a, b) => a.hour > b.hour,
+        },
+        {
+            key: 'urlDocument',
+            title: 'Documento',
+            dataIndex: 'urlDocument',
+            render: (_, record) => {
+                return  <a href={ `${record.urlDocument}` }>
+                            <Typography.Text
+                                ellipsis={{ tooltip: `${ record.urlDocument }` }}
+                                style={{ width: 150 }}
+                            >
+                                { record.urlDocument }
+                            </Typography.Text>
+                        </a>
+            }
+        },
+        {
+            key: 'results',
+            title: 'Resultados',
+            dataIndex: 'results',
+            sorter: (a, b) => a.results > b.results,
+        },
+        {
+            key: 'doctor',
+            title: 'Médico(a)',
+            dataIndex: 'doctor',
+            sorter: (a, b) => a.doctor > b.doctor,
+        },
+        {
+            key: 'status',
+            title: 'Status',
+            dataIndex: 'status',
+            render: (_, record) => {
+                const color = (record) => {
+                    switch (record.status) {
+                        case 'Aguardando atendimento':
+                            return '#FAAD14'
+                        case 'Em andamento':
+                            return '#979797'
+                        case 'Atendido':
+                            return '#358423'
+                        default:
+                            break;
+                    }
+                }
+
+                return  <Tag color={ color(record) }>
+                            { record.status }
+                        </Tag>
+            },
+            align: 'center',
+        },
+        {
+            key:'actions',
+            title: 'Ações',
+            render: (_, record) => (
+                <Space>
+                    <a href={ `/examRegister?id=${record.id}` }>
+                        <EditOutlined className='layout-content-table-edit' />
+                    </a>
+                </Space>
+            ),
+            align: 'center',
+        }
+    ]
+
     const render = () => {
         return (
                 <>
@@ -273,6 +376,21 @@ function PatientRecordPage() {
                                     />
                                 </div>
                             }
+                            style={{ tableLayout: 'fixed' }}
+                            scroll={{ x: '100%' }}
+                            pagination={{ 
+                                position: ['bottomLeft'], 
+                                size: 'small',
+                            }}
+                        />
+                    </section>
+
+                    <section className='layout-content-section-pr4'>
+                        <Table
+                            className='layout-content-table'
+                            columns={ columnsExams }
+                            // dataSource={  }
+                            rowKey= { (record) => record.id }
                             style={{ tableLayout: 'fixed' }}
                             scroll={{ x: '100%' }}
                             pagination={{ 
