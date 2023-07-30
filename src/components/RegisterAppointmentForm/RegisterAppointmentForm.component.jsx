@@ -68,6 +68,18 @@ function RegisterAppointmentForm() {
         appointmentId ? onUpdate(submitData) : onSave(submitData)
     }
 
+    const onUpdate = async(submitData) => {
+        await AppointmentService.Update(appointmentId, submitData)
+            .then(() => {
+                messageApi.open({ type: 'success', content: 'Sucesso! Consulta editada.' })
+                form.resetFields()
+            })
+            .catch(() => {
+                messageApi.open({ type: 'error', content: 'Erro no cadastro. Por favor, tente novamente.' })
+                form.resetFields()
+            })
+    }
+
     const onSave = async(submitData) => {
         await AppointmentService.Create(submitData)
             .then(() => {
