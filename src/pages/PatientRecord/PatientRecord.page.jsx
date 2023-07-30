@@ -50,6 +50,12 @@ function PatientRecordPage() {
     const [searchedAppointment, setSearchedAppointment] = useState('')
     const searchAppointment = (value, record) => { return String(record.date).includes(value) }
 
+    const [searchedExam, setSearchedExam] = useState('')
+    const searchExams = (value, record) => { 
+        return String(record.date).includes(value) || 
+        String(record.examName).toLowerCase().includes(value.toLowerCase())
+    }
+
     const tabItems = [
         {
             key: '1',
@@ -178,6 +184,8 @@ function PatientRecordPage() {
             key: 'examName',
             title: 'Nome',
             dataIndex:'examName',
+            filteredValue: [ searchedExam ],
+            onFilter: searchExams,
             sorter: (a, b) => a.name > b.name,
         },
         {
@@ -196,6 +204,8 @@ function PatientRecordPage() {
             key: 'date',
             title: 'Data',
             dataIndex: 'date',
+            filteredValue: [ searchedExam ],
+            onFilter: searchExams,
             sorter: (a, b) => a.date > b.date,
             align: 'center'
         },
@@ -403,7 +413,7 @@ function PatientRecordPage() {
                                         className='table-search'
                                         placeholder='Insira a data ou o nome do exame'
                                         allowClear
-                                        // onSearch={ }
+                                        onSearch={ value => setSearchedExam(value) }
                                     />
                                 </div>
                             }
