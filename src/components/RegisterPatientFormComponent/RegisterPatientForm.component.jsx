@@ -15,7 +15,6 @@ function RegisterPatientForm() {
     useEffect(() => { fetchPatientsList() }, [])
 
     const [patientsList, setPatientsList] = useState([])
-    console.log(patientsList);
     const fetchPatientsList = () => {
         PatientService.Get().then(result => setPatientsList(result))
     }
@@ -79,6 +78,18 @@ function RegisterPatientForm() {
         cep.length === 8 ? fetchData() : null
     }
 
+    const isPatientRegistered = () => {
+        let filterCpf = patientsList.filter(user => user.cpf.includes(dataForm.cpf))
+
+        if (filterCpf.length > 0) {
+            messageApi.open({ type: 'error', content: 'Esse paciente já possui cadastro.' })
+            filterCpf = []
+            return true
+        }
+
+        return false
+    }
+
     const [messageApi, contextHolder] = message.useMessage()
 
     const onSubmitForm = async() => {
@@ -112,6 +123,8 @@ function RegisterPatientForm() {
             healthPlanExpire: expireMonth == 'Invalid Date' ? '' : expireMonth,
             created_at: Date.now()
         }
+
+        if(isPatientRegistered()) { return }
 
         await PatientService.Create(submitData)
         .then(() => {
