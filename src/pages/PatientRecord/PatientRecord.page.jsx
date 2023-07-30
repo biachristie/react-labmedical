@@ -11,6 +11,7 @@ import {
     UserOutlined 
 } from '@ant-design/icons'
 
+import './Patientrecord.page.css'
 import { TitlesContext } from '../../context/titles/titles.context'
 import { PatientService } from "../../services/Patient/Patient.service"
 

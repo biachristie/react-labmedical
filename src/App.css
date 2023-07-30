@@ -30,3 +30,8 @@ a {
     color: var(--color-highlight-dark);
     text-decoration: none;
 }
+
+ul {
+    list-style: none;
+    padding: 0;
+}

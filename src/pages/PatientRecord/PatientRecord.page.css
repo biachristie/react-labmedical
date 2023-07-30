@@ -1,0 +1,46 @@
+.patient-record-card {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 30px;
+}
+
+.patient-record-info-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+    font-size: 0.75rem;
+    width: 100%;
+}
+
+.patient-record-info > h2 {
+    font-size: 1.35rem;
+    color: var(--color-highlight-main);
+    padding: 0;
+    margin-top: 0;
+}
+
+.patient-record-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.patient-record-contact > ul > li {
+    word-spacing: 3px;
+}
+
+.patient-record-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    gap: 5px;
+}
+
+.patient-record-buttons > Button {
+    border: none;
+    box-shadow: none;
+    font-size: 0.75rem;
+    padding: 0;
+    text-align: left;
+}
