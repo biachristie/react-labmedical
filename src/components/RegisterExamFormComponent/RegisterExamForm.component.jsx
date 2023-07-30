@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Button, Divider, Form } from 'antd'
 import { 
     CloseCircleOutlined,
@@ -33,6 +34,9 @@ function RegisterExamForm() {
         
         doctorId > 0 ? fetchDoctor() : null
     }
+
+    const navigate = useNavigate()
+    const onCancel = () => { navigate('/') }
 
     return (
         <>
@@ -410,7 +414,7 @@ function RegisterExamForm() {
                                 className='register-patient-btn-cancel'
                                 type='primary'
                                 htmlType='button'
-                                // onClick={  }
+                                onClick={ onCancel }
                             >
                                 <CloseCircleOutlined /> Cancelar
                             </Button>
