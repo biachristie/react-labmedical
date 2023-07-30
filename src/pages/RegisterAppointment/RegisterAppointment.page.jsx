@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react"
 import { Navigate } from "react-router-dom"
 
 import { TitlesContext } from '../../context/titles/titles.context'
+import RegisterAppointmentForm from "../../components/RegisterAppointmentForm/RegisterAppointmentForm.component"
 
 function RegisterAppointmentPage() {
     const isLogged = JSON.parse(localStorage.getItem('isLogged'))
@@ -14,7 +15,7 @@ function RegisterAppointmentPage() {
     const render = () => {
         return (
                 <>
-
+                    <RegisterAppointmentForm />
                 </>
             )
         }
