@@ -28,6 +28,13 @@ function RegisterExamForm() {
     const [form] = Form.useForm()
     const dataForm = Form.useWatch([], form)
 
+    const [submit, setSubmit] = useState(false)
+    useEffect(() => {
+        form
+            .validateFields({ validateOnly: true })
+            .then(() => { setSubmit(true) }, () => { setSubmit(false) })
+    }, [dataForm])
+
     const dateFormat = 'DD/MM/YYYY'
     const [examDate, setExamDate] = useState('')
     const onChangeDate = (_, dateString) => { setExamDate(dateString) }
@@ -500,7 +507,7 @@ function RegisterExamForm() {
                                 className='register-patient-btn-save'
                                 type='primary'
                                 htmlType='submit' 
-                                // disabled={  }
+                                disabled={ !submit }
                             >
                                 <SaveOutlined /> Salvar
                             </Button>
