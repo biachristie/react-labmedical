@@ -28,9 +28,11 @@ function RegisterAppointmentForm() {
     const [form] = Form.useForm()
     const dataForm = Form.useWatch([], form)
 
+    const [submit, setSubmit] = useState(false)
     useEffect(() => {
         form
             .validateFields({ validateOnly: true })
+            .then(() => { setSubmit(true) }, () => { setSubmit(false) })
     }, [dataForm])
 
 
@@ -454,7 +456,7 @@ function RegisterAppointmentForm() {
                             className='register-patient-btn-save'
                             type='primary'
                             htmlType='submit' 
-                            // disabled={ }
+                            disabled={ !submit }
                         >
                             <SaveOutlined /> Salvar
                         </Button>
