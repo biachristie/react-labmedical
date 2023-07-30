@@ -6,6 +6,9 @@ import { TitlesContext } from '../../context/titles/titles.context'
 function PatientRecordPage() {
     const isLogged = JSON.parse(localStorage.getItem('isLogged'))
     
+    let params = new URL(document.location).searchParams
+    let patientId = params.get('id')
+    
     const { setTitle } = useContext(TitlesContext)
     useEffect(() => {
         setTitle('Detalhes do Paciente')
