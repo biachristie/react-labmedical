@@ -7,6 +7,7 @@ import {
     EditOutlined, 
     SaveOutlined,
 } from '@ant-design/icons'
+import dayjs from "dayjs"
 
 import InputComponent from "../InputComponent/Input.component"
 import { AppointmentService } from "../../services/Appointment/Appointment.service"
@@ -31,6 +32,38 @@ function RegisterAppointmentForm() {
             setIsAppointmentId(true)
         }
     }, [appointmentId])
+
+    useEffect(() => { 
+        if (appointmentId !== null) { filterAppointment() }
+    }, [appointmentsList])
+
+    const [appointment, setAppointment] = useState([])
+    const filterAppointment = () => {
+        const filteredAppointment = appointmentsList.filter(appointment => String(appointment.id).includes(appointmentId))
+        setAppointment(filteredAppointment)
+    }
+
+    useEffect(() => {
+        if(appointment.length > 0) {
+            form.setFieldsValue({ 
+                idPatient: appointment[0].idPatient,
+                fullname: appointment[0].patientName,
+                date: dayjs(appointment[0].date, "DD/MM/YYYY", 'pt-br'),
+                hour: dayjs(appointment[0].hour, "HH:mm", 'pt-br'),
+                idDoctor: appointment[0].idUser,
+                medicalSpecialty: appointment[0].medicalSpecialty,
+                doctor: appointment[0].doctor,
+                reasoning: appointment[0].reasoning,
+                issueDescription: appointment[0].issueDescription,
+                medication: appointment[0].medication,
+                dosagePrecautions: appointment[0].dosagePrecautions,
+                status: appointment[0].status,
+            })
+
+            setAppointmentDate(form.getFieldValue('date').format('DD/MM/YYYY'))
+            setAppointmentHour(form.getFieldValue('hour').format('HH:mm'))
+        }
+    }, [appointment])
 
     const [form] = Form.useForm()
     const dataForm = Form.useWatch([], form)
@@ -72,10 +105,10 @@ function RegisterAppointmentForm() {
 
         if (filteredHour.length > 0) {
             messageApi.open({ type: 'error', content: 'Esse paciente já possui consulta cadastrada nesse dia e horário.' })
-                filteredPatientAppointments = []
-                filteredDate = []
-                filteredHour = []
-                return true
+            filteredPatientAppointments = []
+            filteredDate = []
+            filteredHour = []
+            return true
         }
 
         return false
