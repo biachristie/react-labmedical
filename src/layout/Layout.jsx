@@ -25,8 +25,7 @@ function LayoutComponent() {
                     breakpoint='xxl'
                 >
                     <div className='layout-brand-container'>
-                        <img className='layout-brand-logo' src="./logo.png" alt="Sante logo" />
-                        <span className='layout-brand-title'>Santé</span>
+                        <img className='layout-brand-logo' src="./logo.png" alt="LABMedical logo" />
                     </div>
                     <MenuBarComponent />
                 </Sider>
