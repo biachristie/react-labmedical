@@ -15,6 +15,7 @@ import {
 import './Patientrecord.page.css'
 import { TitlesContext } from '../../context/titles/titles.context'
 import { PatientService } from "../../services/Patient/Patient.service"
+import { AppointmentService } from "../../services/Appointment/Appointment.service"
 
 function PatientRecordPage() {
     const isLogged = JSON.parse(localStorage.getItem('isLogged'))
@@ -23,6 +24,7 @@ function PatientRecordPage() {
     let patientId = params.get('id')
 
     const [patient, setPatient] = useState([])
+    const [appointments, setAppointments] = useState([])
 
     const { setTitle } = useContext(TitlesContext)
     useEffect(() => {
@@ -30,8 +32,15 @@ function PatientRecordPage() {
 
         if (patientId !== null) { 
             PatientService.Show(patientId).then(result => setPatient(result))
+            AppointmentService.Get().then(result => setAppointments(result))
         }
     }, [])
+
+    const [filteredAppointments, setFilteredAppointments] = useState([])   
+
+    useEffect(() => {
+        setFilteredAppointments(appointments.filter(value => value.idPatient.toString().includes(patientId)))
+    }, [appointments])
 
     const tabItems = [
         {
@@ -246,7 +255,7 @@ function PatientRecordPage() {
                             className='layout-content-table'
                             // loading={ }
                             columns={ columnsAppointments }
-                            // dataSource={ }
+                            dataSource={ filteredAppointments }
                             rowKey= { (record) => record.id }
                             style={{ tableLayout: 'fixed' }}
                             scroll={{ x: '100%' }}
