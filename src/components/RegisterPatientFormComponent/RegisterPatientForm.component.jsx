@@ -12,6 +12,14 @@ import InputComponent from "../InputComponent/Input.component"
 import { PatientService } from "../../services/Patient/Patient.service"
 
 function RegisterPatientForm() {
+    useEffect(() => { fetchPatientsList() }, [])
+
+    const [patientsList, setPatientsList] = useState([])
+    console.log(patientsList);
+    const fetchPatientsList = () => {
+        PatientService.Get().then(result => setPatientsList(result))
+    }
+
     let params = new URL(document.location).searchParams
     let patientId = params.get('id')
 
