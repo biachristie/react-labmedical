@@ -15,6 +15,10 @@ function RegisterExamForm() {
     const [examDate, setExamDate] = useState('')
     const onChangeDate = (_, dateString) => { setExamDate(dateString) }
 
+    const hourFormat = 'HH:mm'
+    const [examHour, setExamHour] = useState('')
+    const onChangeHour = (_, hourString) => { setExamHour(hourString) }
+
     return (
         <>
             <div className='register-exam-form-container'>
@@ -183,9 +187,9 @@ function RegisterExamForm() {
                                     }
                                 ]}
                                 style={{ width: '30%' }}
-                                // format={  }
+                                format={ hourFormat }
                                 placeholder='Selecione a hora'
-                                // onChange={  }
+                                onChange={ onChangeHour }
                                 type='hour'
                             />
 
