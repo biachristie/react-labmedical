@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Button, Divider, Form } from 'antd'
 import { 
     CloseCircleOutlined,
@@ -9,6 +10,11 @@ import {
 import InputComponent from '../InputComponent/Input.component'
 
 function RegisterExamForm() {
+
+    const dateFormat = 'DD/MM/YYYY'
+    const [examDate, setExamDate] = useState('')
+    const onChangeDate = (_, dateString) => { setExamDate(dateString) }
+
     return (
         <>
             <div className='register-exam-form-container'>
@@ -157,9 +163,9 @@ function RegisterExamForm() {
                                     }
                                 ]}
                                 style={{ width: '30%' }}
-                                // format={  }
+                                format={ dateFormat }
                                 placeholder='Selecione a data'
-                                // onChange={  }
+                                onChange={ onChangeDate }
                                 type='date'
                             />
 
