@@ -10,6 +10,8 @@ import {
 import InputComponent from "../InputComponent/Input.component"
 
 function RegisterAppointmentForm() {
+    const [form] = Form.useForm()
+    const dataForm = Form.useWatch([], form)
 
     const dateFormat = 'DD/MM/YYYY'
     const [appointmentDate, setAppointmentDate] = useState('')
@@ -18,6 +20,20 @@ function RegisterAppointmentForm() {
     const hourFormat = 'HH:mm'
     const [appointmentHour, setAppointmentHour] = useState('')
     const onChangeHour = (_, hourString) => { setAppointmentHour(hourString) }
+
+    const onChangeDoctor = (value) => {
+        const doctorId = value
+
+        const fetchDoctor = async() => {
+            const responseDoctor = await fetch(`http://localhost:3000/users/${ doctorId }`)
+            const dataDoctor = await responseDoctor.json()
+            form.setFieldsValue({ 
+                doctor : dataDoctor.name
+            })
+        }
+        
+        doctorId > 0 ? fetchDoctor() : null
+    }
 
     return (
         <>
@@ -30,7 +46,7 @@ function RegisterAppointmentForm() {
             </Divider>
 
             <Form
-                // form={ } 
+                form={ form } 
                 name='register-form'
                 className='register-appointment-form'
                 layout='vertical'
@@ -97,7 +113,7 @@ function RegisterAppointmentForm() {
                                 }
                             ]}
                             style={{ width: '20%' }}
-                            // onChange={ }
+                            onChange={ onChangeDoctor }
                             placeholder='Insira o código do médico'
                             type='number'
                         />
