@@ -44,8 +44,9 @@
 }
 
 .header-icon-avatar {
-    height: 2.55rem;
-    border-radius: 50%;
+    height: 2.5rem;
+    aspect-ratio: 1/1;
+    border-radius: 10px;
 }
 
 .header-user-container {
@@ -86,6 +87,7 @@
 
 @media screen and (max-width: 360px) {
     .header-container {
+        height: 90px;
         padding: 0 10px;
     }
 
@@ -93,7 +95,6 @@
         display: flex;
         justify-content: center;
         gap: 12px;
-        margin-top: 10px;
     }
     
     #header-title {
@@ -138,6 +139,7 @@
 
 @media screen and (min-width: 361px) and (max-width: 480px) {
     .header-container {
+        height: 95px;
         padding: 0 10px;
     }
     
@@ -145,7 +147,6 @@
         display: flex;
         justify-content: center;
         gap: 10px;
-        margin-top: 10px;
     }
 
     #header-title {

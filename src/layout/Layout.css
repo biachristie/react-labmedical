@@ -18,13 +18,7 @@
 .layout-brand-logo {
     height: 50px;
     width: auto;
-    margin: 10px 0 0;
-}
-
-.layout-brand-title {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--color-text-white);
+    margin: 20px 0 0;
 }
 
 .layout-header {
@@ -40,4 +34,16 @@
 
 .layout-footer {
     text-align: center;
+}
+
+@media screen and (max-width: 360px) {
+    .layout-header {
+        height: 90px;
+    }
+}
+
+@media screen and (min-width: 361px) and (max-width: 480px) {
+    .layout-header {
+        height: 95px;
+    }
 }
