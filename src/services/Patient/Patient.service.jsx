@@ -10,11 +10,13 @@ const Get = () => {
 
 const Create = (data) => {
     const fetchPatient = async() => {
-        await fetch('http://localhost:3000/patients', {
+        const response = await fetch('http://localhost:3000/patients', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify( data )
         })
+
+        return response
     }
 
     return fetchPatient()
@@ -22,11 +24,13 @@ const Create = (data) => {
 
 const Update = (id, data) => {
     const fetchPatient = async() => {
-        await fetch(`http://localhost:3000/patients/${ id }`, {
+        const response = await fetch(`http://localhost:3000/patients/${ id }`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify( data )
         })
+
+        return response
     }
 
     return fetchPatient()
@@ -34,9 +38,10 @@ const Update = (id, data) => {
 
 const Delete = (id) => {
     const fetchPatient = async() => {
-        await fetch(`http://localhost:3000/patients/${ id }`, {
+        const response = await fetch(`http://localhost:3000/patients/${ id }`, {
             method: 'DELETE',
         })
+        return response.status
     }
 
     return fetchPatient()
