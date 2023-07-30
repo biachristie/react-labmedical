@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 import { Navigate } from "react-router-dom"
-import { Avatar, Button, Card, Input, Space, Table, Tabs, Tag } from "antd"
+import { Avatar, Button, Card, Input, Space, Table, Tabs, Tag, Typography } from "antd"
 import { 
     EditOutlined,
     MailOutlined, 
@@ -16,6 +16,7 @@ import './Patientrecord.page.css'
 import { TitlesContext } from '../../context/titles/titles.context'
 import { PatientService } from "../../services/Patient/Patient.service"
 import { AppointmentService } from "../../services/Appointment/Appointment.service"
+import { ExamService } from "../../services/Exam/Exam.service"
 
 function PatientRecordPage() {
     const isLogged = JSON.parse(localStorage.getItem('isLogged'))
@@ -25,6 +26,7 @@ function PatientRecordPage() {
 
     const [patient, setPatient] = useState([])
     const [appointments, setAppointments] = useState([])
+    const [exams, setExams] = useState([])
 
     const { setTitle } = useContext(TitlesContext)
     useEffect(() => {
@@ -33,13 +35,16 @@ function PatientRecordPage() {
         if (patientId !== null) { 
             PatientService.Show(patientId).then(result => setPatient(result))
             AppointmentService.Get().then(result => setAppointments(result))
+            ExamService.Get().then(result => setExams(result))
         }
     }, [])
 
     const [filteredAppointments, setFilteredAppointments] = useState([])   
+    const [filteredExams, setFilteredExams] = useState([])   
 
     useEffect(() => {
         setFilteredAppointments(appointments.filter(value => value.idPatient.toString().includes(patientId)))
+        setFilteredExams(exams.filter(value => value.idPatient.toString().includes(patientId)))
     }, [appointments])
 
     const [searchedAppointment, setSearchedAppointment] = useState('')
@@ -208,7 +213,7 @@ function PatientRecordPage() {
                 return  <a href={ `${record.urlDocument}` }>
                             <Typography.Text
                                 ellipsis={{ tooltip: `${ record.urlDocument }` }}
-                                style={{ width: 150 }}
+                                style={{ width: 150, fontSize: 12 }}
                             >
                                 { record.urlDocument }
                             </Typography.Text>
@@ -389,7 +394,7 @@ function PatientRecordPage() {
                         <Table
                             className='layout-content-table'
                             columns={ columnsExams }
-                            // dataSource={  }
+                            dataSource={ filteredExams }
                             rowKey= { (record) => record.id }
                             style={{ tableLayout: 'fixed' }}
                             scroll={{ x: '100%' }}
