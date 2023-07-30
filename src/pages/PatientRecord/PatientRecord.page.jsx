@@ -1,7 +1,8 @@
 import { useContext, useEffect, useState } from "react"
 import { Navigate } from "react-router-dom"
-import { Avatar, Button, Card, Tabs } from "antd"
+import { Avatar, Button, Card, Space, Table, Tabs, Tag } from "antd"
 import { 
+    EditOutlined,
     MailOutlined, 
     MobileOutlined, 
     PhoneOutlined, 
@@ -51,6 +52,100 @@ function PatientRecordPage() {
                 </span>
             )
         },
+    ]
+
+    const columnsAppointments = [
+        {
+            key: 'id',
+            title: 'ID',
+            dataIndex: 'id',
+            align: 'center',
+        },
+        {
+            key: 'reasoning',
+            title: 'Motivo',
+            dataIndex: 'reasoning',
+            sorter: (a, b) => a.reasoning > b.reasoning,
+        },
+        {
+            key: 'date',
+            title: 'Data',
+            dataIndex: 'date',
+            sorter: (a, b) => a.date > b.date,
+            align: 'center'
+        },
+        {
+            key: 'hour',
+            title: 'Hora',
+            dataIndex: 'hour',
+            sorter: (a, b) => a.hour > b.hour,
+            align: 'center'
+        },
+        {
+            key: 'medication',
+            title: 'Prescrição Médica',
+            dataIndex: 'medication',
+            sorter: (a, b) => a.medication > b.medication,
+            render: (_, record) => {
+                return  <div>
+                            <span>{ record.medication }, { record.dosagePrecautions }</span>
+                        </div>
+            }
+        },
+        {
+            key: 'issueDescription',
+            title: 'Descrição',
+            dataIndex: 'issueDescription',
+            sorter: (a, b) => a.issueDescription > b.issueDescription,
+        },
+        {
+            key: 'doctor',
+            title: 'Médico(a)',
+            dataIndex: 'doctor',
+            sorter: (a, b) => a.doctor > b.doctor,
+        },
+        {
+            key: 'medicalSpecialty',
+            title: 'Especialidade',
+            dataIndex: 'medicalSpecialty',
+            sorter: (a, b) => a.medicalSpecialty > b.medicalSpecialty,
+        },
+        {
+            key: 'status',
+            title: 'Status',
+            dataIndex: 'status',
+            render: (_, record) => {
+                const color = (record) => {
+                    switch (record.status) {
+                        case 'Aguardando atendimento':
+                            return '#FAAD14'
+                        case 'Em andamento':
+                            return '#979797'
+                        case 'Atendido':
+                            return '#358423'
+                        default:
+                            break;
+                    }
+                }
+
+                return  <Tag color={ color(record) }>
+                            { record.status }
+                        </Tag>
+            },
+            align: 'center'
+        },
+        {
+            key:'actions',
+            title: 'Ações',
+            render: (_, record) => (
+                <Space>
+                    <a href={ `/appointmentRegister?id=${record.id}` }>
+                        <EditOutlined className='layout-content-table-edit' />
+                    </a>
+                </Space>
+            ),
+            align: 'center'
+        }
     ]
 
     const render = () => {
@@ -144,6 +239,22 @@ function PatientRecordPage() {
                                 items={ tabItems }
                             />
                         </div>
+                    </section>
+
+                    <section className='layout-content-section-pr3'>
+                        <Table
+                            className='layout-content-table'
+                            // loading={ }
+                            columns={ columnsAppointments }
+                            // dataSource={ }
+                            rowKey= { (record) => record.id }
+                            style={{ tableLayout: 'fixed' }}
+                            scroll={{ x: '100%' }}
+                            pagination={{ 
+                                position: ['bottomLeft'], 
+                                size: 'small',
+                            }}
+                        />
                     </section>
                 </>
             )
