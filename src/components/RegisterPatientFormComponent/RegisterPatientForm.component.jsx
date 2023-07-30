@@ -124,20 +124,36 @@ function RegisterPatientForm() {
             created_at: Date.now()
         }
 
+        patientId ? onUpdate(submitData) : onSave(submitData)
+    }
+
+    const onUpdate = async(submitData) => {
+        await PatientService.Update(patientId, submitData)
+            .then(() => {
+                messageApi.open({ type: 'success', content: 'Sucesso! Paciente editado.' })
+                form.resetFields()
+            })
+            .catch(() => {
+                messageApi.open({ type: 'error', content: 'Erro no cadastro. Por favor, tente novamente.' })
+                form.resetFields()
+            })
+    }
+
+    const onSave = async(submitData) => {
         if(isPatientRegistered()) { return }
 
         await PatientService.Create(submitData)
-        .then(() => {
-            messageApi.open({ type: 'success', content: 'Sucesso! Paciente cadastrado.' })
-            form.resetFields()
-        })
-        .catch(() => {
-            messageApi.open({ type: 'error', content: 'Erro no cadastro. Por favor, tente novamente.' })
-            form.resetFields()
-        })
+            .then(() => {
+                messageApi.open({ type: 'success', content: 'Sucesso! Paciente cadastrado.' })
+                form.resetFields()
+            })
+            .catch(() => {
+                messageApi.open({ type: 'error', content: 'Erro no cadastro. Por favor, tente novamente.' })
+                form.resetFields()
+            })
     }
 
-    const onDelete = async () => {
+    const onDelete = async() => {
         const response = await PatientService.Delete(patientId)
         
         if(response === 200) {
