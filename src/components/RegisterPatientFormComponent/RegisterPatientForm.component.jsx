@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { Button, Form } from "antd"
+import { Button, Form, message } from "antd"
 import { 
     CloseCircleOutlined,
     DeleteOutlined,
@@ -9,6 +9,7 @@ import {
 } from '@ant-design/icons'
 
 import InputComponent from "../InputComponent/Input.component"
+import { PatientService } from "../../services/Patient/Patient.service"
 
 function RegisterPatientForm() {
     let params = new URL(document.location).searchParams
@@ -70,11 +71,30 @@ function RegisterPatientForm() {
         cep.length === 8 ? fetchData() : null
     }
 
+    const [messageApi, contextHolder] = message.useMessage()
+
+    const onDelete = async () => {
+        const response = await PatientService.Delete(patientId)
+        
+        if(response === 200) {
+            messageApi.open({ type: 'success', content: 'Sucesso! Paciente excluído.' })
+            form.resetFields()
+        } else if (response === 404) {
+            messageApi.open({ type: 'error', content: 'Erro na exclusão! Paciente não existe.' })
+            form.resetFields()
+        } else {
+            messageApi.open({ type: 'error', content: 'Erro na exclusão. Por favor, tente novamente.' })
+            form.resetFields()
+        }
+    }
+
     const navigate = useNavigate()
     const onCancel = () => { navigate('/') }
 
     return (
         <>
+            { contextHolder }
+
             <Form 
                     form={ form } 
                     name='register-form'
@@ -564,7 +584,7 @@ function RegisterPatientForm() {
                             className='register-patient-btn-delete'
                             type='primary'
                             disabled={ !isPatientId }
-                            // onClick={ }
+                            onClick={ onDelete }
                         >
                             <DeleteOutlined /> Excluir
                         </Button>

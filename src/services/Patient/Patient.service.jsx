@@ -34,9 +34,10 @@ const Update = (id, data) => {
 
 const Delete = (id) => {
     const fetchPatient = async() => {
-        await fetch(`http://localhost:3000/patients/${ id }`, {
+        const response = await fetch(`http://localhost:3000/patients/${ id }`, {
             method: 'DELETE',
         })
+        return response.status
     }
 
     return fetchPatient()
