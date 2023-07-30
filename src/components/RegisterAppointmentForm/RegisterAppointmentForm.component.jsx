@@ -49,7 +49,7 @@ function RegisterAppointmentForm() {
         if(appointment.length > 0) {
             form.setFieldsValue({ 
                 idPatient: appointment[0].idPatient,
-                fullname: appointment[0].patientName,
+                patientName: appointment[0].patientName,
                 date: dayjs(appointment[0].date, "DD/MM/YYYY", 'pt-br'),
                 hour: dayjs(appointment[0].hour, "HH:mm", 'pt-br'),
                 idDoctor: appointment[0].idUser,
@@ -96,7 +96,7 @@ function RegisterAppointmentForm() {
         if((Object.keys(patient).length > 0)) {
             form.setFieldsValue({ 
                 idPatient: patient.id,
-                fullname: patient.fullname
+                patientName: patient.fullname
             })
         }
     }, [patient])
@@ -144,7 +144,7 @@ function RegisterAppointmentForm() {
     const onSubmitForm = async() => {
         const submitData = {
             idPatient: dataForm.idPatient,
-            fullname: dataForm.fullname,
+            patientName: dataForm.patientName,
             date: appointmentDate,
             hour: appointmentHour,
             medicalSpecialty: dataForm.medicalSpecialty,
@@ -257,7 +257,7 @@ function RegisterAppointmentForm() {
                         
                         <InputComponent 
                             label="Nome Completo"
-                            id="fullname"
+                            id="patientName"
                             rules={[
                                 {
                                     required: true,
@@ -362,7 +362,7 @@ function RegisterAppointmentForm() {
                                     message: '${label} não é um ${type} válido(a)'
                                 }
                             ]}
-                            style={{ width: '20%' }}
+                            style={{ width: '30%' }}
                             format={ dateFormat }
                             placeholder='Selecione a data'
                             onChange={ onChangeDate }
@@ -382,34 +382,11 @@ function RegisterAppointmentForm() {
                                     message: '${label} não é um ${type} válido(a)'
                                 }
                             ]}
-                            style={{ width: '20%' }}
+                            style={{ width: '30%' }}
                             format={ hourFormat }
                             placeholder='Selecione a hora'
                             onChange={ onChangeHour }
                             type='hour'
-                        />
-                        
-                        <InputComponent 
-                            label="Motivo da Consulta"
-                            id="reasoning"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: '${label} é obrigatório'
-                                },
-                                {
-                                    min: 6,
-                                    max: 60,
-                                    message: '${label} deve conter entre ${min} e ${max} caracteres'
-                                },
-                                {
-                                    type: 'text',
-                                    message: '${label} não é um ${type} válido(a)'
-                                }
-                            ]}
-                            style={{ width: '40%' }}
-                            placeholder='Insira o motivo da consulta'
-                            type='text'
                         />
 
                         <InputComponent
@@ -421,7 +398,7 @@ function RegisterAppointmentForm() {
                                     message: '${label} é obrigatório'
                                 }
                             ]}
-                            style={{ width: '20%' }}
+                            style={{ width: '40%' }}
                             options={[
                                 { label: 'Aguardando Atendimento', value: 'Aguardando Atendimento' },
                                 { label: 'Em Andamento', value:'Em Andamento' },
@@ -430,6 +407,28 @@ function RegisterAppointmentForm() {
                             type='select'
                         />
                     </div>
+
+                    <InputComponent 
+                        label="Motivo da Consulta"
+                        id="reasoning"
+                        rules={[
+                            {
+                                required: true,
+                                message: '${label} é obrigatório'
+                            },
+                            {
+                                min: 6,
+                                max: 60,
+                                message: '${label} deve conter entre ${min} e ${max} caracteres'
+                            },
+                            {
+                                type: 'text',
+                                message: '${label} não é um ${type} válido(a)'
+                            }
+                        ]}
+                        placeholder='Insira o motivo da consulta'
+                        type='text'
+                    />
 
                     <InputComponent 
                         label="Descrição da Consulta"
