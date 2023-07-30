@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Button, Divider, Form, message } from 'antd'
+import { Button, Divider, Form, Input, message } from 'antd'
 import { 
     CloseCircleOutlined,
     DeleteOutlined,
@@ -11,6 +11,7 @@ import dayjs from 'dayjs'
 
 import InputComponent from '../InputComponent/Input.component'
 import { ExamService } from '../../services/Exam/Exam.service'
+import { PatientService } from '../../services/Patient/Patient.service'
 
 function RegisterExamForm() {
     let params = new URL(document.location).searchParams
@@ -75,6 +76,30 @@ function RegisterExamForm() {
             .validateFields({ validateOnly: true })
             .then(() => { setSubmit(true) }, () => { setSubmit(false) })
     }, [dataForm])
+
+    const searchTerm = (value) => { setPatientId(value) }
+
+    const [patientId, setPatientId] = useState('')
+    useEffect(() => { 
+        if (patientId !== null) {
+            fetchPatient()
+        }
+    }, [patientId])
+
+    const [patient, setPatient] = useState([])
+    const fetchPatient = async() => {
+        const response = await PatientService.Show(patientId)
+        setPatient(response)
+    }
+
+    useEffect(() => {
+        if((Object.keys(patient).length > 0)) {
+            form.setFieldsValue({ 
+                idPatient: patient.id,
+                patientName: patient.fullname
+            })
+        }
+    }, [patient])
 
     const dateFormat = 'DD/MM/YYYY'
     const [examDate, setExamDate] = useState('')
@@ -184,6 +209,15 @@ function RegisterExamForm() {
     return (
         <>
             { contextHolder }
+
+            <div className='register-appointment-search-container'>
+                <Input.Search
+                    className='register-patient-search'
+                    placeholder='Insira o código do paciente'
+                    allowClear
+                    onSearch={ searchTerm }
+                />
+            </div>
 
             <div className='register-exam-form-container'>
                 <Divider 
