@@ -25,6 +25,17 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             colorText: '#ffffffdf',
             groupTitleColor: '#ea8761',
             lineWidth: 1,
+          },
+          Table: {
+            controlHeight: 32,
+            fontSize: 12,
+            margin: 16,
+            padding: 16,
+            paddingContentVerticalLG: 10,
+            colorText: "rgba(0, 0, 0, 0.88)",
+            colorTextHeading: "#a3a3a3",
+            colorBorderSecondary: "#fafafa",
+            borderRadius: 10,
           }
         },
         token: {

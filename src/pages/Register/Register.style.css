@@ -16,14 +16,8 @@
     background: var(--color-primary-main);
 }
 
-.register-title {
-    font-size: 5rem;
-    color: var(--color-text-white);
-    margin: 0;
-}
-
 .register-logo {
-    width: 135px;
+    width: 300px;
 }
 
 .register-form-main {
@@ -51,12 +45,8 @@
         gap: 5px;
     }
 
-    .register-title {
-        font-size: 3rem;
-    }
-
     .register-logo {
-        width: 70px;
+        width: 100px;
     }
 
     .register-form-main {
@@ -78,12 +68,8 @@
         gap: 5px;
     }
 
-    .register-title {
-        font-size: 4rem;
-    }
-
     .register-logo {
-        width:100px;
+        width: 200px;
     }
 
     .register-form-main {

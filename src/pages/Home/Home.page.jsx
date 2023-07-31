@@ -1,7 +1,12 @@
 import { Fragment, useContext, useEffect, useState } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { Avatar, Card, Input, Pagination, Skeleton, Spin, Typography } from 'antd'
-import { CalendarOutlined, EllipsisOutlined, ExperimentOutlined, UserOutlined } from '@ant-design/icons';
+import { 
+    CalendarOutlined, 
+    EllipsisOutlined, 
+    ExperimentOutlined, 
+    UserOutlined 
+} from '@ant-design/icons'
 import Meta from 'antd/es/card/Meta'
 
 import './Home.page.css'
@@ -39,14 +44,6 @@ function HomePage() {
         if (patientCardInfo.length > 0) { setLoading(false) }
     }, [patientCardInfo])
 
-    const calcPatientAge = (pacientBirthDate) => {
-        const year = new Date().getFullYear()
-        const birthDate = pacientBirthDate
-        const birthYear = birthDate.split('/')[2]
-        const age = year - birthYear
-        return age
-    }
-
     const [searchedTerm, setSearchedTerm] = useState('')
 
     const searchTerm = (value) => {
@@ -69,10 +66,12 @@ function HomePage() {
                 <Card
                     className='patients-cards'
                     actions={[
-                        <EllipsisOutlined 
-                            key="ellipsis" 
-                            onClick={ () => navigate(`/patientRegister?id=${patientCardInfo.id}`) } 
-                        />
+                        <div>
+                            <EllipsisOutlined 
+                                key="ellipsis" 
+                                onClick={ () => navigate(`/patientRegister?id=${patientCardInfo.id}`) } 
+                                />
+                        </div>
                     ]}
                 >
                     <Meta
@@ -80,7 +79,8 @@ function HomePage() {
                         avatar={
                             <Avatar 
                                 className='patients-cards-avatar'
-                                src={ patientCardInfo.avatar }
+                                shape='square'
+                                src={ patientCardInfo.avatar || <UserOutlined /> }
                             />
                         }
                         title={
@@ -93,9 +93,9 @@ function HomePage() {
                         }
                         description={
                             <div className='patients-cards-description'>
-                                <span>{ `Idade: ${ calcPatientAge (patientCardInfo.birthDate) } anos` }</span>
+                                <span>{ `Idade: ${ patientCardInfo.age } anos` }</span>
                                 <span>{ `Celular: ${ patientCardInfo.cellphone }` }</span>
-                                <span>{ `Convênio: ${ patientCardInfo.healthPlan.name }` }</span>
+                                <span>{ `Convênio: ${ patientCardInfo.healthPlanName || '' }` }</span>
                             </div>
                         }
                     />
@@ -116,7 +116,7 @@ function HomePage() {
     const renderPage = () => {
         return (
             <>
-                <section className='layout-content-section-1'>
+                <section className='layout-content-section-h1'>
                     <h2 className='layout-content-title'>Estatísticas do Sistema</h2>
                     <div className='layout-content-cards'>
                         <Link to={'/patients'}>
@@ -181,7 +181,7 @@ function HomePage() {
                         </Link>
                     </div>
                 </section>
-                <section className='layout-content-section-2'>
+                <section className='layout-content-section-h2'>
                     <h2 className='layout-content-title'>Informações rápidas de pacientes</h2>
                     <div className='layout-content-search-container'>
                         <Input.Search
@@ -206,6 +206,7 @@ function HomePage() {
                                 defaultPageSize={ numEachPage }
                                 onChange={ handleChange }
                                 total={ patientCardInfo.length }  
+                                size='small'
                             />
                         </Skeleton>
                     </div>

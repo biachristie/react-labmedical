@@ -1,0 +1,36 @@
+.layout-content-section-p1 {
+    display: flex;
+    justify-content: end;
+    margin: 10px 20px 20px;
+}
+
+.layout-content-button {
+    font-weight: 600;
+    height: 2.6rem;
+    padding: 0 18px;
+}
+
+.layout-content-section-p2 {
+    margin: 0 20px;
+}
+
+.table-patients-search-container {
+    display: flex;
+    justify-content: end;
+    margin: 20px 10px;
+}
+
+.table-search {
+    width: 40%;
+}
+
+.layout-content-table-eye {
+    background-color: var(--color-primary-main);
+    padding: 6px;
+    border-radius: 8px;
+    color: var(--color-text-white);
+}
+
+.layout-content-table-eye:hover {
+    color: var(--color-highlight-lighter);
+}

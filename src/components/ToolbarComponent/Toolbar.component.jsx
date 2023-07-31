@@ -60,7 +60,7 @@ function ToolBarComponent() {
                         <Button 
                             className='header-icon-user' 
                             type='default' 
-                            shape='circle' 
+                            shape='square' 
                             size='large'
                             icon={ avatar || <UserOutlined /> } 
                             onClick={ () => setOpenUserAvatar(true) }

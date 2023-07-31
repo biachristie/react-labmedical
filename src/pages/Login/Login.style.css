@@ -16,14 +16,8 @@
     background: var(--color-primary-main);
 }
 
-.login-page-title {
-    font-size: 5rem;
-    color: var(--color-text-white);
-    margin: 0;
-}
-
 .login-page-logo {
-    width: 135px;
+    width: 300px;
 }
 
 .login-page-form{
@@ -51,12 +45,8 @@
         gap: 5px;
     }
 
-    .login-page-title {
-        font-size: 3rem;
-    }
-
     .login-page-logo {
-        width: 70px;
+        width: 100px;
     }
 
     .login-page-form{
@@ -78,12 +68,8 @@
         gap: 5px;
     }
 
-    .login-page-title {
-        font-size: 4rem;
-    }
-
     .login-page-logo {
-        width:100px;
+        width: 200px;
     }
 
     .login-page-form{

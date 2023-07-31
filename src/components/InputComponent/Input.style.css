@@ -1,8 +1,29 @@
-.form-input, .form-input-textarea {
+.ant-input, 
+.form-input-textarea,
+.ant-input-number .ant-input-number-input,
+.ant-input-group .ant-input-group-addon,
+.ant-picker .ant-picker-input > input {
     line-height: 2rem;
 }
 
-.form-input-number {
-    line-height: 2rem;
-    min-width: 150px;
+.ant-input-number .ant-input-number-input {
+    height: 41px;
+}
+
+.form-input-number, .form-input-hour {
+    min-width: 100%;
+}
+
+.form-input-date {
+    width: 100%;
+}
+
+.ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+    height: 41px;
+    padding: 4px 11px 0;
+}
+
+.ant-input-search .ant-input-search-button {
+    height: 42px;
+    width: 42px;
 }
