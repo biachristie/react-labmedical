@@ -13,7 +13,7 @@ function LoginForm() {
 
     const [messageApi, contextHolder] = message.useMessage();
 
-    const { usersList,setUsersList } = useContext(UsersContext)
+    const { usersList, setUsersList } = useContext(UsersContext)
 
     useEffect (() => {
         const fetchData = async() => {
@@ -53,8 +53,7 @@ function LoginForm() {
         }
     }
 
-    const redirectToHome = (user) => {
-        setAuth({ user, isLogged: true })
+    const redirectToHome = () => {
         localStorage.setItem('isLogged', JSON.stringify(true))
         navigate('/')
     }
