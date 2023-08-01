@@ -54,7 +54,7 @@ function RegisterForm() {
             { contextHolder }
 
             <div className='register-form-container'>
-                <h1 id='register-form-title'>Cria uma conta</h1>
+                <h1 id='register-form-title'>Criar uma conta</h1>
                 <p id='register-form-description'>Insira seu nome, e-mail e senha para criar usa conta.</p>
             
                 <Form 
