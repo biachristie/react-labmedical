@@ -1,6 +1,6 @@
 import { Fragment, useContext, useEffect, useState } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
-import { Avatar, Card, Input, Pagination, Skeleton, Spin, Typography } from 'antd'
+import { Avatar, Card, Input, Pagination, Skeleton, Typography } from 'antd'
 import { 
     CalendarOutlined, 
     EllipsisOutlined, 
@@ -132,9 +132,10 @@ function HomePage() {
                             >
                                 <Meta 
                                     title={
-                                        <span className='stats-cards-title' >
-                                            { patientCardInfo.length || <Spin size='small' /> }
-                                        </span>} 
+                                            <span className='stats-cards-title' >
+                                                { patientCardInfo ? patientCardInfo.length : 0 }
+                                            </span>
+                                        } 
                                     description="Pacientes" 
                                 />
                             </Card>
@@ -153,7 +154,7 @@ function HomePage() {
                                 <Meta 
                                     title={
                                         <span className='stats-cards-title' >
-                                            { appointmentCardInfo.length || <Spin size='small' /> }
+                                            { appointmentCardInfo ? appointmentCardInfo.length : 0 }
                                         </span>} 
                                     description="Consultas" 
                                     />
@@ -173,7 +174,7 @@ function HomePage() {
                                 <Meta 
                                     title={
                                         <span className='stats-cards-title' >
-                                            { examCardInfo.length || <Spin size='small' /> }
+                                            { examCardInfo.length ? examCardInfo.length : 0 }
                                         </span>} 
                                     description="Exames" 
                                     />
@@ -192,7 +193,7 @@ function HomePage() {
                         />
                     </div>
                     <div className='layout-content-patients-cards-container'>
-                        <Skeleton loading= { loading }>
+                        { patientCardInfo.length > 0 && <Skeleton loading= { loading }>
                             <div className='layout-content-patients-cards'>
                                 { 
                                     patientCardInfo
@@ -208,7 +209,7 @@ function HomePage() {
                                 total={ patientCardInfo.length }  
                                 size='small'
                             />
-                        </Skeleton>
+                        </Skeleton>}
                     </div>
                 </section>
             </>

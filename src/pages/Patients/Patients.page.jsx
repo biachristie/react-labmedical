@@ -127,7 +127,7 @@ function PatientsPage() {
                     </Button>
                 </section>
                 <section className='layout-content-section-p2'>
-                    <Table
+                    {patients.length > 0 && <Table
                         className='layout-content-table-patients'
                         loading={ loading }
                         columns={ columns }
@@ -150,7 +150,7 @@ function PatientsPage() {
                             size: 'small',
                         }}
                         
-                    />
+                    />}
                 </section>
             </>
         )
