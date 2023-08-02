@@ -11,6 +11,13 @@ function RegisterForm() {
     const [messageApi, contextHolder] = message.useMessage();
     
     const { usersList } = useContext(UsersContext)
+    const [filteredEmail, setFilteredEmail] = useState([])
+
+    useEffect(() => {
+        if (usersList.length > 0) {
+            setFilteredEmail(usersList.filter(user => user.email.includes(data.email)))
+        }
+    }, [usersList])
 
     const [submit, setSubmit] = useState(false)
     const data = Form.useWatch([], form)
@@ -22,11 +29,9 @@ function RegisterForm() {
     }, [data])
 
     const onSubmitForm = () => {
-        let filterEmail = usersList.filter(user => user.email.includes(data.email))
-
-        if (filterEmail.length > 0) {
+        if (filteredEmail.length > 0) {
             messageApi.open({ type: 'error', content: 'Esse e-mail já está em uso.' })
-            filterEmail = []
+            setFilteredEmail([])
             return
         }
 
