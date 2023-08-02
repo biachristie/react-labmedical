@@ -377,7 +377,7 @@ function RegisterExamForm() {
                                 ]}
                                 style={{ width: '40%' }}
                                 options={[
-                                    { label: 'Aguardando Atendimento', value: 'Aguardando Atendimento' },
+                                    { label: 'Aguardando Atendimento', value: 'Aguardando atendimento' },
                                     { label: 'Em Andamento', value:'Em Andamento' },
                                     { label: 'Atendido', value: 'Atendido' }
                                 ]}
