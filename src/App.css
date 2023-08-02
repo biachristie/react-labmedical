@@ -1,0 +1,37 @@
+:root {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+
+    --color-primary-main: #082F4B;
+    --color-primary-dark: #051C2C;
+    --color-primary-light: #0C4269;
+    --color-primary-lighter: #0F5586;
+
+    --color-highlight-main: #DE541E;
+    --color-highlight-dark: #CD4D1C;
+    --color-highlight-lighter: #EA8761;
+
+    --color-background-dark: #f8f8f2;
+    --color-background-light: #fffffb;
+
+    --color-background-transparent: transparent;
+    --color-background-disabled: #c4c8ca;
+
+    --color-text-black: #1d1f20;
+    --color-text-white: #fcfcfc;
+    --color-text-gray: #747c80;
+
+    --color-message-success: #358423;
+    --color-message-danger: #c21410;
+}
+
+a {
+    color: var(--color-highlight-dark);
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}

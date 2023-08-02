@@ -1,0 +1,15 @@
+.menuBar-container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+
+.ant-menu-light.ant-menu-submenu > .ant-menu {
+    color: var(--color-highlight-main);
+}
+
+@media screen and (max-width: 768px) {
+    .ant-menu-light.ant-menu-submenu > .ant-menu {
+        background-color: var(--color-primary-main);
+    }
+}

@@ -1,0 +1,61 @@
+.layout-sider {
+    overflow: hidden;
+}
+
+.ant-layout .ant-layout-sider {
+    background: var(--color-primary-main);
+}
+
+.layout-brand-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--color-primary-main);
+    margin-bottom: 30px;
+}
+
+.layout-brand-logo {
+    height: 50px;
+    width: auto;
+    margin: 20px 0 0;
+}
+
+.layout-header {
+    padding-inline: 0;
+    line-height: 0;
+    height: 75px;
+}
+
+.layout-content {
+    margin: 24px 24px 0;
+    overflow: initial;
+}
+
+.layout-footer {
+    text-align: center;
+}
+
+@media screen and (max-width: 360px) {
+    .layout-header {
+        height: 90px;
+    }
+}
+
+@media screen and (min-width: 361px) and (max-width: 480px) {
+    .layout-header {
+        height: 95px;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 570px) {
+    .layout-header {
+        height: 95px;
+    }
+}
+
+@media screen and (min-width: 571px) and (max-width: 750px) {
+    .layout-header {
+        height: 95px;
+    }
+}

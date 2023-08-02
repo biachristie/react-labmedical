@@ -1,0 +1,61 @@
+.register-patient-form-section {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px 30px 20px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03),0 1px 6px -1px rgba(0, 0, 0, 0.02),0 2px 4px 0 rgba(0, 0, 0, 0.02);
+}
+
+.form-section-inner-container {
+    display: flex;
+    align-items: end;
+    gap: 10px;
+}
+
+.register-patient-buttons-container {
+    display: flex;
+    justify-content: end;
+    gap: 8px;
+    margin: 20px 0;
+}
+
+.register-patient-btn-edit,
+.register-patient-btn-delete,
+.register-patient-btn-save,
+.register-patient-btn-cancel {
+    border: none;
+    border-radius: 10px;
+    height: 40px;
+    padding: 0 12px;
+}
+
+.register-patient-btn-edit {
+    color: var(--color-text-white);
+    background-color: #800080;
+}
+
+.register-patient-btn-delete {
+    color: var(--color-text-white);
+    background-color: var(--color-message-danger);
+}
+
+.register-patient-btn-save {
+    color: var(--color-text-white);
+    background-color: var(--color-message-success);
+}
+
+.register-patient-btn-cancel {
+    color: var(--color-text-white);
+    background-color: var(--color-text-gray);
+}
+
+@media screen and (max-width: 360px) {
+    .form-section-inner-container {
+        flex-direction: column;
+    }
+
+    .register-patient-buttons-container {
+        flex-direction: column;
+        align-items: end;
+        gap: 0;
+    }
+}
