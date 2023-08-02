@@ -7,8 +7,8 @@
 
 .layout-content-cards {
     display: flex;
-    justify-content: space-around;
-    gap: 15px;
+    justify-content: center;
+    gap: 20px;
     flex-wrap: wrap;
     margin-bottom: 25px;
 }

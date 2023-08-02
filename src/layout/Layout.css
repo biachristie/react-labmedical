@@ -47,3 +47,15 @@
         height: 95px;
     }
 }
+
+@media screen and (min-width: 481px) and (max-width: 570px) {
+    .layout-header {
+        height: 95px;
+    }
+}
+
+@media screen and (min-width: 571px) and (max-width: 750px) {
+    .layout-header {
+        height: 95px;
+    }
+}

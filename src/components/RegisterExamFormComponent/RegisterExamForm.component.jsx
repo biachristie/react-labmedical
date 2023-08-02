@@ -223,7 +223,6 @@ function RegisterExamForm() {
             <div className='register-exam-form-container'>
                 <Divider 
                     orientation="center" 
-                    style={{ marginTop: '40px' }}
                     plain
                 >
                     Informações 
@@ -485,7 +484,6 @@ function RegisterExamForm() {
 
                     <Divider 
                         orientation="center" 
-                        style={{ marginTop: '40px' }}
                         plain
                     >
                         Resultados 

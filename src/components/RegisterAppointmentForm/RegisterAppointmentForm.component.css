@@ -4,3 +4,58 @@
     padding: 30px 30px 20px;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03),0 1px 6px -1px rgba(0, 0, 0, 0.02),0 2px 4px 0 rgba(0, 0, 0, 0.02);
 }
+
+.ant-divider-horizontal.ant-divider-with-text {
+    margin-top: 40px;
+}
+
+@media screen and (max-width: 360px) {
+    .form-section-inner-container {
+        flex-direction: column;
+    }
+
+    .ant-form-item {
+        width: 100% !important;
+    }
+}
+
+@media screen and (min-width: 361px) and (max-width: 480px) {
+    .form-section-inner-container {
+        flex-direction: column;
+    }
+
+    .ant-form-item {
+        width: 100% !important;
+    }
+
+    .register-patient-buttons-container {
+        flex-direction: column;
+        align-items: end;
+        gap: 0;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 570px) {
+    .form-section-inner-container {
+        flex-direction: column;
+    }
+
+    .ant-form-item {
+        width: 100% !important;
+    }
+}
+
+@media screen and (min-width: 571px) and (max-width: 750px) {
+    .form-section-inner-container {
+        flex-direction: column;
+    }
+
+    .ant-form-item {
+        width: 100% !important;
+    }
+
+    .register-patient-buttons-container {
+        justify-content: end;
+        gap: 0;
+    }
+}

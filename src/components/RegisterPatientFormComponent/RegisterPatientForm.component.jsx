@@ -231,7 +231,6 @@ function RegisterPatientForm() {
             <div className='register-patient-form-container'>
                 <Divider 
                     orientation="center" 
-                    style={{ marginTop: '40px' }}
                     plain
                 >
                     Informações 
@@ -472,7 +471,6 @@ function RegisterPatientForm() {
 
                     <Divider 
                         orientation="center" 
-                        style={{ marginTop: '40px' }}
                         plain
                     >
                         Endereço 
@@ -609,7 +607,6 @@ function RegisterPatientForm() {
 
                     <Divider 
                         orientation="center" 
-                        style={{ marginTop: '40px' }}
                         plain
                     >
                         Contato 
@@ -681,7 +678,6 @@ function RegisterPatientForm() {
 
                     <Divider 
                         orientation="center" 
-                        style={{ marginTop: '40px' }}
                         plain
                     >
                         Responsável 
@@ -713,7 +709,6 @@ function RegisterPatientForm() {
 
                     <Divider 
                         orientation="center" 
-                        style={{ marginTop: '40px' }}
                         plain
                     >
                         Convênio 

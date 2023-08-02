@@ -220,7 +220,6 @@ function RegisterAppointmentForm() {
 
             <Divider
                 orientation="center" 
-                style={{ marginTop: '40px' }}
                 plain
             >
                 Informações 
@@ -457,7 +456,6 @@ function RegisterAppointmentForm() {
 
                 <Divider 
                     orientation="center" 
-                    style={{ marginTop: '40px' }}
                     plain
                 >
                     Prescrição Médica 
