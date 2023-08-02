@@ -78,7 +78,7 @@ function ToolBarComponent() {
                                     id='avatar'
                                     placeholder='Insira sua foto'
                                     type='text'
-                                    onInput = { (e) => setUrlAvatar(e.target.value) }
+                                    onChange = { (e) => setUrlAvatar(e.target.value) }
                                 />
                             </Form>
                         </Modal>
