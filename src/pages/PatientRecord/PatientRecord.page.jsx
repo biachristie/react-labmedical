@@ -22,6 +22,7 @@ function PatientRecordPage() {
     const isLogged = JSON.parse(localStorage.getItem('isLogged'))
 
     const [loadingCard, setLoadingCard] = useState(true)
+    const [loadingTabs, setLoadingTabs] = useState(true)
     const [loadingTable, setLoadingTable] = useState(true)
 
     let params = new URL(document.location).searchParams
@@ -43,7 +44,10 @@ function PatientRecordPage() {
     }, [])
 
     useEffect(() => {
-        if (Object.keys(patient).length > 0) { setLoadingCard(false) }
+        if (Object.keys(patient).length > 0) { 
+            setLoadingCard(false)
+            setLoadingTabs(false)
+        }
     }, [patient])
 
     const [filteredAppointments, setFilteredAppointments] = useState([])   
@@ -382,7 +386,7 @@ function PatientRecordPage() {
 
                     <section className='layout-content-section-pr2'>
                         <div className='patient-record-medical-info'>
-                            <Skeleton loading= { loadingTable } >
+                            <Skeleton loading= { loadingTabs } >
                                 <Tabs
                                     className='patient-record-tab'
                                     defaultActiveKey='1'
@@ -393,7 +397,7 @@ function PatientRecordPage() {
                     </section>
 
                     <section className='layout-content-section-pr3'>
-                        <Table
+                        {appointments.length > 0 && <Table
                             className='layout-content-table'
                             loading={ loadingTable }
                             columns={ columnsAppointments }
@@ -416,11 +420,11 @@ function PatientRecordPage() {
                                 position: ['bottomLeft'], 
                                 size: 'small',
                             }}
-                        />
+                        />}
                     </section>
 
                     <section className='layout-content-section-pr4'>
-                        <Table
+                        {exams.length > 0 && <Table
                             className='layout-content-table'
                             loading={ loadingTable }
                             columns={ columnsExams }
@@ -443,7 +447,7 @@ function PatientRecordPage() {
                                 position: ['bottomLeft'], 
                                 size: 'small',
                             }}
-                        />
+                        />}
                     </section>
                 </>
             )
