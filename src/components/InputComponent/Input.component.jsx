@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import { DatePicker, Form, Input, InputNumber, Select, TimePicker } from "antd";
 
-import './Input.style.css'
+import './Input.component.css'
 
 function InputComponent({ 
         label, 
