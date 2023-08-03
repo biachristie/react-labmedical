@@ -52,20 +52,19 @@ Antes de iniciar a aplicação, execute o servidor que simula o <i>back-end</i>.
 
 Siga os passos abaixo para iniciar o projeto em modo de desenvolvimento:
 
-1. Instale Node.JS v18.x+ em https://nodejs.org/en/download ;
-2. Clone o repositório no terminal / cmd ;
+1. Clone o repositório no terminal / cmd ;
 ```
     $ git clone https://github.com/biachristie/react-labmedical.git
 ```
-3. Navegue até o diretório do projeto ;
+2. Navegue até o diretório do projeto ;
 ```
     $ cd react-labmedical
 ```
-4. Instale o gerenciador de pacotes para o Node.JS ;
+3. Instale os pacotes do projeto ;
 ```
     $ npm install
 ```
-5. Instale as dependências do projeto ;
+4. Instale as dependências do projeto ;
 ```
     $ npm install antd --save
     $ npm install dayjs
@@ -74,11 +73,11 @@ Siga os passos abaixo para iniciar o projeto em modo de desenvolvimento:
     $ npm install react react-dom
     $ npm install react-router-dom
 ```
-6. Execute o servidor ;
+5. Execute o servidor ;
 ```
     $ npm run server
 ```
-7. As mensagens seguintes devem aparecer após ``npm run server`` :
+6. As mensagens seguintes devem aparecer após ``npm run server`` :
 ```
     \{^_^}/ hi!
 
@@ -94,11 +93,11 @@ Siga os passos abaixo para iniciar o projeto em modo de desenvolvimento:
     Home
     http://localhost:3000
 ```
-8. Execute a aplicação em modo de desenvolvimento ;
+7. Execute a aplicação em modo de desenvolvimento ;
 ```
     $ npm run dev
 ```
-9. As mensagens seguintes devem aparecer após ``npm run dev`` :
+8. As mensagens seguintes devem aparecer após ``npm run dev`` :
 ```
     VITE v4.4.3
 
